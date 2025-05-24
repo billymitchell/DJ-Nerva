@@ -1,0 +1,342 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&display=swap');
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: 'Noto Sans', sans-serif;
+  line-height: 1.5;
+  background: var(--theme-primary-color-dark);
+  color: white;
+}
+
+/* Links & Buttons */
+a, button {
+  text-decoration: none;
+  font: inherit;
+}
+
+button, .button {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #f7f7f7;
+  background-color: transparent;
+  color: #f7f7f7;
+  font-size: 15px;
+  text-transform: uppercase;
+  transition: all 0.25s ease-in-out;
+}
+
+.button-primary {
+  background-color: #01563b;
+}
+
+.button:hover, .button-primary:hover {
+  background-color: #353231;
+  color: #f7f7f7;
+  cursor: pointer;
+}
+
+/* Form */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #f7f7f7;
+  background-color: #f7f7f7;
+  resize: none;
+}
+
+/* Utility Layout */
+.flex { display: flex; }
+.grid { display: grid; }
+.text-center { text-align: center; }
+.w-full { width: 100%; }
+.max-w-screen-lg { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+
+/* Hero Section */
+.hero-section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+}
+.hero-logo {
+  width: 150px;
+  margin-bottom: 2rem;
+}
+.hero-tagline {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+.cta-btn {
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  color: white;
+  background: var(--theme-accent-color-dark);
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s;
+  display: inline-block;
+}
+.cta-btn:hover {
+  background: color-mix(in srgb, var(--theme-accent-color-dark) 80%, black 20%);
+}
+
+/* Section Styles */
+.section-dark {
+  padding: 4rem 2rem;
+  background: var(--theme-primary-color-dark);
+  color: white;
+  text-align: center;
+}
+.section-darker {
+  padding: 4rem 2rem;
+  background: var(--theme-secondary-color-dark);
+  color: white;
+  text-align: center;
+}
+
+/* Card Styles */
+.card {
+  width: 300px;
+  background: var(--theme-secondary-color-dark);
+  padding: 1rem;
+  border-radius: 5px;
+}
+.card-alt {
+  background: var(--theme-primary-color-dark);
+}
+
+/* Typography Utilities */
+.heading-2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.heading-3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+.text-md {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+.text-sm {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.text-link {
+  color: var(--theme-accent-color-dark);
+  text-decoration: none;
+}
+.text-link:hover {
+  text-decoration: underline;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Apply Pixelify Sans to h1 and h2 */
+h1, h2 {
+  font-family: "Press Start 2P", system-ui;
+  font-size: 2rem; /* Larger font size for h1 and h2 */
+  line-height: 1.2; /* Adjust line height for better readability */
+}
+
+/* Apply bold, uppercase Noto Sans to other headers */
+h3, h4, h5, h6 {
+  font-family: 'Noto Sans', sans-serif;
+  font-weight: 700; /* Bold */
+  text-transform: uppercase; /* Capital letters */
+}
+
+:root {
+  --theme-primary-color: var(--primary-color);
+  --theme-secondary-color: var(--secondary-color);
+  --theme-accent-color: var(--accent-color);
+
+  /* Darkened and desaturated versions */
+  --theme-primary-color-dark: color-mix(in srgb, var(--theme-primary-color) 30%, black 50%);
+  --theme-secondary-color-dark: color-mix(in srgb, var(--theme-secondary-color) 50%, black 40%);
+  --theme-accent-color-dark: color-mix(in srgb, var(--theme-accent-color) 50%, black 20%);
+
+  /* Additional theme colors */
+  --theme-black: #000000;
+  --theme-white: #ffffff;
+  --theme-gray: #808080;
+  --theme-gray-light: #d3d3d3;
+  --theme-gray-dark: #505050;
+}
+
+/* Hero Section */
+#hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#hero-section img#hero-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+/* Hero Section Logo */
+#logo {
+  width: 100%; /* Allow the logo to scale */
+  max-width: 35vw; /* Default max width for larger screens */
+  fill: var(--theme-accent-color); /* Change the fill color */
+  stroke: var(--theme-primary-color); /* Change the stroke color (if applicable) */
+}
+
+@media (max-width: 767px) {
+  #logo {
+    max-width: 45vw; /* Adjust max width for smaller screens */
+  }
+}
+
+/* DJ Mixes Section */
+.section-dark .flex-wrap .card {
+  width: 300px;
+  background: var(--theme-secondary-color);
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+/* Calendar Section */
+.section-darker .flex-wrap .card-alt {
+  background: var(--theme-primary-color);
+}
+
+/* Booking Section */
+#book-now .flex-col-center .cta-btn {
+  background: var(--theme-accent-color);
+}
+
+/* Graphic Design Support Section */
+.section-dark .flex-wrap .card {
+  background: var(--theme-secondary-color);
+}
+
+/* Bio Section */
+.section-darker {
+  background: var(--theme-secondary-color-dark);
+  color: white;
+}
+
+#logo * {
+       fill: var(--theme-primary-color);
+       stroke: var(--theme-primary-color);
+   }
+
+   #logo, .cta-btn {
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.4));
+   }
+
+  h1 {
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  }
+
+
+  /* Add animation to #N */
+#N {
+  animation: rotateN 6s ease-in-out infinite; /* Rotate with ease-in-out and loop infinitely */
+  transform-origin: center; /* Ensure the rotation point is the exact center */
+  transform-box: fill-box; /* Use the SVG's bounding box for calculations */
+}
+
+/* Define the keyframes for rotation */
+@keyframes rotateN {
+  0% {
+    transform: rotate(0deg); /* Start at 0 degrees */
+  }
+  50% {
+    transform: rotate(180deg); /* Rotate to 180 degrees */
+  }
+  100% {
+    transform: rotate(360deg); /* Complete the full rotation */
+  }
+}
+
+/* Embed Grid Styles */
+.embed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Max 4 columns, responsive */
+    gap: 1rem; /* Space between embeds */
+    justify-content: center; /* Center the grid */
+    align-items: center; /* Align items vertically */
+    margin: 2rem 0; /* Add spacing around the grid */
+}
+
+.embed-item iframe {
+    width: 250px; /* Consistent width */
+    height: 250px; /* Consistent height */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+/* Ensure embed-grid inside flex-wrap displays as a grid with 4 columns */
+.flex-wrap .embed-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 1rem;
+}
+
+/* Gear Section */
+.gear-section {
+    background: 
+        url('sound/ChatGPT Image May 24, 2025 at 04_08_58 PM.png') no-repeat center/cover,
+        url('sound/ChatGPT Image May 24, 2025 at 04_00_15 PM.png') no-repeat center/cover,
+        url('sound/ChatGPT Image May 24, 2025 at 04_11_27 PM.png') no-repeat center/cover;
+    background-size: auto 100%, auto 100%, auto 100%;
+    background-position: left, center, right;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    height: 400px; /* Adjust height as needed */
+}
+
+.gear-section .flex-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.gear-section .card {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}

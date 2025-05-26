@@ -13,9 +13,19 @@
     <link rel="stylesheet" href="simplified-style.css">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <script src="https://w.soundcloud.com/player/api.js"></script>
+    <script src="https://widget.mixcloud.com/media/js/widgetApi.js"></script>
 </head>
 
 <body>
+    <div class="sticky-buttons">
+        <!--<button id="playPauseButton" class="button">
+            <img src="icons/play-solid.svg" id="playPauseIcon" alt="Play" class="button-icon">
+        </button> -->
+        <button class="button">
+            <img src="icons/rotate-right-solid.svg" alt="Remix" class="button-icon" onclick="location.reload();">
+        </button>
+        <small style="text-align: center;padding: 0; margin: 0;">Remix</small>
+    </div>
     <section id="hero-section">
         <picture>
             <source media="(max-width:767px)" srcset="splash-images/placeholder.jpg">
@@ -54,22 +64,31 @@
                 </g>
             </svg>
             <h1 style="margin:10px 0;">Your Ultimate Party Experience</h1>
+            <a style="margin-top: 15px;" class="cta-btn">Book Now</a>
+        </div>
+        <div id="scroll-down-indicator">
+            <small>Scroll Down</small>
+            <img src="icons/arrow-down-solid.svg" alt="" width="15px" height="15px">
         </div>
     </section>
 
     <!-- New section for Bio -->
-    <section class="section-darker">
+    <section class=" section-darker">
         <h2 class="heading-2">About Me</h2>
         <p class="text-md" style="max-width: 1000px; margin: 0 auto;">
-            Baltimore native DJ Nerva spins kinetic mosaics of sound, threading high-BPM breaks—jungle, drum-and-bass,
+            Baltimore native DJ Nerva spins kinetic mosaics of sound, threading high-BPM breaks—jungle,
+            drum-and-bass,
             footwork—into
-            global club rhythms, heady techno, and classic house. Quick cuts, tempo jumps, and gritty Charm-City vibes.
+            global club rhythms, heady techno, and classic house. Quick cuts, tempo jumps, and gritty Charm-City
+            vibes.
             Giveing a
             nod to Baltimore Club heritage and championing the local creative community. From intimate art-gallery
             marathons to
-            sweat-soaked warehouse nights, neighborhood bars, and pop-up parties in unexpected spaces, Nerva is selector
+            sweat-soaked warehouse nights, neighborhood bars, and pop-up parties in unexpected spaces, Nerva is
+            selector
             who lives
-            for the dance-floor connection. Expect sweat, smiles, and a vibe that lingers long after the system powers
+            for the dance-floor connection. Expect sweat, smiles, and a vibe that lingers long after the system
+            powers
             down.
     </section>
 
@@ -82,35 +101,35 @@
 
                 <!-- SoundCloud Embed -->
                 <div class="embed-item">
-                    <iframe width="250" height="250" scrolling="no" frameborder="no" allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2093964774&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=truee">
                     </iframe>
                 </div>
 
                 <!-- SoundCloud Embed 1 -->
                 <div class="embed-item">
-                    <iframe width="250" height="250" scrolling="no" frameborder="no" allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1391506438&color=%2382b344&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=truee">
                     </iframe>
                 </div>
 
                 <!-- SoundCloud Embed 2 -->
                 <div class="embed-item">
-                    <iframe width="250" height="250" scrolling="no" frameborder="no" allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1377660589&color=%2382b344&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=truee">
                     </iframe>
                 </div>
 
                 <!-- SoundCloud Embed 3 -->
                 <div class="embed-item">
-                    <iframe width="250" height="250" scrolling="no" frameborder="no" allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1372039693&color=%2382b344&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=truee">
                     </iframe>
                 </div>
 
                 <!-- Mixcloud Embed 1 -->
                 <div class="embed-item">
-                    <iframe width="250" height="250" scrolling="no" frameborder="no" allow="autoplay"
+                    <iframe class="mixcloud" width="250" height="250" scrolling="no" frameborder="no" allow="autoplay"
                         src="https://player-widget.mixcloud.com/widget/iframe/?feed=%2Fdj-nerva%2Fspirit-world-round-2-b2b-w-oldboyslug%2F"
                         allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;">
                     </iframe>
@@ -127,7 +146,7 @@
 
                 <!-- Mixcloud Embed 4 -->
                 <div class="embed-item">
-                    <iframe width="250" height="250" frameborder="0"
+                    <iframe class="mixcloud" width="250" height="250" frameborder="0"
                         src="https://player-widget.mixcloud.com/widget/iframe/?feed=%2Fdj-nerva%2Fjungle-dnb%2F"
                         allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;">
                     </iframe>
@@ -135,7 +154,7 @@
 
                 <!-- Mixcloud Embed 5 -->
                 <div class="embed-item">
-                    <iframe width="250" height="250" frameborder="0"
+                    <iframe class="mixcloud" width="250" height="250" frameborder="0"
                         src="https://player-widget.mixcloud.com/widget/iframe/?feed=%2Fdj-nerva%2Fclub-selects%2F"
                         allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;">
                     </iframe>
@@ -143,7 +162,7 @@
 
                 <!-- Mixcloud Embed 6 -->
                 <div class="embed-item">
-                    <iframe width="250" height="250" frameborder="0"
+                    <iframe class="mixcloud" width="250" height="250" frameborder="0"
                         src="https://player-widget.mixcloud.com/widget/iframe/?feed=%2Fdj-nerva%2Ftechno-selects-1%2F"
                         allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;">
                     </iframe>
@@ -151,7 +170,7 @@
 
                 <!-- Mixcloud Embed 7 -->
                 <div class="embed-item">
-                    <iframe width="250" height="250" frameborder="0"
+                    <iframe class="mixcloud" width="250" height="250" frameborder="0"
                         src="https://player-widget.mixcloud.com/widget/iframe/?feed=%2Fdj-nerva%2Fdrum-bass-selects%2F"
                         allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;">
                     </iframe>
@@ -159,7 +178,7 @@
 
                 <!-- Mixcloud Embed 8 -->
                 <div class="embed-item">
-                    <iframe width="250" height="250" frameborder="0"
+                    <iframe class="mixcloud" width="250" height="250" frameborder="0"
                         src="https://player-widget.mixcloud.com/widget/iframe/?feed=%2Fdj-nerva%2Fimpervious-anecdotal-visual-artists-adam-stab-paul-taylor-zo-gallery-w-dj-set-by-nerva%2F"
                         allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;">
                     </iframe>
@@ -167,7 +186,7 @@
 
                 <!-- Mixcloud Embed 9 -->
                 <div class="embed-item">
-                    <iframe width="250" height="250" frameborder="0"
+                    <iframe class="mixcloud" width="250" height="250" frameborder="0"
                         src="https://player-widget.mixcloud.com/widget/iframe/?feed=%2Fdj-nerva%2Fdj-es-nerva-at-royal-blue-3-star-wars-edition%2F"
                         allow="encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;">
                     </iframe>
@@ -182,16 +201,16 @@
         <h2 class="heading-2">My Calendar</h2>
         <p class="text-md">Stay updated with my upcoming events and performances.</p>
         <div class="flex-wrap">
-            <div class="card card-alt">
+            <!-- <div class="card card-alt">
                 <h3 class="heading-3">Baltimore Pride</h3>
                 <p class="text-sm">Date: June 14, 2025<br>
                     Location: TBA<br>
                     More Info TBA</p>
-            </div>
+            </div> -->
             <div class="card card-alt">
                 <h3 class="heading-3">Baltimore Club Day</h3>
                 <p class="text-sm">Date: July 17, 2025<br>
-                    Location: Family Tree Collective, Baltimore Maryland<br>
+                    Location: TBA<br>
                     A live stream calibration, featuring a full day of Baltimore Club music.<br>
                     More Info TBA</p>
             </div>
@@ -209,32 +228,30 @@
 
     <!-- New section for Gear -->
     <section class="gear-section section-darker">
-        <h2 class="heading-2">Gear Available for Local Events</h2>
+        <h2 class="heading-2">Gear Available</h2>
         <div class="flex-wrap">
             <div class="card card-alt">
                 <h3 class="heading-3">XDJ-RX3</h3>
                 <p class="text-sm">Professional all-in-one DJ system.</p>
-                <p class="text-sm">Included with booking</p>
+                <p class="text-sm">Included with local booking</p>
             </div>
             <div class="card card-alt">
                 <h3 class="heading-3">Powered Speakers</h3>
-                <p class="text-sm">Rental tops and a subwoofer for events.</p>
+                <p class="text-sm">tops and a subwoofer</p>
                 <p class="text-sm">Starting at $250+</p>
             </div>
         </div>
-        <p class="text-sm mt-2">Contact for availability and pricing details.</p>
     </section>
 
     <!-- New section for Booking -->
     <section class="section-dark" id="book-now">
         <h2 class="heading-2">Book Now</h2>
-        <p class="text-md">Contact us to book DJ Nerva for your next event!</p>
         <div class="flex-col-center">
             <p class="text-sm">📧 Email: <a href="mailto:nerva.corporation@gmail.com"
                     class="text-link">nerva.corporation@gmail.com</a>
             </p>
             <p class="text-sm">📍 Location: Baltimore, Maryland</p>
-            <p class="text-sm">Rates starting at $50/hr</p>
+            <p class="text-sm">Flexible Rates</p>
             <a href="mailto:nerva.corporation@gmail.com" class="cta-btn">Book Now</a>
         </div>
     </section>
@@ -249,8 +266,14 @@
     </footer>
 
     <script src="main.js" defer></script>
+    <!-- <script src="play-pause.js" defer></script> -->
     <!-- <script src="soundcloud.js" async defer></script> -->
     <!-- <script src="mixcloud.js" async defer></script> -->
+    <script>
+        document.querySelector('.sticky-buttons .button:nth-child(2)').addEventListener('click', function () {
+            location.reload(); // Reload the page when the Remix button is clicked
+        });
+    </script>
 
 </body>
 

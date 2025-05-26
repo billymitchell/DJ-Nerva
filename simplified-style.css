@@ -201,38 +201,24 @@ h3, h4, h5, h6 {
   align-items: center;
 }
 
+#hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+  z-index: 1; /* Ensure the overlay is above the image but below the text */
+}
+
 #hero-section img#hero-img {
   object-fit: cover;
   width: 100%;
   height: 100%;
   position: absolute;
   inset: 0;
-}
-
-/* Hero Section Logo */
-#logo {
-  width: 100%; /* Allow the logo to scale */
-  max-width: 35vw; /* Default max width for larger screens */
-  fill: var(--theme-accent-color); /* Change the fill color */
-  stroke: var(--theme-primary-color); /* Change the stroke color (if applicable) */
-}
-
-@media (max-width: 767px) {
-  #logo {
-    max-width: 60%; /* Adjust max width for smaller screens */
-  }
-
-  h1 {
-    font-size: 1.25rem; /* Further reduce font size for h1 on mobile */
-  }
-
-  h2 {
-    font-size: 1rem; /* Reduce font size for h2 on mobile */
-  }
-
-  .text-md {
-    font-size: 1rem; /* Reduce font size for text-md on mobile */
-  }
+  z-index: 0; /* Ensure the image is below the overlay */
 }
 
 /* DJ Mixes Section */
@@ -264,18 +250,22 @@ h3, h4, h5, h6 {
   color: white;
 }
 
+#logo {
+  width: 50vw;
+  min-width: 250px;
+}
 #logo * {
-       fill: var(--theme-primary-color);
-       stroke: var(--theme-primary-color);
-   }
+  fill: var(--theme-primary-color);
+  stroke: var(--theme-primary-color);
+}
 
-   #logo, .cta-btn {
-    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.4));
-   }
+#logo, .cta-btn {
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.4));
+}
 
-  h1 {
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
-  }
+h1 {
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+}
 
 
   /* Add animation to #N */
@@ -301,11 +291,13 @@ h3, h4, h5, h6 {
 /* Embed Grid Styles */
 .embed-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ensure responsive wrapping */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid layout */
     gap: 1rem; /* Maintain spacing */
-    padding: 0 1rem; /* Add padding to prevent overflow */
-    box-sizing: border-box; /* Include padding in width calculation */
+    padding: 0 1rem; /* Prevent overflow */
     justify-items: center; /* Center items within the grid */
+    box-sizing: border-box; /* Include padding in width calculation */
+    max-width: 100%; /* Ensure grid does not exceed viewport width */
+    margin: 0 auto; /* Center the grid */
 }
 
 .embed-item iframe {
@@ -317,27 +309,11 @@ h3, h4, h5, h6 {
 
 /* Ensure embed-grid inside flex-wrap displays as a grid with 4 columns */
 .flex-wrap .embed-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
 }
 
-/* Ensure DJ Mixes stack vertically on mobile */
-@media (max-width: 767px) {
-  .embed-grid {
-    display: flex; /* Use flexbox for stacking */
-    flex-direction: column; /* Stack items vertically */
-    gap: 1rem; /* Maintain spacing between items */
-    padding: 0 1rem; /* Add padding to prevent overflow */
-    align-items: center; /* Center items horizontally */
-  }
-
-  .embed-item iframe {
-    width: 100%; /* Make iframe responsive */
-    max-width: 400px; /* Optional: Set a max width */
-    height: auto; /* Adjust height automatically */
-  }
-}
 
 /* Gear Section */
 .gear-section {
@@ -370,6 +346,64 @@ h3, h4, h5, h6 {
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Sticky Play and Remix Buttons */
+.sticky-buttons {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1000; /* Ensure buttons are above other elements */
+}
+
+/* Circular Buttons */
+.sticky-buttons .button {
+    width: 50px; /* Set width for the button */
+    height: 50px; /* Set height for the button */
+    border-radius: 50%; /* Make the button circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--theme-primary-color); /* Set background color */
+    color: white; /* Set text color */
+    border: none; /* Remove border */
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5); /* Add slight inner glow */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Add hover effect */
+}
+
+.sticky-buttons .button:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.7); /* Enhance inner glow on hover */
+}
+
+/* Button Icon */
+.sticky-buttons .button-icon {
+    width: 60%; /* Scale the icon to fit inside the button */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.sticky-buttons .button:nth-child(2) .button-icon {
+    width: 70%; /* Make the Remix icon slightly bigger */
+}
+
+/* Scroll Down Indicator */
+#scroll-down-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#scroll-down-indicator img {
+    filter: invert(1);
 }
 
 /* Responsive Styles */
@@ -416,12 +450,6 @@ h3, h4, h5, h6 {
   .card, .card-alt {
     width: 100%;
   }
-
-  /* Embed Grid */
-  .embed-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-
   /* Booking Section */
   #book-now .flex-col-center {
     gap: 0.5rem;
@@ -452,12 +480,33 @@ h3, h4, h5, h6 {
   }
 }
 
-/* Fix for embedded mixes running off the page */
-.embed-grid {
-    grid-template-columns: 1fr; /* Force single column layout */
-    gap: 1rem; /* Maintain spacing */
-    padding: 0 1rem; /* Add padding to prevent overflow */
-    max-width: 100%; /* Ensure grid does not exceed viewport width */
-    margin: 0 auto; /* Center the grid */
-    box-sizing: border-box; /* Include padding in width calculation */
+
+/* Ensure DJ Mixes stack vertically on mobile */
+@media (max-width: 767px) {
+    /* Embed Grid */
+    .embed-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important; /* Responsive grid layout */
+      ;
+    }
+  
+
+  .embed-item iframe {
+    width: 100%; /* Make iframe responsive */
+    max-width: 400px; /* Optional: Set a max width */
+    height: auto; /* Adjust height automatically */
+  }
+}
+
+@media (max-width: 1099px) and (min-width: 768px) {
+    .embed-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust column size */
+        padding: 0 1rem; /* Ensure padding prevents overflow */
+        gap: 1rem; /* Maintain spacing */
+    }
+
+    .embed-item iframe {
+        width: 100%; /* Ensure iframes are responsive */
+        max-width: 300px; /* Optional: Set a max width */
+        height: auto; /* Adjust height automatically */
+    }
 }

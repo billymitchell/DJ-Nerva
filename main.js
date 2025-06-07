@@ -23,6 +23,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateSoundCloudIframes(getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim());
     } catch (error) {
         console.error('Error during setup:', error);
+
+        // Fallback hero image data
+        const fallbackImageData = {
+            folder: '6',
+            desktop: 'bm_nerva_Dense_jungle_with_neon-outlined_leaves_vibrating_wit_09abfacb-63f0-416e-b2eb-ce913255387a_2.png',
+            mobile: 'bm_nerva_Dense_jungle_with_neon-outlined_leaves_vibrating_wit_cc7a2612-cbe1-47e9-96d9-6b891da98ebc_1.png',
+            primaryColor: '#ffffff',
+            secondaryColor: '#000000',
+            accentColor: '#ff5500'
+        };
+        setHeroImage(fallbackImageData);
+        setThemeColors(fallbackImageData);
+
+        // Fallback tagline data
+        const fallbackTaglines = ['Charm City Vibe, Worldwide Tribe.'];
+        setTagline(getRandomItem(fallbackTaglines));
     }
 });
 

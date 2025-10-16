@@ -359,6 +359,28 @@ h1 {
   z-index: 1000; /* Ensure buttons are above other elements */
 }
 
+/* Places I’ve Played Map */
+.map-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+
+#places-map {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    aspect-ratio: 4 / 3;
+  }
+}
+
 /* Circular Buttons */
 .sticky-buttons .button {
     width: 50px; /* Set width for the button */

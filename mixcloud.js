@@ -13,7 +13,8 @@ function embedMixcloudUploads() {
         const iframe = document.createElement('iframe');
         iframe.frameBorder = '0';
         iframe.src = `https://player-widget.mixcloud.com/widget/iframe/?feed=${encodedFeed}`;
-        iframe.allow = 'encrypted-media; fullscreen; autoplay; idle-detection; speaker-selection; web-share;';
+        // Keep the allowlist minimal to avoid Permissions-Policy violations
+        iframe.allow = 'fullscreen; autoplay; idle-detection; speaker-selection; web-share;';
         iframe.className = 'mixcloud-widget'; // Add a class for styling if needed
         container.appendChild(iframe); // Append the iframe to the container
     });

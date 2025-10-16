@@ -1,0 +1,116 @@
+{
+    "places": [
+        {
+            "name": "Deep Green @ Deejai Garden",
+            "city": "Chiang Mai, Thailand",
+            "lat": 18.7859318,
+            "lng": 98.9817682,
+            "link": "https://maps.app.goo.gl/UdgyHoqkwpV7rBu87"
+        },
+        {
+            "name": "The Alchemy of Art",
+            "city": "Baltimore, MD",
+            "lat": 39.285328,
+            "lng": -76.5941149,
+            "link": "https://maps.app.goo.gl/ab9FLTjbNEhv4RLU9"
+        },
+        {
+            "name": "Zo Gallery Studio",
+            "city": "Baltimore, MD",
+            "lat": 39.3294301,
+            "lng": -76.640152,
+            "link": "https://maps.app.goo.gl/4ZTPoU8S51x5eCD16"
+        },
+        {
+            "name": "Family Tree Collective",
+            "city": "Baltimore, MD",
+            "lat": 39.3294259,
+            "lng": -76.6401249,
+            "link": "https://maps.app.goo.gl/72K6YYPr3dyCXg9e7"
+        },
+        {
+            "name": "Mount Royal Soaps",
+            "city": "Baltimore, MD",
+            "lat": 39.3204931,
+            "lng": -76.622792,
+            "link": "https://maps.app.goo.gl/1puCKANCrFybDZFw5"
+        },
+        {
+            "name": "Mount Vernon Records",
+            "city": "Baltimore, MD",
+            "lat": 39.3004762,
+            "lng": -76.6192714,
+            "link": "https://maps.app.goo.gl/weercTMKvnEEZeQx9"
+        },
+        {
+            "name": "Swill by Blacksmiths",
+            "city": "Baltimore, MD",
+            "lat": 39.2830091,
+            "lng": -76.6312767,
+            "link": "https://maps.app.goo.gl/hnQMpc1cXqpVE9mn6"
+        },
+        {
+            "name": "St Mary's Restaurant & Bar",
+            "city": "Baltimore, MD",
+            "lat": 39.3179789,
+            "lng": -76.6191467,
+            "link": "https://maps.app.goo.gl/b25oZFCQjKaipF168"
+        },
+        {
+            "name": "Vision House",
+            "city": "Baltimore, MD",
+            "lat": 39.3180119,
+            "lng": -76.6195434,
+            "link": "https://maps.app.goo.gl/FC83ukub97V7PQUg6"
+        },
+        {
+            "name": "Motor House",
+            "city": "Baltimore, MD",
+            "lat": 39.3112246,
+            "lng": -76.6188099,
+            "link": "https://maps.app.goo.gl/jez6vtQq4VHDhiAM6"
+        },
+        {
+            "name": "Ema's Corner",
+            "city": "Baltimore, MD",
+            "lat": 39.3107094,
+            "lng": -76.6177367,
+            "link": "https://maps.app.goo.gl/wmV3iTMEK31Y2eQ6A"
+        },
+        {
+            "name": "The Royal Blue",
+            "city": "Baltimore, MD",
+            "lat": 39.3096448,
+            "lng": -76.6176818,
+            "link": "http://www.royalbluebar.com/"
+        },
+        {
+            "name": "The House of Chiefs restaurant lounge",
+            "city": "Baltimore, MD",
+            "lat": 39.3443587,
+            "lng": -76.6093205,
+            "link": "https://maps.app.goo.gl/PTDjyYCm49zWYcCcA"
+        },
+        {
+            "name": "Metro Gallery",
+            "city": "Baltimore, MD",
+            "lat": 39.3083,
+            "lng": -76.6172,
+            "link": "https://www.themetrogallery.net/"
+        },
+        {
+            "name": "Ottobar",
+            "city": "Baltimore, MD",
+            "lat": 39.3233,
+            "lng": -76.6211,
+            "link": "https://www.theottobar.com/"
+        },
+        {
+            "name": "Fort Royale Farm",
+            "city": "Bedford, PA",
+            "lat": 39.8614129,
+            "lng": -78.6213163,
+            "link": "https://maps.app.goo.gl/iDmEcwrHqPCdYE549"
+        }
+    ]
+}

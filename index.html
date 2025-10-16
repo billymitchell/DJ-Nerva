@@ -36,10 +36,12 @@
         <!--<button id="playPauseButton" class="button">
             <img src="icons/play-solid.svg" id="playPauseIcon" alt="Play" class="button-icon">
         </button> -->
-        <button class="button">
-            <img src="icons/rotate-right-solid.svg" alt="Remix" class="button-icon" onclick="location.reload();">
-        </button>
-        <small style="text-align: center;padding: 0; margin: 0;">Remix</small>
+        <div id="remixWrap" class="remix-wrap">
+            <button id="remixBtn" class="button" onclick="location.reload();" aria-label="Remix">
+                <img src="icons/rotate-right-solid.svg" alt="Remix" class="button-icon">
+            </button>
+            <small class="remix-label" style="text-align: center;padding: 0; margin: 0;">Remix</small>
+        </div>
     </div>
     <section id="hero-section">
         <picture>
@@ -99,6 +101,8 @@
             connection. Expect sweat, smiles, and a vibe that lingers long after the system powers down.
         </p>
     </section>
+
+
 
     <!-- DJ Mixes Section -->
     <section class="section-dark">

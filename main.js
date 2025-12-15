@@ -91,3 +91,98 @@ function updateSoundCloudIframes(primaryColor) {
     });
     console.log('SoundCloud iframe colors updated:', primaryColor);
 }
+
+// Dynamically size YouTube video iframe
+function resizeVideoIframe() {
+    const container = document.querySelector('.video-container');
+    const iframe = container?.querySelector('iframe');
+    if (!container || !iframe) return;
+    
+    const width = container.offsetWidth;
+    const height = Math.round(width * 9 / 16); // 16:9 aspect ratio
+    
+    iframe.setAttribute('width', width);
+    iframe.setAttribute('height', height);
+}
+
+// Initialize video resize on load and window resize
+window.addEventListener('load', resizeVideoIframe);
+window.addEventListener('resize', resizeVideoIframe);
+
+// Load and randomize photo gallery from JSON
+async function loadGallery() {
+    const grid = document.getElementById('gallery-grid');
+    if (!grid) return;
+    
+    try {
+        const response = await fetch('gallery_images.json');
+        if (!response.ok) throw new Error('Failed to load gallery images');
+        const images = await response.json();
+        
+        // Shuffle images
+        for (let i = images.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [images[i], images[j]] = [images[j], images[i]];
+        }
+        
+        const sizeClasses = ['', 'photo-tall', 'photo-wide', 'photo-large'];
+        const weights = [40, 25, 25, 10];
+        
+        // Track grid cell usage (4 columns)
+        let cellsUsed = 0;
+        
+        // Generate gallery items
+        images.forEach(image => {
+            const div = document.createElement('div');
+            div.className = 'photo-item';
+            
+            // Weighted random size selection
+            const totalWeight = weights.reduce((a, b) => a + b, 0);
+            let random = Math.random() * totalWeight;
+            let selectedClass = '';
+            for (let i = 0; i < weights.length; i++) {
+                random -= weights[i];
+                if (random <= 0) {
+                    selectedClass = sizeClasses[i];
+                    break;
+                }
+            }
+            
+            if (selectedClass) {
+                div.classList.add(selectedClass);
+            }
+            
+            // Count cells used by this item
+            if (selectedClass === 'photo-large') cellsUsed += 4;
+            else if (selectedClass === 'photo-wide') cellsUsed += 2;
+            else if (selectedClass === 'photo-tall') cellsUsed += 2;
+            else cellsUsed += 1;
+            
+            const img = document.createElement('img');
+            img.src = image.path;
+            img.alt = 'DJ Nerva';
+            img.loading = 'lazy';
+            
+            div.appendChild(img);
+            grid.appendChild(div);
+        });
+        
+        // Add filler cells to complete the row (4 columns)
+        const remainder = cellsUsed % 4;
+        if (remainder > 0) {
+            const fillersNeeded = 4 - remainder;
+            for (let i = 0; i < fillersNeeded; i++) {
+                const filler = document.createElement('div');
+                filler.className = 'photo-filler';
+                grid.appendChild(filler);
+            }
+        }
+        
+        console.log(`Gallery loaded with ${images.length} images, ${cellsUsed} cells used`);
+    } catch (error) {
+        console.error('Error loading gallery:', error);
+    }
+}
+
+// Initialize gallery on page load
+window.addEventListener('load', loadGallery);

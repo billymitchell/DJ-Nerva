@@ -379,7 +379,126 @@ h1 {
   .remix-wrap { animation: none !important; }
 }
 
-/* Places I’ve Played Map */
+/* Photo Gallery Grid */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;
+  gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--theme-primary-color-dark);
+}
+
+.photo-item {
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--theme-accent-color);
+  position: relative;
+}
+
+/* Duotone effect using pseudo-elements */
+.photo-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--theme-primary-color-dark);
+  mix-blend-mode: color;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.photo-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--theme-accent-color),
+    var(--theme-secondary-color-dark)
+  );
+  mix-blend-mode: multiply;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.photo-item:hover::before,
+.photo-item:hover::after {
+  opacity: 0;
+}
+
+.photo-filler {
+  border-radius: 8px;
+  background: var(--theme-accent-color);
+}
+
+.photo-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(100%) contrast(1.1);
+}
+
+.photo-item:hover img {
+  transform: scale(1.05);
+  filter: grayscale(0%) contrast(1);
+}
+
+.photo-tall {
+  grid-row: span 2;
+}
+
+.photo-wide {
+  grid-column: span 2;
+}
+
+.photo-large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+@media (max-width: 768px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 150px;
+  }
+  
+  .photo-wide,
+  .photo-large {
+    grid-column: span 2;
+  }
+  
+  .photo-tall,
+  .photo-large {
+    grid-row: span 2;
+  }
+}
+
+/* Featured Video */
+.video-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 100%;
+}
+
+/* Places I've Played Map */
 .map-container {
   width: 100%;
   max-width: 1200px;

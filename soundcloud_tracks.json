@@ -1,11 +1,43 @@
 {
   "profile_url": "https://soundcloud.com/dj-nerva",
-  "scraped_at": "2025-10-16T17:24:40.231Z",
+  "scraped_at": "2025-12-15T17:46:25.132Z",
   "scraping_method": "rss",
-  "total_tracks": 7,
+  "total_tracks": 11,
   "tracks": [
     {
-      "title": "Constellation Burn Dirt Du Jour 2025 Sat Post Burn",
+      "title": "Junglist BASSprint",
+      "permalink_url": "https://soundcloud.com/dj-nerva/junglist-bassprint",
+      "duration": 3570000,
+      "genre": "",
+      "artwork_url": null,
+      "created_at": null
+    },
+    {
+      "title": "Jamaican Support Ragga Jungle",
+      "permalink_url": "https://soundcloud.com/dj-nerva/jamaican-support-ragga-jungle",
+      "duration": 3885000,
+      "genre": "",
+      "artwork_url": null,
+      "created_at": null
+    },
+    {
+      "title": "DCompresion Burn 2025 Practice Mix",
+      "permalink_url": "https://soundcloud.com/dj-nerva/dcompresion-burn-2025-practice-mix",
+      "duration": 3856000,
+      "genre": "",
+      "artwork_url": null,
+      "created_at": null
+    },
+    {
+      "title": "Constellation Burn 2025 Sunday Pre-burn Ambient Experimental",
+      "permalink_url": "https://soundcloud.com/dj-nerva/constellation-burn-2025-sun-pre-burn-ambient-experimental",
+      "duration": 4628000,
+      "genre": "",
+      "artwork_url": null,
+      "created_at": null
+    },
+    {
+      "title": "Constellation Burn Dirt Du Jour 2025 Saturday Post Burn",
       "permalink_url": "https://soundcloud.com/dj-nerva/constellation-burn-dirt-du-jour-2025-sat-post-burn",
       "duration": 5766000,
       "genre": "",

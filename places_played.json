@@ -1,7 +1,14 @@
 {
     "places": [
         {
-            "name": "Deep Green @ Deejai Garden",
+            "name": "The Royal Blue",
+            "city": "Baltimore, MD",
+            "lat": 39.3096448,
+            "lng": -76.6176818,
+            "link": "http://www.royalbluebar.com/"
+        },
+        {
+            "name": "Deep green @ Deejai Garden",
             "city": "Chiang Mai, Thailand",
             "lat": 18.7859318,
             "lng": 98.9817682,
@@ -78,13 +85,6 @@
             "link": "https://maps.app.goo.gl/wmV3iTMEK31Y2eQ6A"
         },
         {
-            "name": "The Royal Blue",
-            "city": "Baltimore, MD",
-            "lat": 39.3096448,
-            "lng": -76.6176818,
-            "link": "http://www.royalbluebar.com/"
-        },
-        {
             "name": "The House of Chiefs restaurant lounge",
             "city": "Baltimore, MD",
             "lat": 39.3443587,
@@ -94,15 +94,15 @@
         {
             "name": "Metro Gallery",
             "city": "Baltimore, MD",
-            "lat": 39.3083,
-            "lng": -76.6172,
+            "lat": 39.3088425,
+            "lng": -76.6165858,
             "link": "https://www.themetrogallery.net/"
         },
         {
             "name": "Ottobar",
             "city": "Baltimore, MD",
-            "lat": 39.3233,
-            "lng": -76.6211,
+            "lat": 39.318881,
+            "lng": -76.6195818,
             "link": "https://www.theottobar.com/"
         },
         {
@@ -111,6 +111,27 @@
             "lat": 39.8614129,
             "lng": -78.6213163,
             "link": "https://maps.app.goo.gl/iDmEcwrHqPCdYE549"
+        },
+        {
+            "name": "4000 Buena Vista Ave",
+            "city": "Baltimore, MD",
+            "lat": 39.3355636,
+            "lng": -76.6414833,
+            "link": "https://maps.google.com/?q=39.3355636,-76.6414833"
+        },
+        {
+            "name": "Graffiti Warehouse",
+            "city": "Baltimore, MD",
+            "lat": 39.3114057,
+            "lng": -76.6191291,
+            "link": "https://maps.google.com/?q=Graffiti+Warehouse+Baltimore"
+        },
+        {
+            "name": "BERHTA",
+            "city": "Washington, DC",
+            "lat": 38.9190477,
+            "lng": -76.9886065,
+            "link": "https://maps.google.com/?q=BERHTA+Washington+DC"
         }
     ]
 }

@@ -1,22 +1,24 @@
 // Update BUILD_HASH to use a timestamp during development
 const BUILD_HASH = window.APP_BUILD_HASH || `dev-${Date.now()}`;
-console.log('BUILD_HASH:', BUILD_HASH);
 
 document.addEventListener('DOMContentLoaded', async () => {
-    console.log('DOM fully loaded. Initializing setup...');
-
     const heroSection = document.getElementById('hero-section');
     if (!heroSection) return console.error('Hero section element not found.');
 
     try {
-        // Fetch and set hero image and theme colors
-        const imageSets = await fetchJson('image_data.json');
+        // Fetch image data and taglines in parallel for faster loading
+        const [imageSets, taglines] = await Promise.all([
+            fetchJson('image_data.json'),
+            fetchJson('taglines.json')
+        ]);
+        
         const randomSet = getRandomItem(imageSets);
+        
+        // Preload the hero image before setting it
+        await preloadImage(`splash-images/${randomSet.folder}/${randomSet.desktop}`);
+        
         setHeroImage(randomSet);
         setThemeColors(randomSet);
-
-        // Fetch and set tagline
-        const taglines = await fetchJson('taglines.json');
         setTagline(getRandomItem(taglines));
 
         // Update SoundCloud iframe colors
@@ -41,6 +43,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         setTagline(getRandomItem(fallbackTaglines));
     }
 });
+
+// Preload an image and return a promise
+function preloadImage(src) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = src;
+    });
+}
 
 // Helper to fetch JSON data
 async function fetchJson(url) {

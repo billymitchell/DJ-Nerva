@@ -92,22 +92,8 @@ function updateSoundCloudIframes(primaryColor) {
     console.log('SoundCloud iframe colors updated:', primaryColor);
 }
 
-// Dynamically size YouTube video iframe
-function resizeVideoIframe() {
-    const container = document.querySelector('.video-container');
-    const iframe = container?.querySelector('iframe');
-    if (!container || !iframe) return;
-    
-    const width = container.offsetWidth;
-    const height = Math.round(width * 9 / 16); // 16:9 aspect ratio
-    
-    iframe.setAttribute('width', width);
-    iframe.setAttribute('height', height);
-}
-
-// Initialize video resize on load and window resize
-window.addEventListener('load', resizeVideoIframe);
-window.addEventListener('resize', resizeVideoIframe);
+// Video sizing is handled by CSS aspect-ratio and 100% width/height on iframe
+// No JavaScript resizing needed
 
 // Load and randomize photo gallery from JSON
 async function loadGallery() {

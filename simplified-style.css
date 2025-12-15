@@ -173,6 +173,11 @@ h3, h4, h5, h6 {
 }
 
 :root {
+  /* Default color values before JavaScript sets them dynamically */
+  --primary-color: #6625d9;
+  --secondary-color: #0c1762;
+  --accent-color: #73baee;
+
   --theme-primary-color: var(--primary-color);
   --theme-secondary-color: var(--secondary-color);
   --theme-accent-color: var(--accent-color);

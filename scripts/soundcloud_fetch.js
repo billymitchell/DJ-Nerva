@@ -44,6 +44,58 @@ function env(name, def) {
   return process.env[name] || def;
 }
 
+function redactSecret(value) {
+  if (!value) return 'missing';
+  if (value.length <= 8) return 'set';
+  return `${value.slice(0, 4)}...${value.slice(-4)}`;
+}
+
+function summarizeCredentialState(clientId, accessToken) {
+  return {
+    hasClientId: !!clientId,
+    hasAccessToken: !!accessToken,
+    clientIdPreview: redactSecret(clientId),
+    accessTokenPreview: redactSecret(accessToken),
+  };
+}
+
+function createClassifiedError(message, code, details) {
+  const err = new Error(message);
+  err.code = code;
+  if (details) err.details = details;
+  return err;
+}
+
+function isAuthConfigError(err) {
+  return !!err && (
+    err.code === 'AUTH_REQUIRED' ||
+    err.code === 'INVALID_CLIENT_ID' ||
+    err.code === 'INVALID_ACCESS_TOKEN' ||
+    err.code === 'CREDENTIALS_REJECTED'
+  );
+}
+
+function printCredentialGuidance(clientId, accessToken) {
+  const state = summarizeCredentialState(clientId, accessToken);
+  console.error('Credential diagnostics:');
+  console.error(`- SOUNDCLOUD_CLIENT_ID: ${state.clientIdPreview}`);
+  console.error(`- SOUNDCLOUD_ACCESS_TOKEN: ${state.accessTokenPreview}`);
+  console.error('Next steps:');
+  if (!accessToken && !clientId) {
+    console.error('- Add SOUNDCLOUD_ACCESS_TOKEN or SOUNDCLOUD_CLIENT_ID to .env');
+    return;
+  }
+  if (accessToken) {
+    console.error('- Verify SOUNDCLOUD_ACCESS_TOKEN is current and has not been revoked');
+  }
+  if (clientId) {
+    console.error('- Verify SOUNDCLOUD_CLIENT_ID is still accepted by the current SoundCloud API endpoints');
+  }
+  if (!accessToken) {
+    console.error('- Prefer SOUNDCLOUD_ACCESS_TOKEN when available; it is the most reliable path in this script');
+  }
+}
+
 async function httpGet(url, params, headers) {
   const u = new URL(url);
   if (params) {
@@ -61,6 +113,24 @@ async function httpGet(url, params, headers) {
   return res;
 }
 
+async function fetchCurrentUser(accessToken) {
+  const res = await fetch(`${API_V1_BASE}/me`, {
+    headers: {
+      'Accept': 'application/json, text/javascript, */*; q=0.01',
+      'Authorization': `OAuth ${accessToken}`,
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127 Safari/537.36',
+    }
+  });
+  if (!res.ok) {
+    throw createClassifiedError(
+      `Authenticated /me request failed (${res.status}).`,
+      res.status === 401 ? 'INVALID_ACCESS_TOKEN' : 'ME_FAILED',
+      [{ step: 'GET /me', status: res.status }]
+    );
+  }
+  return res.json();
+}
+
 function extractSlug(profileUrl) {
   try {
     const u = new URL(profileUrl);
@@ -73,6 +143,7 @@ function extractSlug(profileUrl) {
 }
 
 async function resolveUserId(profileUrl, clientId, accessToken) {
+  const attempts = [];
   // v1 resolve (oauth_token or client_id)
   let res = await httpGet(RESOLVE_V1, Object.fromEntries(
     Object.entries({ url: profileUrl, oauth_token: accessToken, client_id: clientId }).filter(([, v]) => !!v)
@@ -82,6 +153,7 @@ async function resolveUserId(profileUrl, clientId, accessToken) {
     if (data && data.id) return String(data.id);
   } else {
     const txt = await res.text().catch(() => '');
+    attempts.push({ step: 'resolve(v1)', status: res.status, body: txt.slice(0, 200) });
     console.warn(`resolve(v1) failed: ${res.status} ${res.statusText} ${txt.slice(0,200)}`);
   }
   // v2 resolve with client_id
@@ -97,11 +169,13 @@ async function resolveUserId(profileUrl, clientId, accessToken) {
           if (j3 && j3.id) return String(j3.id);
         } else {
           const t3 = await res3.text().catch(() => '');
+          attempts.push({ step: 'resolve(v2->location)', status: res3.status, body: t3.slice(0, 200) });
           console.warn(`resolve(v2->location) failed: ${res3.status} ${res3.statusText} ${t3.slice(0,200)}`);
         }
       }
     } else {
       const t2 = await res2.text().catch(() => '');
+      attempts.push({ step: 'resolve(v2)', status: res2.status, body: t2.slice(0, 200) });
       console.warn(`resolve(v2) failed: ${res2.status} ${res2.statusText} ${t2.slice(0,200)}`);
     }
     // search fallback
@@ -116,12 +190,40 @@ async function resolveUserId(profileUrl, clientId, accessToken) {
         if (items.length && items[0].id) return String(items[0].id);
       } else {
         const t4 = await res4.text().catch(() => '');
+        attempts.push({ step: 'search(users)', status: res4.status, body: t4.slice(0, 200) });
         console.warn(`search(users) failed: ${res4.status} ${res4.statusText} ${t4.slice(0,200)}`);
       }
     }
-    throw new Error('Resolve failed via v1, v2, and search fallback');
+    const statuses = attempts.map((a) => a.status);
+    if (statuses.includes(401)) {
+      throw createClassifiedError(
+        'SoundCloud rejected the configured credentials while resolving the user ID.',
+        accessToken ? 'INVALID_ACCESS_TOKEN' : 'AUTH_REQUIRED',
+        attempts
+      );
+    }
+    if (statuses.length > 0 && statuses.every((s) => s === 403)) {
+      throw createClassifiedError(
+        'SoundCloud returned 403 for every resolve/search attempt. The client ID is likely missing, invalid, or no longer usable for these endpoints.',
+        'INVALID_CLIENT_ID',
+        attempts
+      );
+    }
+    throw createClassifiedError('Resolve failed via v1, v2, and search fallback', 'RESOLVE_FAILED', attempts);
   }
-  throw new Error('Could not resolve user ID (missing client_id and token insufficient)');
+  const statuses = attempts.map((a) => a.status);
+  if (statuses.includes(401)) {
+    throw createClassifiedError(
+      'SoundCloud requires a valid OAuth token for the configured API path.',
+      'AUTH_REQUIRED',
+      attempts
+    );
+  }
+  throw createClassifiedError(
+    'Could not resolve user ID with the available credentials.',
+    'CREDENTIALS_REJECTED',
+    attempts
+  );
 }
 
 async function fetchTracksForUser(userId, clientId, accessToken, limit = 200) {
@@ -149,6 +251,41 @@ async function fetchTracksForUser(userId, clientId, accessToken, limit = 200) {
     }
     if (!nextHref) break;
   }
+  return tracks;
+}
+
+async function fetchTracksForAuthenticatedUser(accessToken, limit = 200) {
+  const headers = { Authorization: `OAuth ${accessToken}` };
+  let nextHref = null;
+  let url = `${API_V1_BASE}/me/tracks`;
+  let params = { limit: Math.min(limit, 200), linked_partitioning: 1 };
+  const tracks = [];
+
+  for (;;) {
+    const res = nextHref ? await fetch(nextHref, { headers }) : await httpGet(url, params, headers);
+    if (!res.ok) {
+      throw createClassifiedError(
+        `Authenticated /me/tracks fetch failed (${res.status}).`,
+        res.status === 401 ? 'INVALID_ACCESS_TOKEN' : 'TRACKS_FETCH_FAILED',
+        [{ step: nextHref ? 'GET next_href' : 'GET /me/tracks', status: res.status }]
+      );
+    }
+
+    const data = await res.json();
+    let page = [];
+    if (Array.isArray(data)) {
+      page = data;
+      nextHref = null;
+    } else {
+      page = data.collection || [];
+      nextHref = data.next_href || null;
+    }
+    for (const item of page) {
+      if (item && (item.kind === 'track' || 'title' in item)) tracks.push(item);
+    }
+    if (!nextHref) break;
+  }
+
   return tracks;
 }
 
@@ -183,7 +320,7 @@ function buildEmbedItem(permalinkUrl, colorHex = 'ff5500') {
   const url = `https://w.soundcloud.com/player/?url=${encodeURIComponent(permalinkUrl)}&color=%23${colorHex}&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true`;
   return [
     '                <div class="embed-item">',
-    `                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" allow="autoplay"`,
+    `                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"`,
     `                        src="${url}">`,
     '                    </iframe>',
     '                </div>'
@@ -402,9 +539,22 @@ async function main() {
 
   if (!clientId && !accessToken) {
     console.error('❌ Neither SOUNDCLOUD_CLIENT_ID nor SOUNDCLOUD_ACCESS_TOKEN is set.');
+    printCredentialGuidance(clientId, accessToken);
     process.exit(2);
   }
   try {
+    if (accessToken) {
+      console.log('🔐 Access token detected; using authenticated /me endpoints...');
+      const me = await fetchCurrentUser(accessToken);
+      console.log(`✅ Authenticated as: ${me.username || me.permalink || me.id}`);
+      console.log('📥 Fetching tracks from /me/tracks...');
+      const tracks = await fetchTracksForAuthenticatedUser(accessToken, 200);
+      console.log(`🎵 Found ${tracks.length} tracks`);
+      saveOutput(profileUrl, 'api', tracks);
+      injectEmbedsIntoIndex(tracks);
+      return;
+    }
+
     console.log('🔎 Resolving user ID...');
     const userId = await resolveUserId(profileUrl, clientId, accessToken);
     console.log(`✅ Resolved user ID: ${userId}`);
@@ -416,6 +566,17 @@ async function main() {
     injectEmbedsIntoIndex(tracks);
   } catch (e) {
     console.error(`❌ API fetch failed: ${e.message || e}`);
+    if (Array.isArray(e?.details) && e.details.length) {
+      console.error('Failed API steps:');
+      for (const detail of e.details) {
+        console.error(`- ${detail.step}: HTTP ${detail.status}`);
+      }
+    }
+    if (isAuthConfigError(e)) {
+      printCredentialGuidance(clientId, accessToken);
+      console.error('Skipping scrape/RSS fallback because this is a credentials/configuration failure, not a transient public-access failure.');
+      process.exit(1);
+    }
     console.log('🌐 Falling back to public page scraping...');
     try {
       const tracks = await scrapeTracksFromProfile(profileUrl, 20);

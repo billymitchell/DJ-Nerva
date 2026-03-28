@@ -1,96 +1,161 @@
 {
   "profile_url": "https://soundcloud.com/dj-nerva",
-  "scraped_at": "2025-12-15T17:46:25.132Z",
-  "scraping_method": "rss",
-  "total_tracks": 11,
+  "scraped_at": "2026-03-28T16:36:57.886Z",
+  "scraping_method": "api",
+  "total_tracks": 17,
   "tracks": [
     {
+      "title": "Vibrate DC 618 Hechyeomoyeo Practice Mix",
+      "permalink_url": "https://soundcloud.com/dj-nerva/vibrate-dc-618-hechyeomoyeo?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 3141982,
+      "genre": "Techno",
+      "artwork_url": "https://i1.sndcdn.com/artworks-PELuExFwYvbkeAZD-cGLmkA-large.jpg",
+      "created_at": "2026/03/15 00:34:28 +0000",
+      "playback_count": 7
+    },
+    {
+      "title": "Spirit World 02-17-2026",
+      "permalink_url": "https://soundcloud.com/dj-nerva/spirit-world-02-17-2026?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 16502518,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-eFGJcQDia4wPums7-YtsR5A-large.jpg",
+      "created_at": "2026/02/19 00:17:01 +0000",
+      "playback_count": 8
+    },
+    {
+      "title": "Divorce",
+      "permalink_url": "https://soundcloud.com/dj-nerva/divorce?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 10882612,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-OUzyKOuwyhlcHQAm-MTPl6w-large.jpg",
+      "created_at": "2026/01/21 14:58:51 +0000",
+      "playback_count": 20
+    },
+    {
       "title": "Junglist BASSprint",
-      "permalink_url": "https://soundcloud.com/dj-nerva/junglist-bassprint",
-      "duration": 3570000,
-      "genre": "",
-      "artwork_url": null,
-      "created_at": null
+      "permalink_url": "https://soundcloud.com/dj-nerva/junglist-bassprint?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 3570495,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-7ZzLjuscTrFE4Bkf-flueLw-large.jpg",
+      "created_at": "2025/12/08 22:53:03 +0000",
+      "playback_count": 48
     },
     {
       "title": "Jamaican Support Ragga Jungle",
-      "permalink_url": "https://soundcloud.com/dj-nerva/jamaican-support-ragga-jungle",
-      "duration": 3885000,
-      "genre": "",
-      "artwork_url": null,
-      "created_at": null
+      "permalink_url": "https://soundcloud.com/dj-nerva/jamaican-support-ragga-jungle?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 3885035,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-LmEz95dyqZgczxzW-U7yzjw-large.jpg",
+      "created_at": "2025/11/30 21:39:30 +0000",
+      "playback_count": 38
     },
     {
       "title": "DCompresion Burn 2025 Practice Mix",
-      "permalink_url": "https://soundcloud.com/dj-nerva/dcompresion-burn-2025-practice-mix",
-      "duration": 3856000,
-      "genre": "",
-      "artwork_url": null,
-      "created_at": null
+      "permalink_url": "https://soundcloud.com/dj-nerva/dcompresion-burn-2025-practice-mix?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 3856039,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-zO8Fu3auFyCOa6j7-WrsQ4w-large.jpg",
+      "created_at": "2025/11/16 19:23:28 +0000",
+      "playback_count": 17
     },
     {
       "title": "Constellation Burn 2025 Sunday Pre-burn Ambient Experimental",
-      "permalink_url": "https://soundcloud.com/dj-nerva/constellation-burn-2025-sun-pre-burn-ambient-experimental",
-      "duration": 4628000,
-      "genre": "",
-      "artwork_url": null,
-      "created_at": null
+      "permalink_url": "https://soundcloud.com/dj-nerva/constellation-burn-2025-sun-pre-burn-ambient-experimental?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 4628245,
+      "genre": "Ambient",
+      "artwork_url": "https://i1.sndcdn.com/artworks-n1zAzQIi6XyMo2ze-fafi4w-large.jpg",
+      "created_at": "2025/10/17 16:06:12 +0000",
+      "playback_count": 30
     },
     {
       "title": "Constellation Burn Dirt Du Jour 2025 Saturday Post Burn",
-      "permalink_url": "https://soundcloud.com/dj-nerva/constellation-burn-dirt-du-jour-2025-sat-post-burn",
-      "duration": 5766000,
-      "genre": "",
-      "artwork_url": null,
-      "created_at": null
+      "permalink_url": "https://soundcloud.com/dj-nerva/constellation-burn-dirt-du-jour-2025-sat-post-burn?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 5766557,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-bdymJyAL0WqTHQw1-au2zFw-large.jpg",
+      "created_at": "2025/10/14 18:32:27 +0000",
+      "playback_count": 65
     },
     {
       "title": "Pigtown 2025",
-      "permalink_url": "https://soundcloud.com/dj-nerva/pigtown-2025",
-      "duration": 4437000,
-      "genre": "",
-      "artwork_url": null,
-      "created_at": null
+      "permalink_url": "https://soundcloud.com/dj-nerva/pigtown-2025?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 4437473,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-eUTU2IFMx9Tk8lPq-XWNcJg-large.jpg",
+      "created_at": "2025/09/28 16:03:58 +0000",
+      "playback_count": 28
     },
     {
       "title": "Junglist Bassment 2",
-      "permalink_url": "https://soundcloud.com/dj-nerva/junglist-bassment-2",
-      "duration": 5080000,
-      "genre": "",
-      "artwork_url": null,
-      "created_at": null
+      "permalink_url": "https://soundcloud.com/dj-nerva/junglist-bassment-2?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 5080686,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-qXfE2iqAvfgt02oQ-jJP2nA-large.jpg",
+      "created_at": "2025/09/14 17:32:47 +0000",
+      "playback_count": 91
     },
     {
       "title": "Low-end Freaky",
-      "permalink_url": "https://soundcloud.com/dj-nerva/low-end-freaky",
-      "duration": 3734000,
-      "genre": "",
-      "artwork_url": null,
-      "created_at": null
+      "permalink_url": "https://soundcloud.com/dj-nerva/low-end-freaky?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 3734335,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-pM3DeNKbR0cF8nUV-rQAUkw-large.jpg",
+      "created_at": "2025/08/18 03:37:18 +0000",
+      "playback_count": 27
     },
     {
       "title": "Junglist Bassment",
-      "permalink_url": "https://soundcloud.com/dj-nerva/junglist-bassment",
-      "duration": 3640000,
-      "genre": "",
-      "artwork_url": null,
-      "created_at": null
+      "permalink_url": "https://soundcloud.com/dj-nerva/junglist-bassment?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 3640033,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-9J86UEK6EpRKZORe-fa8ftg-large.jpg",
+      "created_at": "2025/07/03 07:14:28 +0000",
+      "playback_count": 89
     },
     {
       "title": "Baltimore Club Music Day 2025",
-      "permalink_url": "https://soundcloud.com/dj-nerva/baltimore-club-music-day-2025",
-      "duration": 3377000,
-      "genre": "",
-      "artwork_url": null,
-      "created_at": null
+      "permalink_url": "https://soundcloud.com/dj-nerva/baltimore-club-music-day-2025?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 3377737,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-eemZ5Ifxt9l8zGhv-CQvuFg-large.jpg",
+      "created_at": "2025/06/18 16:53:10 +0000",
+      "playback_count": 66
     },
     {
       "title": "AAPI Support B2B W/oldboyslug @ Ema's Corner",
-      "permalink_url": "https://soundcloud.com/dj-nerva/aapi-support-b2b-woldboyslug-emas-corner",
-      "duration": 7451000,
+      "permalink_url": "https://soundcloud.com/dj-nerva/aapi-support-b2b-woldboyslug-emas-corner?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 7451742,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-dwU50ca5V605rhIp-5H3I6g-large.jpg",
+      "created_at": "2025/05/11 19:18:00 +0000",
+      "playback_count": 39
+    },
+    {
+      "title": "Backchat 4 - Nov 26th 2022",
+      "permalink_url": "https://soundcloud.com/dj-nerva/backchat-4-nov-26th-2022?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 5836513,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-fUuynq8xCJR2OBas-0cuHjQ-large.jpg",
+      "created_at": "2022/11/27 19:26:17 +0000",
+      "playback_count": 27
+    },
+    {
+      "title": "My First Set Out @ Backchat 3, 2022",
+      "permalink_url": "https://soundcloud.com/dj-nerva/backchat?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 3994514,
+      "genre": "Dance & EDM",
+      "artwork_url": "https://i1.sndcdn.com/artworks-wLL7cYzXwLypdm0i-GXiWig-large.jpg",
+      "created_at": "2022/11/06 19:24:38 +0000",
+      "playback_count": 24
+    },
+    {
+      "title": "Just Press Play / Record",
+      "permalink_url": "https://soundcloud.com/dj-nerva/just-press-play-record?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 1944921,
       "genre": "",
       "artwork_url": null,
-      "created_at": null
+      "created_at": "2022/10/28 19:34:51 +0000",
+      "playback_count": 57
     }
   ]
 }

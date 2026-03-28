@@ -1,5 +1,3 @@
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Press+Start+2P&display=swap');
 /* Reset */
 * {
   margin: 0;
@@ -105,6 +103,14 @@ input, textarea {
   background: var(--theme-secondary-color-dark);
   color: white;
   text-align: center;
+}
+
+.section-dark,
+.section-darker,
+.gear-section,
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
 }
 
 /* Card Styles */
@@ -386,20 +392,22 @@ h1 {
 
 /* Photo Gallery Grid */
 .photo-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 200px;
-  gap: 10px;
+  column-count: 4;
+  column-gap: 10px;
   max-width: 1200px;
   margin: 0 auto;
   background: var(--theme-primary-color-dark);
 }
 
 .photo-item {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 10px;
   overflow: hidden;
   border-radius: 8px;
   background: var(--theme-accent-color);
   position: relative;
+  break-inside: avoid;
 }
 
 /* Duotone effect using pseudo-elements */
@@ -441,51 +449,21 @@ h1 {
   opacity: 0;
 }
 
-.photo-filler {
-  border-radius: 8px;
-  background: var(--theme-accent-color);
-}
-
 .photo-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  height: auto;
+  display: block;
+  transition: filter 0.3s ease;
   filter: grayscale(100%) contrast(1.1);
 }
 
 .photo-item:hover img {
-  transform: scale(1.05);
   filter: grayscale(0%) contrast(1);
-}
-
-.photo-tall {
-  grid-row: span 2;
-}
-
-.photo-wide {
-  grid-column: span 2;
-}
-
-.photo-large {
-  grid-column: span 2;
-  grid-row: span 2;
 }
 
 @media (max-width: 768px) {
   .photo-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 150px;
-  }
-  
-  .photo-wide,
-  .photo-large {
-    grid-column: span 2;
-  }
-  
-  .photo-tall,
-  .photo-large {
-    grid-row: span 2;
+    column-count: 2;
   }
 }
 

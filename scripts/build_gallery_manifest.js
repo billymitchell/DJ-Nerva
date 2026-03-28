@@ -27,10 +27,17 @@ function main() {
             const ext = path.extname(file).toLowerCase();
             return IMAGE_EXTENSIONS.includes(ext);
         })
-        .map(file => ({
-            filename: file,
-            path: `DJ-images/${file}`
-        }));
+        .sort((a, b) => a.localeCompare(b))
+        .map(file => {
+            const filePath = path.join(IMAGES_DIR, file);
+            const stats = fs.statSync(filePath);
+
+            return {
+                filename: file,
+                path: `DJ-images/${file}`,
+                version: stats.mtimeMs
+            };
+        });
 
     fs.writeFileSync(OUTPUT_FILE, JSON.stringify(images, null, 2));
     console.log(`Generated ${OUTPUT_FILE} with ${images.length} images`);

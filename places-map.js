@@ -2,6 +2,10 @@
 // Initializes the Google Map and loads markers from places_played.json
 
 const MAP_STORAGE_KEY = 'dj_nerva_places_map_state_v1';
+const MAP_PRELOAD_MARGIN = '800px 0px';
+const MAPS_SCRIPT_ID = 'google-maps-sdk';
+let mapInitialized = false;
+let googleMapsLoadPromise = null;
 
 function getThemeColors() {
   // Try to read CSS variables for cohesive theming
@@ -58,7 +62,7 @@ function loadMapState() {
 
 async function fetchPlaces() {
   try {
-    const res = await fetch('places_played.json', { cache: 'no-store' });
+    const res = await fetch('places_played.json');
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
     if (Array.isArray(data)) return data;
@@ -90,9 +94,46 @@ function createMarker(map, place, iconUrl) {
   return marker;
 }
 
+function getMapsApiKey() {
+  return document.body?.dataset?.googleMapsKey || '';
+}
+
+function loadGoogleMaps() {
+  if (window.google?.maps) return Promise.resolve(window.google.maps);
+  if (googleMapsLoadPromise) return googleMapsLoadPromise;
+
+  const apiKey = getMapsApiKey();
+  if (!apiKey) {
+    return Promise.reject(new Error('Google Maps API key is missing.'));
+  }
+
+  googleMapsLoadPromise = new Promise((resolve, reject) => {
+    const existing = document.getElementById(MAPS_SCRIPT_ID);
+    if (existing) {
+      existing.addEventListener('load', () => resolve(window.google.maps), { once: true });
+      existing.addEventListener('error', () => reject(new Error('Google Maps failed to load.')), { once: true });
+      return;
+    }
+
+    window.__djNervaMapsReady = () => resolve(window.google.maps);
+
+    const script = document.createElement('script');
+    script.id = MAPS_SCRIPT_ID;
+    script.async = true;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&loading=async&callback=__djNervaMapsReady`;
+    script.onerror = () => reject(new Error('Google Maps failed to load.'));
+    document.head.appendChild(script);
+  });
+
+  return googleMapsLoadPromise;
+}
+
 async function init() {
   const container = document.getElementById('places-map');
-  if (!container) return;
+  if (!container || mapInitialized) return;
+
+  mapInitialized = true;
+  await loadGoogleMaps();
 
   const persisted = loadMapState();
   const { accent } = getThemeColors();
@@ -128,5 +169,30 @@ async function init() {
   // Keep global default on first load; users can pan/zoom or rely on persisted view.
 }
 
-// Exported callback for Google Maps loader
+function observeMapSection() {
+  const container = document.getElementById('places-map');
+  if (!container) return;
+
+  const start = () => {
+    init().catch((error) => {
+      mapInitialized = false;
+      console.warn('Map initialization failed:', error);
+    });
+  };
+
+  if (!('IntersectionObserver' in window)) {
+    start();
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    if (!entries.some(entry => entry.isIntersecting)) return;
+    observer.disconnect();
+    start();
+  }, { rootMargin: MAP_PRELOAD_MARGIN });
+
+  observer.observe(container);
+}
+
+document.addEventListener('DOMContentLoaded', observeMapSection);
 window.initPlacesMap = init;

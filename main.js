@@ -1,64 +1,81 @@
 // Update BUILD_HASH to use a timestamp during development
 const BUILD_HASH = window.APP_BUILD_HASH || `dev-${Date.now()}`;
+const SECTION_PRELOAD_MARGIN = '600px 0px';
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
     const heroSection = document.getElementById('hero-section');
     if (!heroSection) return console.error('Hero section element not found.');
 
-    try {
-        // Fetch image data and taglines in parallel for faster loading
-        const [imageSets, taglines] = await Promise.all([
+    Promise.all([
             fetchJson('image_data.json'),
             fetchJson('taglines.json')
-        ]);
-        
-        const randomSet = getRandomItem(imageSets);
-        
-        // Preload the hero image before setting it
-        await preloadImage(`splash-images/${randomSet.folder}/${randomSet.desktop}`);
-        
-        setHeroImage(randomSet);
-        setThemeColors(randomSet);
-        setTagline(getRandomItem(taglines));
+        ])
+        .then(([imageSets, taglines]) => {
+            const randomSet = getRandomItem(imageSets);
 
-        // Update SoundCloud iframe colors
-        updateSoundCloudIframes(getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim());
-    } catch (error) {
-        console.error('Error during setup:', error);
+            setHeroImage(randomSet);
+            setThemeColors(randomSet);
+            setTagline(getRandomItem(taglines));
+        })
+        .catch(error => {
+            console.error('Error during setup:', error);
 
-        // Fallback hero image data
-        const fallbackImageData = {
-            folder: '6',
-            desktop: 'bm_nerva_Dense_jungle_with_neon-outlined_leaves_vibrating_wit_09abfacb-63f0-416e-b2eb-ce913255387a_2.png',
-            mobile: 'bm_nerva_Dense_jungle_with_neon-outlined_leaves_vibrating_wit_cc7a2612-cbe1-47e9-96d9-6b891da98ebc_1.png',
-            primaryColor: '#ffffff',
-            secondaryColor: '#000000',
-            accentColor: '#ff5500'
-        };
-        setHeroImage(fallbackImageData);
-        setThemeColors(fallbackImageData);
+            const fallbackImageData = {
+                folder: '6',
+                desktop: 'bm_nerva_Dense_jungle_with_neon-outlined_leaves_vibrating_wit_09abfacb-63f0-416e-b2eb-ce913255387a_2.png',
+                mobile: 'bm_nerva_Dense_jungle_with_neon-outlined_leaves_vibrating_wit_cc7a2612-cbe1-47e9-96d9-6b891da98ebc_1.png',
+                primaryColor: '#ffffff',
+                secondaryColor: '#000000',
+                accentColor: '#ff5500'
+            };
+            setHeroImage(fallbackImageData);
+            setThemeColors(fallbackImageData);
+            setTagline('Charm City Vibe, Worldwide Tribe.');
+        });
 
-        // Fallback tagline data
-        const fallbackTaglines = ['Charm City Vibe, Worldwide Tribe.'];
-        setTagline(getRandomItem(fallbackTaglines));
-    }
-});
-
-// Preload an image and return a promise
-function preloadImage(src) {
-    return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => resolve(img);
-        img.onerror = reject;
-        img.src = src;
+    observeSectionOnce(document.getElementById('dj-mixes'), () => {
+        const primaryColor = getComputedStyle(document.documentElement)
+            .getPropertyValue('--primary-color')
+            .trim();
+        updateSoundCloudIframes(primaryColor);
     });
-}
+
+    observeSectionOnce(document.getElementById('photo-gallery'), loadGallery);
+});
 
 // Helper to fetch JSON data
 async function fetchJson(url) {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Failed to fetch ${url}`);
     return response.json();
+}
+
+function buildVersionedAssetUrl(path, version = BUILD_HASH) {
+    return `${path}?v=${encodeURIComponent(version)}`;
+}
+
+function observeSectionOnce(element, callback, rootMargin = SECTION_PRELOAD_MARGIN) {
+    if (!element || typeof callback !== 'function') return;
+
+    let hasRun = false;
+    const run = () => {
+        if (hasRun) return;
+        hasRun = true;
+        callback();
+    };
+
+    if (!('IntersectionObserver' in window)) {
+        run();
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+        observer.disconnect();
+        run();
+    }, { rootMargin });
+
+    observer.observe(element);
 }
 
 // Helper to get a random item from an array
@@ -113,9 +130,11 @@ async function loadGallery() {
     if (!grid) return;
     
     try {
-        const response = await fetch('gallery_images.json');
+        const response = await fetch(buildVersionedAssetUrl('gallery_images.json'));
         if (!response.ok) throw new Error('Failed to load gallery images');
         const images = await response.json();
+
+        grid.innerHTML = '';
         
         // Shuffle images
         for (let i = images.length - 1; i > 0; i--) {
@@ -123,64 +142,23 @@ async function loadGallery() {
             [images[i], images[j]] = [images[j], images[i]];
         }
         
-        const sizeClasses = ['', 'photo-tall', 'photo-wide', 'photo-large'];
-        const weights = [40, 25, 25, 10];
-        
-        // Track grid cell usage (4 columns)
-        let cellsUsed = 0;
-        
         // Generate gallery items
         images.forEach(image => {
             const div = document.createElement('div');
             div.className = 'photo-item';
             
-            // Weighted random size selection
-            const totalWeight = weights.reduce((a, b) => a + b, 0);
-            let random = Math.random() * totalWeight;
-            let selectedClass = '';
-            for (let i = 0; i < weights.length; i++) {
-                random -= weights[i];
-                if (random <= 0) {
-                    selectedClass = sizeClasses[i];
-                    break;
-                }
-            }
-            
-            if (selectedClass) {
-                div.classList.add(selectedClass);
-            }
-            
-            // Count cells used by this item
-            if (selectedClass === 'photo-large') cellsUsed += 4;
-            else if (selectedClass === 'photo-wide') cellsUsed += 2;
-            else if (selectedClass === 'photo-tall') cellsUsed += 2;
-            else cellsUsed += 1;
-            
             const img = document.createElement('img');
-            img.src = image.path;
+            img.src = buildVersionedAssetUrl(image.path, image.version || BUILD_HASH);
             img.alt = 'DJ Nerva';
             img.loading = 'lazy';
+            img.decoding = 'async';
             
             div.appendChild(img);
             grid.appendChild(div);
         });
-        
-        // Add filler cells to complete the row (4 columns)
-        const remainder = cellsUsed % 4;
-        if (remainder > 0) {
-            const fillersNeeded = 4 - remainder;
-            for (let i = 0; i < fillersNeeded; i++) {
-                const filler = document.createElement('div');
-                filler.className = 'photo-filler';
-                grid.appendChild(filler);
-            }
-        }
-        
-        console.log(`Gallery loaded with ${images.length} images, ${cellsUsed} cells used`);
+
+        console.log(`Gallery loaded with ${images.length} images`);
     } catch (error) {
         console.error('Error loading gallery:', error);
     }
 }
-
-// Initialize gallery on page load
-window.addEventListener('load', loadGallery);

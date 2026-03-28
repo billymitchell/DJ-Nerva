@@ -132,6 +132,27 @@
             "lat": 38.9190477,
             "lng": -76.9886065,
             "link": "https://maps.google.com/?q=BERHTA+Washington+DC"
+        },
+        {
+            "name": "Game On DC",
+            "city": "Washington, DC",
+            "lat": 38.9167908,
+            "lng": -77.0308618,
+            "link": "https://www.google.com/maps/place/GameOn+bar%2Barcade/@38.9167908,-77.0334421,718m/data=!3m2!1e3!4b1!4m6!3m5!1s0x89b7b7e6cc3da2bb:0x72b3f710deb1ec33!8m2!3d38.9167908!4d-77.0308618!16s%2Fg%2F11yjg48l1y?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D"
+        },
+        {
+            "name": "618 DC",
+            "city": "Washington, DC",
+            "lat": 38.8996834,
+            "lng": -77.0211005,
+            "link": "https://www.google.com/maps/place/618+DC/@38.8996834,-77.0236808,719m/data=!3m3!1e3!4b1!5s0x89b7b78e0e921da5:0x64dca85348cf4d80!4m6!3m5!1s0x89b7b7a9eba1eb49:0xcc3fdc7bb8d1070f!8m2!3d38.8996834!4d-77.0211005!16s%2Fg%2F11h3kww0fn?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D"
+        },
+        {
+            "name": "Nexus Studios",
+            "city": "St. Petersburg, FL",
+            "lat": 27.7722951,
+            "lng": -82.657245,
+            "link": "https://www.google.com/maps/place/Nexus+Studios/@27.7722951,-82.6598253,817m/data=!3m1!1e3!4m14!1m7!3m6!1s0x88c2e3f3c51e5889:0xbd430c111e8826db!2sNexus+Studios!8m2!3d27.7722951!4d-82.657245!16s%2Fg%2F11xks_jj3c!3m5!1s0x88c2e3f3c51e5889:0xbd430c111e8826db!8m2!3d27.7722951!4d-82.657245!16s%2Fg%2F11xks_jj3c?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D"
         }
     ]
 }

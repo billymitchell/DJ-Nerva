@@ -118,7 +118,7 @@ function buildEmbedItem(feedPath, light = false) {
   const allow = 'fullscreen; autoplay; idle-detection; speaker-selection; web-share;';
   return [
     '                <div class="embed-item">',
-    `                    <iframe class="mixcloud" width="250" height="250" scrolling="no" frameborder="no"`,
+    `                    <iframe class="mixcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"`,
     `                        src="${url.toString()}"`,
     `                        allow="${allow}">`,
     '                    </iframe>',

@@ -130,6 +130,23 @@ function updateSoundCloudIframes(primaryColor) {
 async function loadGallery() {
     const grid = document.getElementById('gallery-grid');
     if (!grid) return;
+
+    const resizeGalleryItem = item => {
+        const img = item.querySelector('img');
+        if (!img || !img.complete) return;
+
+        const styles = window.getComputedStyle(grid);
+        const rowHeight = parseFloat(styles.gridAutoRows);
+        const rowGap = parseFloat(styles.rowGap);
+        const itemHeight = img.getBoundingClientRect().height;
+        const rowSpan = Math.ceil((itemHeight + rowGap) / (rowHeight + rowGap));
+
+        item.style.gridRowEnd = `span ${rowSpan}`;
+    };
+
+    const resizeAllGalleryItems = () => {
+        grid.querySelectorAll('.photo-item').forEach(resizeGalleryItem);
+    };
     
     try {
         const response = await fetch(buildVersionedAssetUrl('gallery_images.json'));
@@ -154,10 +171,28 @@ async function loadGallery() {
             img.alt = 'DJ Nerva';
             img.loading = 'lazy';
             img.decoding = 'async';
+
+            img.addEventListener('load', () => {
+                window.requestAnimationFrame(() => resizeGalleryItem(div));
+            }, { once: true });
             
             div.appendChild(img);
             grid.appendChild(div);
+
+            if (img.complete) {
+                window.requestAnimationFrame(() => resizeGalleryItem(div));
+            }
         });
+
+        let previousGridWidth = grid.clientWidth;
+        const galleryResizeObserver = new ResizeObserver(entries => {
+            const currentGridWidth = entries[0].contentRect.width;
+            if (currentGridWidth === previousGridWidth) return;
+
+            previousGridWidth = currentGridWidth;
+            window.requestAnimationFrame(resizeAllGalleryItems);
+        });
+        galleryResizeObserver.observe(grid);
 
         console.log(`Gallery loaded with ${images.length} images`);
     } catch (error) {

@@ -1,24 +1,20 @@
-// Update BUILD_HASH to use a timestamp during development
-const BUILD_HASH = window.APP_BUILD_HASH || `dev-${Date.now()}`;
+// Set APP_BUILD_HASH when deploying changed image assets.
+const BUILD_HASH = window.APP_BUILD_HASH || '1';
 const SECTION_PRELOAD_MARGIN = '600px 0px';
 
 document.addEventListener('DOMContentLoaded', () => {
     const heroSection = document.getElementById('hero-section');
     if (!heroSection) return console.error('Hero section element not found.');
 
-    Promise.all([
-            fetchJson('image_data.json'),
-            fetchJson('taglines.json')
-        ])
-        .then(([imageSets, taglines]) => {
+    fetchJson('image_data.json')
+        .then((imageSets) => {
             const randomSet = getRandomItem(imageSets);
 
             setHeroImage(randomSet);
             setThemeColors(randomSet);
-            setTagline(getRandomItem(taglines));
         })
         .catch(error => {
-            console.error('Error during setup:', error);
+            console.error('Error loading hero image data:', error);
 
             const fallbackImageData = {
                 folder: '6',
@@ -30,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             setHeroImage(fallbackImageData);
             setThemeColors(fallbackImageData);
+        });
+
+    fetchJson('taglines.json')
+        .then((taglines) => setTagline(getRandomItem(taglines)))
+        .catch(error => {
+            console.error('Error loading tagline data:', error);
             setTagline('Charm City Vibe, Worldwide Tribe.');
         });
 

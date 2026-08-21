@@ -1,0 +1,159 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - button "Remix" [ref=e4] [cursor=pointer]:
+      - img "Remix" [ref=e5]
+    - generic [ref=e6]: Remix
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - heading "High-BPM Heartbeat of Charm City." [level=1] [ref=e25]
+      - link "Book Now" [ref=e26] [cursor=pointer]:
+        - /url: "#book-now"
+    - generic [ref=e27]: Scroll Down
+  - generic [ref=e29]:
+    - heading "About Me" [level=2] [ref=e30]
+    - paragraph [ref=e31]: Baltimore native DJ Nerva spins kinetic mosaics of sound, threading high-BPM breaks—jungle, drum-and-bass, footwork—into global club rhythms, heady techno, and classic house. Quick cuts, tempo jumps, and gritty Charm-City vibes. He honors Baltimore Club heritage and champions the local creative community. From intimate art-gallery marathons to sweat-soaked warehouse nights, neighborhood bars, and pop-up parties in unexpected spaces, Nerva is a selector who lives for the dance-floor connection. Expect sweat, smiles, and a vibe that lingers long after the system powers down.
+  - generic [ref=e32]:
+    - heading "DJ Mixes" [level=2] [ref=e33]
+    - generic [ref=e35]:
+      - iframe [ref=e37]:
+        - link "SoundCloud privacy policy" [ref=f1e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e39]:
+        - link "SoundCloud privacy policy" [ref=f2e3] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e41]:
+        - link "SoundCloud privacy policy" [ref=f3e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e43]:
+        - link "SoundCloud privacy policy" [ref=f4e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e45]:
+        - link "SoundCloud privacy policy" [ref=f5e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e47]:
+        - link "SoundCloud privacy policy" [ref=f6e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e49]:
+        - link "SoundCloud privacy policy" [ref=f7e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e51]:
+        - link "SoundCloud privacy policy" [ref=f8e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e53]:
+        - link "SoundCloud privacy policy" [ref=f9e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e55]:
+        - link "SoundCloud privacy policy" [ref=f10e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e57]:
+        - link "SoundCloud privacy policy" [ref=f11e3] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e59]:
+        - link "SoundCloud privacy policy" [ref=f12e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e61]:
+        - link "SoundCloud privacy policy" [ref=f13e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e63]:
+        - link "SoundCloud privacy policy" [ref=f14e3] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e65]:
+        - link "SoundCloud privacy policy" [ref=f15e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e67]:
+        - link "SoundCloud privacy policy" [ref=f16e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e69]:
+        - link "SoundCloud privacy policy" [ref=f17e3] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e71]:
+        - link "SoundCloud privacy policy" [ref=f18e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e73]:
+        - link "SoundCloud privacy policy" [ref=f19e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e75]:
+        - link "SoundCloud privacy policy" [ref=f20e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e77]:
+        - link "SoundCloud privacy policy" [ref=f21e7] [cursor=pointer]:
+          - /url: https://soundcloud.com/pages/privacy
+          - text: Privacy policy
+      - iframe [ref=e79]:
+        
+      - iframe [ref=e81]:
+        - img "Loading" [ref=f23e3]
+      - iframe [ref=e83]:
+        
+      - iframe [ref=e85]:
+        
+      - iframe [ref=e87]:
+        
+      - iframe [ref=e89]:
+        
+      - iframe [ref=e91]:
+        
+      - iframe [ref=e93]:
+        
+      - iframe [ref=e95]:
+        
+  - generic [ref=e96]:
+    - heading "Featured Video" [level=2] [ref=e97]
+    - iframe [ref=e99]
+  - heading "Gallery" [level=2] [ref=e101]
+  - generic [ref=e102]:
+    - heading "Places I've Played" [level=2] [ref=e103]
+    - paragraph [ref=e104]: Explore venues and events I've played at — tap pins for more details.
+    - region "Map of venues and places I've played" [ref=e106]
+  - generic [ref=e107]:
+    - heading "Gear Available" [level=2] [ref=e108]
+    - generic [ref=e109]:
+      - generic [ref=e110]:
+        - heading "XDJ-RX3" [level=3] [ref=e111]
+        - paragraph [ref=e112]: Professional all-in-one DJ system.
+        - paragraph [ref=e113]: Included with local booking
+      - generic [ref=e114]:
+        - heading "Powered Speakers" [level=3] [ref=e115]
+        - paragraph [ref=e116]: tops and a subwoofer
+        - paragraph [ref=e117]: Starting at $250+
+  - generic [ref=e118]:
+    - heading "Book Now" [level=2] [ref=e119]
+    - generic [ref=e120]:
+      - paragraph [ref=e121]:
+        - text: "📧 Email:"
+        - link "nerva.corporation@gmail.com" [ref=e122] [cursor=pointer]:
+          - /url: mailto:nerva.corporation@gmail.com
+      - paragraph [ref=e123]: "📍 Location: Baltimore, Maryland"
+      - paragraph [ref=e124]: Flexible Rates
+      - link "Book Now" [ref=e125] [cursor=pointer]:
+        - /url: mailto:nerva.corporation@gmail.com
+  - contentinfo [ref=e126]:
+    - generic [ref=e127]:
+      - paragraph [ref=e128]: © 2025 DJ Nerva. All rights reserved.
+      - paragraph [ref=e129]:
+        - text: "Follow me on:"
+        - link "Instagram" [ref=e130] [cursor=pointer]:
+          - /url: https://www.instagram.com/billy_nerva
+      - paragraph [ref=e131]:
+        - link "Download Press Kit" [ref=e132] [cursor=pointer]:
+          - /url: press-kit.zip

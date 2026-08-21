@@ -1,9 +1,45 @@
 {
   "profile_url": "https://soundcloud.com/dj-nerva",
-  "scraped_at": "2026-03-28T16:36:57.886Z",
+  "scraped_at": "2026-08-21T16:17:40.290Z",
   "scraping_method": "api",
-  "total_tracks": 17,
+  "total_tracks": 21,
   "tracks": [
+    {
+      "title": "Love Making Jungle",
+      "permalink_url": "https://soundcloud.com/dj-nerva/love-making-jungle?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 3430741,
+      "genre": "Drum & Bass",
+      "artwork_url": "https://i1.sndcdn.com/artworks-vHuDmyUaYMy40y42-BJJ7jg-large.jpg",
+      "created_at": "2026/08/16 14:18:25 +0000",
+      "playback_count": 10
+    },
+    {
+      "title": "Junglist BASSprint 05-09-2026: DJ Nerva Opening Set",
+      "permalink_url": "https://soundcloud.com/dj-nerva/junglist-bassprint-05-09-2026?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 3598268,
+      "genre": "Drum & Bass",
+      "artwork_url": "https://i1.sndcdn.com/artworks-8apNNbF53zxUclJZ-eFGUtQ-large.jpg",
+      "created_at": "2026/05/13 18:26:37 +0000",
+      "playback_count": 38
+    },
+    {
+      "title": "Ghost In The Shell Bogus Gallery Opening Set",
+      "permalink_url": "https://soundcloud.com/dj-nerva/ghost-in-the-shell-bogus?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 3613223,
+      "genre": "Drum & Bass",
+      "artwork_url": "https://i1.sndcdn.com/artworks-a24GSBJk4AllM8ZX-xwurzQ-large.jpg",
+      "created_at": "2026/05/06 00:16:56 +0000",
+      "playback_count": 13
+    },
+    {
+      "title": "Frequency #1105 Turnstyle Show",
+      "permalink_url": "https://soundcloud.com/dj-nerva/frequency-1105-turnstyle-show?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 4230109,
+      "genre": "Drum & Bass",
+      "artwork_url": "https://i1.sndcdn.com/artworks-XXD90anyYvytTEWL-jTrdYA-large.jpg",
+      "created_at": "2026/05/05 23:55:59 +0000",
+      "playback_count": 53
+    },
     {
       "title": "Vibrate DC 618 Hechyeomoyeo Practice Mix",
       "permalink_url": "https://soundcloud.com/dj-nerva/vibrate-dc-618-hechyeomoyeo?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
@@ -11,7 +47,7 @@
       "genre": "Techno",
       "artwork_url": "https://i1.sndcdn.com/artworks-PELuExFwYvbkeAZD-cGLmkA-large.jpg",
       "created_at": "2026/03/15 00:34:28 +0000",
-      "playback_count": 7
+      "playback_count": 9
     },
     {
       "title": "Spirit World 02-17-2026",
@@ -20,7 +56,7 @@
       "genre": "Dance & EDM",
       "artwork_url": "https://i1.sndcdn.com/artworks-eFGJcQDia4wPums7-YtsR5A-large.jpg",
       "created_at": "2026/02/19 00:17:01 +0000",
-      "playback_count": 8
+      "playback_count": 9
     },
     {
       "title": "Divorce",
@@ -29,7 +65,7 @@
       "genre": "Dance & EDM",
       "artwork_url": "https://i1.sndcdn.com/artworks-OUzyKOuwyhlcHQAm-MTPl6w-large.jpg",
       "created_at": "2026/01/21 14:58:51 +0000",
-      "playback_count": 20
+      "playback_count": 22
     },
     {
       "title": "Junglist BASSprint",
@@ -38,7 +74,7 @@
       "genre": "Dance & EDM",
       "artwork_url": "https://i1.sndcdn.com/artworks-7ZzLjuscTrFE4Bkf-flueLw-large.jpg",
       "created_at": "2025/12/08 22:53:03 +0000",
-      "playback_count": 48
+      "playback_count": 68
     },
     {
       "title": "Jamaican Support Ragga Jungle",
@@ -47,7 +83,7 @@
       "genre": "Dance & EDM",
       "artwork_url": "https://i1.sndcdn.com/artworks-LmEz95dyqZgczxzW-U7yzjw-large.jpg",
       "created_at": "2025/11/30 21:39:30 +0000",
-      "playback_count": 38
+      "playback_count": 55
     },
     {
       "title": "DCompresion Burn 2025 Practice Mix",
@@ -56,7 +92,7 @@
       "genre": "Dance & EDM",
       "artwork_url": "https://i1.sndcdn.com/artworks-zO8Fu3auFyCOa6j7-WrsQ4w-large.jpg",
       "created_at": "2025/11/16 19:23:28 +0000",
-      "playback_count": 17
+      "playback_count": 20
     },
     {
       "title": "Constellation Burn 2025 Sunday Pre-burn Ambient Experimental",
@@ -65,7 +101,7 @@
       "genre": "Ambient",
       "artwork_url": "https://i1.sndcdn.com/artworks-n1zAzQIi6XyMo2ze-fafi4w-large.jpg",
       "created_at": "2025/10/17 16:06:12 +0000",
-      "playback_count": 30
+      "playback_count": 31
     },
     {
       "title": "Constellation Burn Dirt Du Jour 2025 Saturday Post Burn",
@@ -74,7 +110,7 @@
       "genre": "Dance & EDM",
       "artwork_url": "https://i1.sndcdn.com/artworks-bdymJyAL0WqTHQw1-au2zFw-large.jpg",
       "created_at": "2025/10/14 18:32:27 +0000",
-      "playback_count": 65
+      "playback_count": 66
     },
     {
       "title": "Pigtown 2025",
@@ -83,7 +119,7 @@
       "genre": "Dance & EDM",
       "artwork_url": "https://i1.sndcdn.com/artworks-eUTU2IFMx9Tk8lPq-XWNcJg-large.jpg",
       "created_at": "2025/09/28 16:03:58 +0000",
-      "playback_count": 28
+      "playback_count": 29
     },
     {
       "title": "Junglist Bassment 2",
@@ -92,7 +128,7 @@
       "genre": "Dance & EDM",
       "artwork_url": "https://i1.sndcdn.com/artworks-qXfE2iqAvfgt02oQ-jJP2nA-large.jpg",
       "created_at": "2025/09/14 17:32:47 +0000",
-      "playback_count": 91
+      "playback_count": 109
     },
     {
       "title": "Low-end Freaky",
@@ -119,7 +155,7 @@
       "genre": "Dance & EDM",
       "artwork_url": "https://i1.sndcdn.com/artworks-eemZ5Ifxt9l8zGhv-CQvuFg-large.jpg",
       "created_at": "2025/06/18 16:53:10 +0000",
-      "playback_count": 66
+      "playback_count": 81
     },
     {
       "title": "AAPI Support B2B W/oldboyslug @ Ema's Corner",
@@ -128,7 +164,7 @@
       "genre": "Dance & EDM",
       "artwork_url": "https://i1.sndcdn.com/artworks-dwU50ca5V605rhIp-5H3I6g-large.jpg",
       "created_at": "2025/05/11 19:18:00 +0000",
-      "playback_count": 39
+      "playback_count": 47
     },
     {
       "title": "Backchat 4 - Nov 26th 2022",

@@ -1,0 +1,822 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - button "Remix" [ref=e4] [cursor=pointer]:
+      - img "Remix" [ref=e5]
+    - generic [ref=e6]: Remix
+  - generic [ref=e7]:
+    - generic [ref=e8]:
+      - heading "High-BPM Heartbeat of Charm City." [level=1] [ref=e25]
+      - link "Book Now" [ref=e26] [cursor=pointer]:
+        - /url: "#book-now"
+    - generic [ref=e27]: Scroll Down
+  - generic [ref=e29]:
+    - heading "About Me" [level=2] [ref=e30]
+    - paragraph [ref=e31]: Baltimore native DJ Nerva spins kinetic mosaics of sound, threading high-BPM breaks—jungle, drum-and-bass, footwork—into global club rhythms, heady techno, and classic house. Quick cuts, tempo jumps, and gritty Charm-City vibes. He honors Baltimore Club heritage and champions the local creative community. From intimate art-gallery marathons to sweat-soaked warehouse nights, neighborhood bars, and pop-up parties in unexpected spaces, Nerva is a selector who lives for the dance-floor connection. Expect sweat, smiles, and a vibe that lingers long after the system powers down.
+  - generic [ref=e32]:
+    - heading "DJ Mixes" [level=2] [ref=e33]
+    - generic [ref=e35]:
+      - iframe [ref=e37]:
+        - generic [ref=f1e1]:
+          - generic [ref=f1e5]:
+            - generic [ref=f1e6]:
+              - generic "Love Making Jungle" [ref=f1e8]
+              - generic [ref=f1e9]:
+                - generic "Love Making Jungle" [ref=f1e11]
+                - generic "Love Making Jungle" [ref=f1e13]
+            - generic [ref=f1e16]:
+              - application "Play" [ref=f1e18] [cursor=pointer]
+              - generic [ref=f1e23]:
+                - link "DJ Nerva" [ref=f1e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Love Making Jungle" [ref=f1e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/love-making-jungle
+              - generic [ref=f1e26]:
+                - link "Play on SoundCloud" [ref=f1e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/love-making-jungle
+                - button "Share" [ref=f1e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f1e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e39]:
+        - generic [ref=f2e1]:
+          - generic [ref=f2e5]:
+            - generic [ref=f2e6]:
+              - 'generic "Junglist BASSprint 05-09-2026: DJ Nerva Opening Set" [ref=f2e8]'
+              - generic [ref=f2e9]:
+                - 'generic "Junglist BASSprint 05-09-2026: DJ Nerva Opening Set" [ref=f2e11]'
+                - 'generic "Junglist BASSprint 05-09-2026: DJ Nerva Opening Set" [ref=f2e13]'
+            - generic [ref=f2e16]:
+              - application "Play" [ref=f2e18] [cursor=pointer]
+              - generic [ref=f2e23]:
+                - link "DJ Nerva" [ref=f2e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - 'link "Junglist BASSprint 05-09-2026: DJ Nerva Opening Set" [ref=f2e25] [cursor=pointer]':
+                  - /url: https://soundcloud.com/dj-nerva/junglist-bassprint-05-09-2026
+              - generic [ref=f2e26]:
+                - link "Play on SoundCloud" [ref=f2e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/junglist-bassprint-05-09-2026
+                - button "Share" [ref=f2e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f2e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e41]:
+        - generic [ref=f3e1]:
+          - generic [ref=f3e5]:
+            - generic [ref=f3e6]:
+              - generic "Ghost In The Shell Bogus Gallery Opening Set" [ref=f3e8]
+              - generic [ref=f3e9]:
+                - generic "Ghost In The Shell Bogus Gallery Opening Set" [ref=f3e11]
+                - generic "Ghost In The Shell Bogus Gallery Opening Set" [ref=f3e13]
+            - generic [ref=f3e16]:
+              - application "Play" [ref=f3e18] [cursor=pointer]
+              - generic [ref=f3e23]:
+                - link "DJ Nerva" [ref=f3e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Ghost In The Shell Bogus Gallery Opening Set" [ref=f3e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/ghost-in-the-shell-bogus
+              - generic [ref=f3e26]:
+                - link "Play on SoundCloud" [ref=f3e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/ghost-in-the-shell-bogus
+                - button "Share" [ref=f3e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f3e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e43]:
+        - generic [ref=f4e1]:
+          - generic [ref=f4e5]:
+            - generic [ref=f4e6]:
+              - 'generic "Frequency #1105 Turnstyle Show" [ref=f4e8]'
+              - generic [ref=f4e9]:
+                - 'generic "Frequency #1105 Turnstyle Show" [ref=f4e11]'
+                - 'generic "Frequency #1105 Turnstyle Show" [ref=f4e13]'
+            - generic [ref=f4e16]:
+              - application "Play" [ref=f4e18] [cursor=pointer]
+              - generic [ref=f4e23]:
+                - link "DJ Nerva" [ref=f4e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - 'link "Frequency #1105 Turnstyle Show" [ref=f4e25] [cursor=pointer]':
+                  - /url: https://soundcloud.com/dj-nerva/frequency-1105-turnstyle-show
+              - generic [ref=f4e26]:
+                - link "Play on SoundCloud" [ref=f4e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/frequency-1105-turnstyle-show
+                - button "Share" [ref=f4e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f4e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e45]:
+        - generic [ref=f5e1]:
+          - generic [ref=f5e5]:
+            - generic [ref=f5e6]:
+              - generic "Vibrate DC 618 Hechyeomoyeo Practice Mix" [ref=f5e8]
+              - generic [ref=f5e9]:
+                - generic "Vibrate DC 618 Hechyeomoyeo Practice Mix" [ref=f5e11]
+                - generic "Vibrate DC 618 Hechyeomoyeo Practice Mix" [ref=f5e13]
+            - generic [ref=f5e16]:
+              - application "Play" [ref=f5e18] [cursor=pointer]
+              - generic [ref=f5e23]:
+                - link "DJ Nerva" [ref=f5e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Vibrate DC 618 Hechyeomoyeo Practice Mix" [ref=f5e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/vibrate-dc-618-hechyeomoyeo
+              - generic [ref=f5e26]:
+                - link "Play on SoundCloud" [ref=f5e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/vibrate-dc-618-hechyeomoyeo
+                - button "Share" [ref=f5e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f5e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e47]:
+        - generic [ref=f6e1]:
+          - generic [ref=f6e5]:
+            - generic [ref=f6e6]:
+              - generic "Spirit World 02-17-2026" [ref=f6e8]
+              - generic [ref=f6e9]:
+                - generic "Spirit World 02-17-2026" [ref=f6e11]
+                - generic "Spirit World 02-17-2026" [ref=f6e13]
+            - generic [ref=f6e16]:
+              - application "Play" [ref=f6e18] [cursor=pointer]
+              - generic [ref=f6e23]:
+                - link "DJ Nerva" [ref=f6e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Spirit World 02-17-2026" [ref=f6e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/spirit-world-02-17-2026
+              - generic [ref=f6e26]:
+                - link "Play on SoundCloud" [ref=f6e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/spirit-world-02-17-2026
+                - button "Share" [ref=f6e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f6e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e49]:
+        - generic [ref=f7e1]:
+          - generic [ref=f7e5]:
+            - generic [ref=f7e6]:
+              - generic "Divorce" [ref=f7e8]
+              - generic [ref=f7e9]:
+                - generic "Divorce" [ref=f7e11]
+                - generic "Divorce" [ref=f7e13]
+            - generic [ref=f7e16]:
+              - application "Play" [ref=f7e18] [cursor=pointer]
+              - generic [ref=f7e23]:
+                - link "DJ Nerva" [ref=f7e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Divorce" [ref=f7e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/divorce
+              - generic [ref=f7e26]:
+                - link "Play on SoundCloud" [ref=f7e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/divorce
+                - button "Share" [ref=f7e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f7e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e51]:
+        - generic [ref=f8e1]:
+          - generic [ref=f8e5]:
+            - generic [ref=f8e6]:
+              - generic "Junglist BASSprint" [ref=f8e8]
+              - generic [ref=f8e9]:
+                - generic "Junglist BASSprint" [ref=f8e11]
+                - generic "Junglist BASSprint" [ref=f8e13]
+            - generic [ref=f8e16]:
+              - application "Play" [ref=f8e18] [cursor=pointer]
+              - generic [ref=f8e23]:
+                - link "DJ Nerva" [ref=f8e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Junglist BASSprint" [ref=f8e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/junglist-bassprint
+              - generic [ref=f8e26]:
+                - link "Play on SoundCloud" [ref=f8e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/junglist-bassprint
+                - button "Share" [ref=f8e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f8e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e53]:
+        - generic [ref=f9e1]:
+          - generic [ref=f9e5]:
+            - generic [ref=f9e6]:
+              - generic "Jamaican Support Ragga Jungle" [ref=f9e8]
+              - generic [ref=f9e9]:
+                - generic "Jamaican Support Ragga Jungle" [ref=f9e11]
+                - generic "Jamaican Support Ragga Jungle" [ref=f9e13]
+            - generic [ref=f9e16]:
+              - application "Play" [ref=f9e18] [cursor=pointer]
+              - generic [ref=f9e23]:
+                - link "DJ Nerva" [ref=f9e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Jamaican Support Ragga Jungle" [ref=f9e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/jamaican-support-ragga-jungle
+              - generic [ref=f9e26]:
+                - link "Play on SoundCloud" [ref=f9e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/jamaican-support-ragga-jungle
+                - button "Share" [ref=f9e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f9e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e55]:
+        - generic [ref=f10e1]:
+          - generic [ref=f10e5]:
+            - generic [ref=f10e6]:
+              - generic "DCompresion Burn 2025 Practice Mix" [ref=f10e8]
+              - generic [ref=f10e9]:
+                - generic "DCompresion Burn 2025 Practice Mix" [ref=f10e11]
+                - generic "DCompresion Burn 2025 Practice Mix" [ref=f10e13]
+            - generic [ref=f10e16]:
+              - application "Play" [ref=f10e18] [cursor=pointer]
+              - generic [ref=f10e23]:
+                - link "DJ Nerva" [ref=f10e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "DCompresion Burn 2025 Practice Mix" [ref=f10e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/dcompresion-burn-2025-practice-mix
+              - generic [ref=f10e26]:
+                - link "Play on SoundCloud" [ref=f10e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/dcompresion-burn-2025-practice-mix
+                - button "Share" [ref=f10e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f10e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e57]:
+        - generic [ref=f11e1]:
+          - generic [ref=f11e5]:
+            - generic [ref=f11e6]:
+              - generic "Constellation Burn 2025 Sunday Pre-burn Ambient Experimental" [ref=f11e8]
+              - generic [ref=f11e9]:
+                - generic "Constellation Burn 2025 Sunday Pre-burn Ambient Experimental" [ref=f11e11]
+                - generic "Constellation Burn 2025 Sunday Pre-burn Ambient Experimental" [ref=f11e13]
+            - generic [ref=f11e16]:
+              - application "Play" [ref=f11e18] [cursor=pointer]
+              - generic [ref=f11e23]:
+                - link "DJ Nerva" [ref=f11e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Constellation Burn 2025 Sunday Pre-burn Ambient Experimental" [ref=f11e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/constellation-burn-2025-sun-pre-burn-ambient-experimental
+              - generic [ref=f11e26]:
+                - link "Play on SoundCloud" [ref=f11e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/constellation-burn-2025-sun-pre-burn-ambient-experimental
+                - button "Share" [ref=f11e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f11e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e59]:
+        - generic [ref=f12e1]:
+          - generic [ref=f12e5]:
+            - generic [ref=f12e6]:
+              - generic "Constellation Burn Dirt Du Jour 2025 Saturday Post Burn" [ref=f12e8]
+              - generic [ref=f12e9]:
+                - generic "Constellation Burn Dirt Du Jour 2025 Saturday Post Burn" [ref=f12e11]
+                - generic "Constellation Burn Dirt Du Jour 2025 Saturday Post Burn" [ref=f12e13]
+            - generic [ref=f12e16]:
+              - application "Play" [ref=f12e18] [cursor=pointer]
+              - generic [ref=f12e23]:
+                - link "DJ Nerva" [ref=f12e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Constellation Burn Dirt Du Jour 2025 Saturday Post Burn" [ref=f12e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/constellation-burn-dirt-du-jour-2025-sat-post-burn
+              - generic [ref=f12e26]:
+                - link "Play on SoundCloud" [ref=f12e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/constellation-burn-dirt-du-jour-2025-sat-post-burn
+                - button "Share" [ref=f12e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f12e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e61]:
+        - generic [ref=f13e1]:
+          - generic [ref=f13e5]:
+            - generic [ref=f13e6]:
+              - generic "Pigtown 2025" [ref=f13e8]
+              - generic [ref=f13e9]:
+                - generic "Pigtown 2025" [ref=f13e11]
+                - generic "Pigtown 2025" [ref=f13e13]
+            - generic [ref=f13e16]:
+              - application "Play" [ref=f13e18] [cursor=pointer]
+              - generic [ref=f13e23]:
+                - link "DJ Nerva" [ref=f13e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Pigtown 2025" [ref=f13e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/pigtown-2025
+              - generic [ref=f13e26]:
+                - link "Play on SoundCloud" [ref=f13e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/pigtown-2025
+                - button "Share" [ref=f13e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f13e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e63]:
+        - generic [ref=f14e1]:
+          - generic [ref=f14e5]:
+            - generic [ref=f14e6]:
+              - generic "Junglist Bassment 2" [ref=f14e8]
+              - generic [ref=f14e9]:
+                - generic "Junglist Bassment 2" [ref=f14e11]
+                - generic "Junglist Bassment 2" [ref=f14e13]
+            - generic [ref=f14e16]:
+              - application "Play" [ref=f14e18] [cursor=pointer]
+              - generic [ref=f14e23]:
+                - link "DJ Nerva" [ref=f14e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Junglist Bassment 2" [ref=f14e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/junglist-bassment-2
+              - generic [ref=f14e26]:
+                - link "Play on SoundCloud" [ref=f14e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/junglist-bassment-2
+                - button "Share" [ref=f14e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f14e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e65]:
+        - generic [ref=f15e1]:
+          - generic [ref=f15e5]:
+            - generic [ref=f15e6]:
+              - generic "Low-end Freaky" [ref=f15e8]
+              - generic [ref=f15e9]:
+                - generic "Low-end Freaky" [ref=f15e11]
+                - generic "Low-end Freaky" [ref=f15e13]
+            - generic [ref=f15e16]:
+              - application "Play" [ref=f15e18] [cursor=pointer]
+              - generic [ref=f15e23]:
+                - link "DJ Nerva" [ref=f15e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Low-end Freaky" [ref=f15e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/low-end-freaky
+              - generic [ref=f15e26]:
+                - link "Play on SoundCloud" [ref=f15e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/low-end-freaky
+                - button "Share" [ref=f15e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f15e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e67]:
+        - generic [ref=f16e1]:
+          - generic [ref=f16e5]:
+            - generic [ref=f16e6]:
+              - generic "Junglist Bassment" [ref=f16e8]
+              - generic [ref=f16e9]:
+                - generic "Junglist Bassment" [ref=f16e11]
+                - generic "Junglist Bassment" [ref=f16e13]
+            - generic [ref=f16e16]:
+              - application "Play" [ref=f16e18] [cursor=pointer]
+              - generic [ref=f16e23]:
+                - link "DJ Nerva" [ref=f16e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Junglist Bassment" [ref=f16e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/junglist-bassment
+              - generic [ref=f16e26]:
+                - link "Play on SoundCloud" [ref=f16e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/junglist-bassment
+                - button "Share" [ref=f16e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f16e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e69]:
+        - generic [ref=f17e1]:
+          - generic [ref=f17e5]:
+            - generic [ref=f17e6]:
+              - generic "Baltimore Club Music Day 2025" [ref=f17e8]
+              - generic [ref=f17e9]:
+                - generic "Baltimore Club Music Day 2025" [ref=f17e11]
+                - generic "Baltimore Club Music Day 2025" [ref=f17e13]
+            - generic [ref=f17e16]:
+              - application "Play" [ref=f17e18] [cursor=pointer]
+              - generic [ref=f17e23]:
+                - link "DJ Nerva" [ref=f17e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Baltimore Club Music Day 2025" [ref=f17e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/baltimore-club-music-day-2025
+              - generic [ref=f17e26]:
+                - link "Play on SoundCloud" [ref=f17e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/baltimore-club-music-day-2025
+                - button "Share" [ref=f17e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f17e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e71]:
+        - generic [ref=f18e1]:
+          - generic [ref=f18e5]:
+            - generic [ref=f18e6]:
+              - generic "AAPI Support B2B W/oldboyslug @ Ema&#x27;s Corner" [ref=f18e8]
+              - generic [ref=f18e9]:
+                - generic "AAPI Support B2B W/oldboyslug @ Ema&#x27;s Corner" [ref=f18e11]
+                - generic "AAPI Support B2B W/oldboyslug @ Ema&#x27;s Corner" [ref=f18e13]
+            - generic [ref=f18e16]:
+              - application "Play" [ref=f18e18] [cursor=pointer]
+              - generic [ref=f18e23]:
+                - link "DJ Nerva" [ref=f18e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "AAPI Support B2B W/oldboyslug @ Ema's Corner" [ref=f18e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/aapi-support-b2b-woldboyslug-emas-corner
+              - generic [ref=f18e26]:
+                - link "Play on SoundCloud" [ref=f18e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/aapi-support-b2b-woldboyslug-emas-corner
+                - button "Share" [ref=f18e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f18e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e73]:
+        - generic [ref=f19e1]:
+          - generic [ref=f19e5]:
+            - generic [ref=f19e6]:
+              - generic "Backchat 4 - Nov 26th 2022" [ref=f19e8]
+              - generic [ref=f19e9]:
+                - generic "Backchat 4 - Nov 26th 2022" [ref=f19e11]
+                - generic "Backchat 4 - Nov 26th 2022" [ref=f19e13]
+            - generic [ref=f19e16]:
+              - application "Play" [ref=f19e18] [cursor=pointer]
+              - generic [ref=f19e23]:
+                - link "DJ Nerva" [ref=f19e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Backchat 4 - Nov 26th 2022" [ref=f19e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/backchat-4-nov-26th-2022
+              - generic [ref=f19e26]:
+                - link "Play on SoundCloud" [ref=f19e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/backchat-4-nov-26th-2022
+                - button "Share" [ref=f19e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f19e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e75]:
+        - generic [ref=f20e1]:
+          - generic [ref=f20e5]:
+            - generic [ref=f20e6]:
+              - generic "My First Set Out @ Backchat 3, 2022" [ref=f20e8]
+              - generic [ref=f20e9]:
+                - generic "My First Set Out @ Backchat 3, 2022" [ref=f20e11]
+                - generic "My First Set Out @ Backchat 3, 2022" [ref=f20e13]
+            - generic [ref=f20e16]:
+              - application "Play" [ref=f20e18] [cursor=pointer]
+              - generic [ref=f20e23]:
+                - link "DJ Nerva" [ref=f20e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "My First Set Out @ Backchat 3, 2022" [ref=f20e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/backchat
+              - generic [ref=f20e26]:
+                - link "Play on SoundCloud" [ref=f20e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/backchat
+                - button "Share" [ref=f20e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f20e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e77]:
+        - generic [ref=f21e1]:
+          - generic [ref=f21e5]:
+            - generic [ref=f21e6]:
+              - generic "Just Press Play / Record" [ref=f21e8]
+              - generic [ref=f21e9]:
+                - generic "Just Press Play / Record" [ref=f21e11]
+                - generic "Just Press Play / Record" [ref=f21e13]
+            - generic [ref=f21e16]:
+              - application "Play" [ref=f21e18] [cursor=pointer]
+              - generic [ref=f21e23]:
+                - link "DJ Nerva" [ref=f21e24] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva
+                - link "Just Press Play / Record" [ref=f21e25] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/just-press-play-record
+              - generic [ref=f21e26]:
+                - link "Play on SoundCloud" [ref=f21e28] [cursor=pointer]:
+                  - /url: https://soundcloud.com/dj-nerva/just-press-play-record
+                - button "Share" [ref=f21e33] [cursor=pointer]
+          - link "SoundCloud privacy policy" [ref=f21e45] [cursor=pointer]:
+            - /url: https://soundcloud.com/pages/privacy
+            - text: Privacy policy
+      - iframe [ref=e79]:
+        - generic [ref=f22e4]:
+          - generic [ref=f22e5] [cursor=pointer]:
+            - generic [ref=f22e6]:
+              - link "Spirit World Round 2 - B2B W/ oldboyslug" [ref=f22e7]:
+                - /url: https://www.mixcloud.com/dj-nerva/spirit-world-round-2-b2b-w-oldboyslug/
+              - link "by DJ Nerva" [ref=f22e9]:
+                - /url: https://www.mixcloud.com/dj-nerva/
+            - link [ref=f22e11]:
+              - /url: https://www.mixcloud.com/dj-nerva/spirit-world-round-2-b2b-w-oldboyslug/
+          - generic [ref=f22e14]:
+            - link [ref=f22e16] [cursor=pointer]:
+              - /url: https://www.mixcloud.com/dj-nerva/spirit-world-round-2-b2b-w-oldboyslug/
+              - img "Spirit World Round 2 - B2B W/ oldboyslug" [ref=f22e18]
+            - generic [ref=f22e19]:
+              - generic [ref=f22e20]:
+                - generic [ref=f22e21] [cursor=pointer]
+                - generic [ref=f22e22]:
+                  - link "Spirit World Round 2 - B2B W/ oldboyslug":
+                    - /url: https://www.mixcloud.com/dj-nerva/spirit-world-round-2-b2b-w-oldboyslug/
+                  - generic:
+                    - generic [ref=f22e23]: by
+                    - link "DJ Nerva":
+                      - /url: https://www.mixcloud.com/dj-nerva/
+                    - generic [ref=f22e24] [cursor=pointer]: Follow
+              - generic [ref=f22e26]:
+                - generic [ref=f22e27]: 00:00
+                - generic [ref=f22e29] [cursor=pointer]
+                - generic [ref=f22e30]: "-4:24:34"
+              - generic [ref=f22e31]:
+                - generic:
+                  - generic "Listens" [ref=f22e32]: "17"
+                  - generic "Favorites" [ref=f22e33]: "1"
+      - iframe [ref=e81]:
+        - generic [ref=f23e4]:
+          - generic [ref=f23e5] [cursor=pointer]:
+            - generic [ref=f23e6]:
+              - link "Pride Dance Stage Practice Mix 2024" [ref=f23e7]:
+                - /url: https://www.mixcloud.com/dj-nerva/pride-dance-stage-practice-mix-2024/
+              - link "by DJ Nerva" [ref=f23e9]:
+                - /url: https://www.mixcloud.com/dj-nerva/
+            - link [ref=f23e11]:
+              - /url: https://www.mixcloud.com/dj-nerva/pride-dance-stage-practice-mix-2024/
+          - generic [ref=f23e14]:
+            - link [ref=f23e16] [cursor=pointer]:
+              - /url: https://www.mixcloud.com/dj-nerva/pride-dance-stage-practice-mix-2024/
+              - img "Pride Dance Stage Practice Mix 2024" [ref=f23e18]
+            - generic [ref=f23e19]:
+              - generic [ref=f23e20]:
+                - generic [ref=f23e21] [cursor=pointer]
+                - generic [ref=f23e22]:
+                  - link "Pride Dance Stage Practice Mix 2024":
+                    - /url: https://www.mixcloud.com/dj-nerva/pride-dance-stage-practice-mix-2024/
+                  - generic:
+                    - generic [ref=f23e23]: by
+                    - link "DJ Nerva":
+                      - /url: https://www.mixcloud.com/dj-nerva/
+                    - generic [ref=f23e24] [cursor=pointer]: Follow
+              - generic [ref=f23e25]:
+                - generic:
+                  - generic:
+                    - strong [ref=f23e26]: Baddy On The Floor
+                    - generic: by Jamie xx feat. Honey Dijon
+                - generic [ref=f23e27]:
+                  - generic [ref=f23e28]: 00:00
+                  - generic [ref=f23e30] [cursor=pointer]
+                  - generic [ref=f23e31]: "-39:36"
+              - generic [ref=f23e32]:
+                - generic:
+                  - generic "Listens" [ref=f23e33]: "22"
+                  - generic "Favorites" [ref=f23e34]: "2"
+      - iframe [ref=e83]:
+        - generic [ref=f24e4]:
+          - generic [ref=f24e5] [cursor=pointer]:
+            - generic [ref=f24e6]:
+              - link "Off The Rails" [ref=f24e7]:
+                - /url: https://www.mixcloud.com/dj-nerva/off-the-rails-practice-mix/
+              - link "by DJ Nerva" [ref=f24e9]:
+                - /url: https://www.mixcloud.com/dj-nerva/
+            - link [ref=f24e11]:
+              - /url: https://www.mixcloud.com/dj-nerva/off-the-rails-practice-mix/
+          - generic [ref=f24e14]:
+            - link [ref=f24e16] [cursor=pointer]:
+              - /url: https://www.mixcloud.com/dj-nerva/off-the-rails-practice-mix/
+              - img "Off The Rails" [ref=f24e18]
+            - generic [ref=f24e19]:
+              - generic [ref=f24e20]:
+                - generic [ref=f24e21] [cursor=pointer]
+                - generic [ref=f24e22]:
+                  - link "Off The Rails":
+                    - /url: https://www.mixcloud.com/dj-nerva/off-the-rails-practice-mix/
+                  - generic:
+                    - generic [ref=f24e23]: by
+                    - link "DJ Nerva":
+                      - /url: https://www.mixcloud.com/dj-nerva/
+                    - generic [ref=f24e24] [cursor=pointer]: Follow
+              - generic [ref=f24e26]:
+                - generic [ref=f24e27]: 00:00
+                - generic [ref=f24e29] [cursor=pointer]
+                - generic [ref=f24e30]: "-55:46"
+              - generic [ref=f24e31]:
+                - generic:
+                  - generic "Listens" [ref=f24e32]: "74"
+                  - generic "Favorites" [ref=f24e33]: "1"
+      - iframe [ref=e85]:
+        - generic [ref=f25e4]:
+          - generic [ref=f25e5] [cursor=pointer]:
+            - generic [ref=f25e6]:
+              - link "Jungle & DnB" [ref=f25e7]:
+                - /url: https://www.mixcloud.com/dj-nerva/jungle-dnb/
+              - link "by DJ Nerva" [ref=f25e9]:
+                - /url: https://www.mixcloud.com/dj-nerva/
+            - link [ref=f25e11]:
+              - /url: https://www.mixcloud.com/dj-nerva/jungle-dnb/
+          - generic [ref=f25e14]:
+            - link [ref=f25e16] [cursor=pointer]:
+              - /url: https://www.mixcloud.com/dj-nerva/jungle-dnb/
+              - img "Jungle & DnB" [ref=f25e18]
+            - generic [ref=f25e19]:
+              - generic [ref=f25e20]:
+                - generic [ref=f25e21] [cursor=pointer]
+                - generic [ref=f25e22]:
+                  - link "Jungle & DnB":
+                    - /url: https://www.mixcloud.com/dj-nerva/jungle-dnb/
+                  - generic:
+                    - generic [ref=f25e23]: by
+                    - link "DJ Nerva":
+                      - /url: https://www.mixcloud.com/dj-nerva/
+                    - generic [ref=f25e24] [cursor=pointer]: Follow
+              - generic [ref=f25e26]:
+                - generic [ref=f25e27]: 00:00
+                - generic [ref=f25e29] [cursor=pointer]
+                - generic [ref=f25e30]: "-1:11:16"
+              - generic [ref=f25e31]:
+                - generic:
+                  - generic "Listens" [ref=f25e32]: "102"
+                  - generic "Favorites" [ref=f25e33]: "5"
+      - iframe [ref=e87]:
+        - generic [ref=f26e4]:
+          - generic [ref=f26e5] [cursor=pointer]:
+            - generic [ref=f26e6]:
+              - link "Club Selects" [ref=f26e7]:
+                - /url: https://www.mixcloud.com/dj-nerva/club-selects/
+              - link "by DJ Nerva" [ref=f26e9]:
+                - /url: https://www.mixcloud.com/dj-nerva/
+            - link [ref=f26e11]:
+              - /url: https://www.mixcloud.com/dj-nerva/club-selects/
+          - generic [ref=f26e14]:
+            - link [ref=f26e16] [cursor=pointer]:
+              - /url: https://www.mixcloud.com/dj-nerva/club-selects/
+              - img "Club Selects" [ref=f26e18]
+            - generic [ref=f26e19]:
+              - generic [ref=f26e20]:
+                - generic [ref=f26e21] [cursor=pointer]
+                - generic [ref=f26e22]:
+                  - link "Club Selects":
+                    - /url: https://www.mixcloud.com/dj-nerva/club-selects/
+                  - generic:
+                    - generic [ref=f26e23]: by
+                    - link "DJ Nerva":
+                      - /url: https://www.mixcloud.com/dj-nerva/
+                    - generic [ref=f26e24] [cursor=pointer]: Follow
+              - generic [ref=f26e26]:
+                - generic [ref=f26e27]: 00:00
+                - generic [ref=f26e29] [cursor=pointer]
+                - generic [ref=f26e30]: "-52:05"
+              - generic [ref=f26e31]:
+                - generic:
+                  - generic "Listens" [ref=f26e32]: "26"
+                  - generic "Favorites" [ref=f26e33]: "1"
+      - iframe [ref=e89]:
+        - generic [ref=f27e4]:
+          - generic [ref=f27e5] [cursor=pointer]:
+            - generic [ref=f27e6]:
+              - link "Techno Selects" [ref=f27e7]:
+                - /url: https://www.mixcloud.com/dj-nerva/techno-selects-1/
+              - link "by DJ Nerva" [ref=f27e9]:
+                - /url: https://www.mixcloud.com/dj-nerva/
+            - link [ref=f27e11]:
+              - /url: https://www.mixcloud.com/dj-nerva/techno-selects-1/
+          - generic [ref=f27e14]:
+            - link [ref=f27e16] [cursor=pointer]:
+              - /url: https://www.mixcloud.com/dj-nerva/techno-selects-1/
+              - img "Techno Selects" [ref=f27e18]
+            - generic [ref=f27e19]:
+              - generic [ref=f27e20]:
+                - generic [ref=f27e21] [cursor=pointer]
+                - generic [ref=f27e22]:
+                  - link "Techno Selects":
+                    - /url: https://www.mixcloud.com/dj-nerva/techno-selects-1/
+                  - generic:
+                    - generic [ref=f27e23]: by
+                    - link "DJ Nerva":
+                      - /url: https://www.mixcloud.com/dj-nerva/
+                    - generic [ref=f27e24] [cursor=pointer]: Follow
+              - generic [ref=f27e26]:
+                - generic [ref=f27e27]: 00:00
+                - generic [ref=f27e29] [cursor=pointer]
+                - generic [ref=f27e30]: "-54:14"
+              - generic [ref=f27e31]:
+                - generic:
+                  - generic "Listens" [ref=f27e32]: "25"
+                  - generic "Favorites" [ref=f27e33]: "3"
+      - iframe [ref=e91]:
+        - generic [ref=f28e4]:
+          - generic [ref=f28e5] [cursor=pointer]:
+            - generic [ref=f28e6]:
+              - link "Drum & Bass Selects" [ref=f28e7]:
+                - /url: https://www.mixcloud.com/dj-nerva/drum-bass-selects/
+              - link "by DJ Nerva" [ref=f28e9]:
+                - /url: https://www.mixcloud.com/dj-nerva/
+            - link [ref=f28e11]:
+              - /url: https://www.mixcloud.com/dj-nerva/drum-bass-selects/
+          - generic [ref=f28e14]:
+            - link [ref=f28e16] [cursor=pointer]:
+              - /url: https://www.mixcloud.com/dj-nerva/drum-bass-selects/
+              - img "Drum & Bass Selects" [ref=f28e18]
+            - generic [ref=f28e19]:
+              - generic [ref=f28e20]:
+                - generic [ref=f28e21] [cursor=pointer]
+                - generic [ref=f28e22]:
+                  - link "Drum & Bass Selects":
+                    - /url: https://www.mixcloud.com/dj-nerva/drum-bass-selects/
+                  - generic:
+                    - generic [ref=f28e23]: by
+                    - link "DJ Nerva":
+                      - /url: https://www.mixcloud.com/dj-nerva/
+                    - generic [ref=f28e24] [cursor=pointer]: Follow
+              - generic [ref=f28e26]:
+                - generic [ref=f28e27]: 00:00
+                - generic [ref=f28e29] [cursor=pointer]
+                - generic [ref=f28e30]: "-1:05:12"
+              - generic [ref=f28e31]:
+                - generic:
+                  - generic "Listens" [ref=f28e32]: "32"
+                  - generic "Favorites" [ref=f28e33]: "1"
+      - iframe [ref=e93]:
+        - generic [ref=f29e4]:
+          - generic [ref=f29e5] [cursor=pointer]:
+            - generic [ref=f29e6]:
+              - 'link "Impervious Anecdotal: Visual Artists Adam Stab & Paul Taylor @ Zo Gallery W/ DJ Set by Nerva" [ref=f29e7]':
+                - /url: https://www.mixcloud.com/dj-nerva/impervious-anecdotal-visual-artists-adam-stab-paul-taylor-zo-gallery-w-dj-set-by-nerva/
+              - link "by DJ Nerva" [ref=f29e9]:
+                - /url: https://www.mixcloud.com/dj-nerva/
+            - link [ref=f29e11]:
+              - /url: https://www.mixcloud.com/dj-nerva/impervious-anecdotal-visual-artists-adam-stab-paul-taylor-zo-gallery-w-dj-set-by-nerva/
+          - generic [ref=f29e14]:
+            - link [ref=f29e16] [cursor=pointer]:
+              - /url: https://www.mixcloud.com/dj-nerva/impervious-anecdotal-visual-artists-adam-stab-paul-taylor-zo-gallery-w-dj-set-by-nerva/
+              - 'img "Impervious Anecdotal: Visual Artists Adam Stab & Paul Taylor @ Zo Gallery W/ DJ Set by Nerva" [ref=f29e18]'
+            - generic [ref=f29e19]:
+              - generic [ref=f29e20]:
+                - generic [ref=f29e21] [cursor=pointer]
+                - generic [ref=f29e22]:
+                  - 'link "Impervious Anecdotal: Visual Artists Adam Stab & Paul Taylor @ Zo Gallery W/ DJ Set by Nerva"':
+                    - /url: https://www.mixcloud.com/dj-nerva/impervious-anecdotal-visual-artists-adam-stab-paul-taylor-zo-gallery-w-dj-set-by-nerva/
+                  - generic:
+                    - generic [ref=f29e23]: by
+                    - link "DJ Nerva":
+                      - /url: https://www.mixcloud.com/dj-nerva/
+                    - generic [ref=f29e24] [cursor=pointer]: Follow
+              - generic [ref=f29e26]:
+                - generic [ref=f29e27]: 00:00
+                - generic [ref=f29e29] [cursor=pointer]
+                - generic [ref=f29e30]: "-3:02:47"
+              - generic [ref=f29e31]:
+                - generic:
+                  - generic "Listens" [ref=f29e32]: "21"
+                  - generic "Favorites" [ref=f29e33]: "3"
+      - iframe [ref=e95]:
+        - generic [ref=f30e4]:
+          - generic [ref=f30e5] [cursor=pointer]:
+            - generic [ref=f30e6]:
+              - 'link "DJ Es & Nerva at Royal Blue #3, Star Wars Edition" [ref=f30e7]':
+                - /url: https://www.mixcloud.com/dj-nerva/dj-es-nerva-at-royal-blue-3-star-wars-edition/
+              - link "by DJ Nerva" [ref=f30e9]:
+                - /url: https://www.mixcloud.com/dj-nerva/
+            - link [ref=f30e11]:
+              - /url: https://www.mixcloud.com/dj-nerva/dj-es-nerva-at-royal-blue-3-star-wars-edition/
+          - generic [ref=f30e14]:
+            - link [ref=f30e16] [cursor=pointer]:
+              - /url: https://www.mixcloud.com/dj-nerva/dj-es-nerva-at-royal-blue-3-star-wars-edition/
+              - 'img "DJ Es & Nerva at Royal Blue #3, Star Wars Edition" [ref=f30e18]'
+            - generic [ref=f30e19]:
+              - generic [ref=f30e20]:
+                - generic [ref=f30e21] [cursor=pointer]
+                - generic [ref=f30e22]:
+                  - 'link "DJ Es & Nerva at Royal Blue #3, Star Wars Edition"':
+                    - /url: https://www.mixcloud.com/dj-nerva/dj-es-nerva-at-royal-blue-3-star-wars-edition/
+                  - generic:
+                    - generic [ref=f30e23]: by
+                    - link "DJ Nerva":
+                      - /url: https://www.mixcloud.com/dj-nerva/
+                    - generic [ref=f30e24] [cursor=pointer]: Follow
+              - generic [ref=f30e26]:
+                - generic [ref=f30e27]: 00:00
+                - generic [ref=f30e29] [cursor=pointer]
+                - generic [ref=f30e30]: "-4:10:51"
+              - generic [ref=f30e31]:
+                - generic:
+                  - generic "Listens" [ref=f30e32]: "17"
+                  - generic "Favorites" [ref=f30e33]: "3"
+                  - generic "Reposts" [ref=f30e34]: "1"
+  - generic [ref=e96]:
+    - heading "Featured Video" [level=2] [ref=e97]
+    - iframe [ref=e99]
+  - heading "Gallery" [level=2] [ref=e101]
+  - generic [ref=e102]:
+    - heading "Places I've Played" [level=2] [ref=e103]
+    - paragraph [ref=e104]: Explore venues and events I've played at — tap pins for more details.
+    - region "Map of venues and places I've played" [ref=e106]
+  - generic [ref=e107]:
+    - heading "Gear Available" [level=2] [ref=e108]
+    - generic [ref=e109]:
+      - generic [ref=e110]:
+        - heading "XDJ-RX3" [level=3] [ref=e111]
+        - paragraph [ref=e112]: Professional all-in-one DJ system.
+        - paragraph [ref=e113]: Included with local booking
+      - generic [ref=e114]:
+        - heading "Powered Speakers" [level=3] [ref=e115]
+        - paragraph [ref=e116]: tops and a subwoofer
+        - paragraph [ref=e117]: Starting at $250+
+  - generic [ref=e118]:
+    - heading "Book Now" [level=2] [ref=e119]
+    - generic [ref=e120]:
+      - paragraph [ref=e121]:
+        - text: "📧 Email:"
+        - link "nerva.corporation@gmail.com" [ref=e122] [cursor=pointer]:
+          - /url: mailto:nerva.corporation@gmail.com
+      - paragraph [ref=e123]: "📍 Location: Baltimore, Maryland"
+      - paragraph [ref=e124]: Flexible Rates
+      - link "Book Now" [ref=e125] [cursor=pointer]:
+        - /url: mailto:nerva.corporation@gmail.com
+  - contentinfo [ref=e126]:
+    - generic [ref=e127]:
+      - paragraph [ref=e128]: © 2025 DJ Nerva. All rights reserved.
+      - paragraph [ref=e129]:
+        - text: "Follow me on:"
+        - link "Instagram" [ref=e130] [cursor=pointer]:
+          - /url: https://www.instagram.com/billy_nerva
+      - paragraph [ref=e131]:
+        - link "Download Press Kit" [ref=e132] [cursor=pointer]:
+          - /url: press-kit.zip

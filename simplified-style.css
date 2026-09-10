@@ -318,6 +318,13 @@ h1 {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
 }
 
+.embed-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 250px);
+}
+
 /* Ensure embed-grid inside flex-wrap displays as a grid with 4 columns */
 .flex-wrap .embed-grid {
     display: grid;
@@ -673,13 +680,26 @@ h1 {
 /* Preserve video proportions; overlays above use pointer-events: none. */
 .video-item video { display: block; width: 100%; height: auto; object-fit: contain; background: #000; }
 
-.mix-date { display: block; text-align: center; margin-top: 0.65rem; font-size: 0.9rem; }
+.mix-date {
+  display: block;
+  margin-top: 0.85rem;
+  color: var(--theme-gray-light);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-align: center;
+  text-transform: uppercase;
+}
 
 .mix-tags {
+  width: 100%;
   max-width: 250px;
-  margin: 0.35rem auto 0;
+  margin: 0.4rem 0 0;
+  color: var(--theme-white);
   text-align: center;
   font-size: 0.85rem;
+  line-height: 1.45;
   overflow-wrap: anywhere;
   display: -webkit-box;
   -webkit-box-orient: vertical;

@@ -21,7 +21,7 @@
 
     <!-- Preload critical assets -->
     <link rel="preload" href="simplified-style.css" as="style">
-    <link rel="preload" href="main.js" as="script">
+    <link rel="preload" href="main.js?v=799b5332d350" as="script">
     <link rel="preload" href="image_data.json" as="fetch" crossorigin>
 
     <link rel="stylesheet" href="simplified-style.css">
@@ -43,6 +43,23 @@
     <meta name="twitter:description"
         content="Baltimore native DJ Nerva spins kinetic mosaics of sound, threading high-BPM breaks into global club rhythms, heady techno, and classic house. Book now for an unforgettable experience!">
     <meta name="twitter:image" content="splash-images/placeholder.jpg">
+    <link rel="preload" href="hero_assets.json" as="fetch" crossorigin>
+    <script data-cfasync="false">
+        // Start selection and the matching responsive image before DOMContentLoaded.
+        window.heroReady = fetch('hero_assets.json', { cache: 'no-cache', priority: 'high' })
+            .then(response => { if (!response.ok) throw new Error('Hero assets unavailable'); return response.json(); })
+            .then(sets => {
+                const selected = sets[Math.floor(Math.random() * sets.length)];
+                const mode = matchMedia('(max-width:767px)').matches ? 'mobile' : 'desktop';
+                const preload = document.createElement('link');
+                preload.rel = 'preload';
+                preload.as = 'image';
+                preload.href = selected[mode];
+                preload.fetchPriority = 'high';
+                document.head.append(preload);
+                return selected;
+            }).catch(() => null);
+    </script>
 </head>
 
 <body data-google-maps-key="AIzaSyBDcU2QYYeB6c6EDX05RbZ2yx3opNqiFVI">
@@ -386,7 +403,7 @@
         </div>
     </footer>
 
-    <script src="main.js" defer></script>
+    <script data-cfasync="false" src="main.js?v=799b5332d350" defer></script>
     <script src="places-map.js" defer></script>
 </body>
 

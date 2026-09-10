@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroSection = document.getElementById('hero-section');
     if (!heroSection) return console.error('Hero section element not found.');
 
-    fetchJson('image_data.json')
-        .then((imageSets) => {
-            const randomSet = getRandomItem(imageSets);
+    (window.heroReady || Promise.resolve(null))
+        .then(async selected => selected || getRandomItem(await fetchJson('image_data.json')))
+        .then((randomSet) => {
 
             setHeroImage(randomSet);
             setThemeColors(randomSet);
@@ -81,12 +81,37 @@ function getRandomItem(array) {
 }
 
 // Set hero image URLs
-function setHeroImage({ folder, desktop, mobile }) {
-    const desktopUrl = `splash-images/${folder}/${desktop}?v=${BUILD_HASH}`;
-    const mobileUrl = `splash-images/${folder}/${mobile}?v=${BUILD_HASH}`;
-    document.querySelector('#hero-img').src = desktopUrl;
-    document.querySelector('source').srcset = mobileUrl;
-    console.log('Hero image set:', { desktopUrl, mobileUrl });
+function setHeroImage({ folder, desktop, mobile, desktopPreview, mobilePreview }) {
+    const optimized = Boolean(desktopPreview && mobilePreview);
+    const desktopUrl = optimized ? desktop : `splash-images/${folder}/${desktop}?v=${BUILD_HASH}`;
+    const mobileUrl = optimized ? mobile : `splash-images/${folder}/${mobile}?v=${BUILD_HASH}`;
+    const hero = document.getElementById('hero-img');
+    const picture = hero.closest('picture');
+    if (optimized) {
+        const preview = document.createElement('picture');
+        preview.setAttribute('aria-hidden', 'true');
+        const source = document.createElement('source');
+        source.media = '(max-width:767px)';
+        source.srcset = mobilePreview;
+        const image = document.createElement('img');
+        image.src = desktopPreview;
+        image.alt = '';
+        image.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;';
+        preview.append(source, image);
+        picture.before(preview);
+        hero.style.opacity = '0';
+        const reveal = () => {
+            if (!hero.naturalWidth) return;
+            hero.style.opacity = '1';
+            preview.remove();
+        };
+        hero.addEventListener('load', reveal, { once: true });
+        hero.decoding = 'async';
+        hero.loading = 'eager';
+        hero.fetchPriority = 'high';
+    }
+    picture.querySelector('source').srcset = mobileUrl;
+    hero.src = desktopUrl;
 }
 
 // Set theme colors
@@ -128,7 +153,7 @@ async function loadGallery() {
 
     const resizeGalleryItem = item => {
         const img = item.querySelector('img, video');
-        if (!img || (img.tagName === 'IMG' && !img.complete)) return;
+        if (!img || (img.tagName === 'IMG' && (!img.complete || !img.naturalWidth))) return;
 
         const styles = window.getComputedStyle(grid);
         const rowHeight = parseFloat(styles.gridAutoRows);
@@ -196,10 +221,14 @@ async function loadGallery() {
             }
             img.src = buildVersionedAssetUrl(image.path, image.version || BUILD_HASH);
             img.alt = 'DJ Nerva';
-            img.loading = 'lazy';
+            // Only selected media is created, when the gallery nears the viewport.
+            // Fetch photos before inserting their tiles to avoid collapsed grid frames.
+            if (!isVideo) img.loading = 'eager';
             img.decoding = 'async';
 
+            img.addEventListener('error', () => div.remove(), { once: true });
             img.addEventListener(isVideo ? 'loadedmetadata' : 'load', () => {
+                if (!isVideo && !div.isConnected && img.naturalWidth) grid.appendChild(div);
                 if (isVideo && img.videoWidth && img.videoHeight) {
                     img.style.aspectRatio = `${img.videoWidth} / ${img.videoHeight}`;
                 }
@@ -207,9 +236,9 @@ async function loadGallery() {
             }, { once: true });
             
             div.appendChild(img);
-            grid.appendChild(div);
+            if (isVideo || (img.complete && img.naturalWidth)) grid.appendChild(div);
 
-            if (isVideo || img.complete) {
+            if (isVideo || (img.complete && img.naturalWidth)) {
                 window.requestAnimationFrame(() => resizeGalleryItem(div));
             }
         });

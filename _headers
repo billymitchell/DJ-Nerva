@@ -12,10 +12,10 @@
   Cache-Control: public, max-age=86400
 
 /*.js
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=0, must-revalidate
 
 /*.json
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=0, must-revalidate
 
 # Security headers
 /*

@@ -1,23 +1,56 @@
 {
   "profile_url": "https://soundcloud.com/dj-nerva",
-  "scraped_at": "2026-08-21T16:17:40.290Z",
+  "scraped_at": "2026-09-10T03:51:38.312Z",
   "scraping_method": "api",
-  "total_tracks": 21,
+  "total_tracks": 22,
   "tracks": [
+    {
+      "title": "improper",
+      "permalink_url": "https://soundcloud.com/dj-nerva/improper?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
+      "duration": 3040000,
+      "genre": "Dance & EDM",
+      "tags": [
+        "Techno",
+        "jungle",
+        "experimental",
+        "idm",
+        "dubstep",
+        "baltimore club",
+        "acid",
+        "rave",
+        "vinyl digital hybrid set"
+      ],
+      "artwork_url": "https://i1.sndcdn.com/artworks-hrjNR7e5GM0B8n90-iPiFMg-large.jpg",
+      "created_at": "2026/09/09 00:39:47 +0000",
+      "playback_count": 5
+    },
     {
       "title": "Love Making Jungle",
       "permalink_url": "https://soundcloud.com/dj-nerva/love-making-jungle?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 3430741,
       "genre": "Drum & Bass",
+      "tags": [
+        "jungle",
+        "dnb",
+        "Drum & Bass",
+        "R&B & Soul",
+        "Ambient"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-vHuDmyUaYMy40y42-BJJ7jg-large.jpg",
       "created_at": "2026/08/16 14:18:25 +0000",
-      "playback_count": 10
+      "playback_count": 22
     },
     {
       "title": "Junglist BASSprint 05-09-2026: DJ Nerva Opening Set",
       "permalink_url": "https://soundcloud.com/dj-nerva/junglist-bassprint-05-09-2026?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 3598268,
       "genre": "Drum & Bass",
+      "tags": [
+        "jungle",
+        "Drum & Bass",
+        "liquid",
+        "experimental"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-8apNNbF53zxUclJZ-eFGUtQ-large.jpg",
       "created_at": "2026/05/13 18:26:37 +0000",
       "playback_count": 38
@@ -27,6 +60,10 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/ghost-in-the-shell-bogus?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 3613223,
       "genre": "Drum & Bass",
+      "tags": [
+        "jungle",
+        "Drum & Bass"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-a24GSBJk4AllM8ZX-xwurzQ-large.jpg",
       "created_at": "2026/05/06 00:16:56 +0000",
       "playback_count": 13
@@ -36,6 +73,10 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/frequency-1105-turnstyle-show?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 4230109,
       "genre": "Drum & Bass",
+      "tags": [
+        "jungle",
+        "Drum & Bass"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-XXD90anyYvytTEWL-jTrdYA-large.jpg",
       "created_at": "2026/05/05 23:55:59 +0000",
       "playback_count": 53
@@ -45,6 +86,18 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/vibrate-dc-618-hechyeomoyeo?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 3141982,
       "genre": "Techno",
+      "tags": [
+        "Ambient",
+        "birds",
+        "Techno",
+        "acid",
+        "club",
+        "baltimore",
+        "house",
+        "breaks",
+        "trance",
+        "asian"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-PELuExFwYvbkeAZD-cGLmkA-large.jpg",
       "created_at": "2026/03/15 00:34:28 +0000",
       "playback_count": 9
@@ -54,6 +107,22 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/spirit-world-02-17-2026?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 16502518,
       "genre": "Dance & EDM",
+      "tags": [
+        "jungle",
+        "dnb",
+        "house",
+        "Techno",
+        "Dubstep",
+        "Trance",
+        "club",
+        "baltimore club",
+        "Dance & EDM",
+        "experimental",
+        "long set",
+        "rave",
+        "mixed genre",
+        "dj set"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-eFGJcQDia4wPums7-YtsR5A-large.jpg",
       "created_at": "2026/02/19 00:17:01 +0000",
       "playback_count": 9
@@ -63,6 +132,11 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/divorce?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 10882612,
       "genre": "Dance & EDM",
+      "tags": [
+        "open format",
+        "long mix",
+        "mixed genre"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-OUzyKOuwyhlcHQAm-MTPl6w-large.jpg",
       "created_at": "2026/01/21 14:58:51 +0000",
       "playback_count": 22
@@ -72,6 +146,13 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/junglist-bassprint?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 3570495,
       "genre": "Dance & EDM",
+      "tags": [
+        "jungle",
+        "dnb",
+        "Drum & Bass",
+        "breaks",
+        "club"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-7ZzLjuscTrFE4Bkf-flueLw-large.jpg",
       "created_at": "2025/12/08 22:53:03 +0000",
       "playback_count": 68
@@ -81,6 +162,15 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/jamaican-support-ragga-jungle?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 3885035,
       "genre": "Dance & EDM",
+      "tags": [
+        "Jungle",
+        "ragga",
+        "Drum & Bass",
+        "dnb",
+        "Dancehall",
+        "Reggae",
+        "breaks"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-LmEz95dyqZgczxzW-U7yzjw-large.jpg",
       "created_at": "2025/11/30 21:39:30 +0000",
       "playback_count": 55
@@ -90,6 +180,13 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/dcompresion-burn-2025-practice-mix?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 3856039,
       "genre": "Dance & EDM",
+      "tags": [
+        "Acid",
+        "house",
+        "Techno",
+        "jungle",
+        "Drum & Bass"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-zO8Fu3auFyCOa6j7-WrsQ4w-large.jpg",
       "created_at": "2025/11/16 19:23:28 +0000",
       "playback_count": 20
@@ -99,6 +196,13 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/constellation-burn-2025-sun-pre-burn-ambient-experimental?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 4628245,
       "genre": "Ambient",
+      "tags": [
+        "experimental",
+        "rave",
+        "burn",
+        "Ambient",
+        "acappella"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-n1zAzQIi6XyMo2ze-fafi4w-large.jpg",
       "created_at": "2025/10/17 16:06:12 +0000",
       "playback_count": 31
@@ -108,15 +212,34 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/constellation-burn-dirt-du-jour-2025-sat-post-burn?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 5766557,
       "genre": "Dance & EDM",
+      "tags": [
+        "breaks",
+        "acid",
+        "global",
+        "Techno",
+        "club",
+        "baltimore club",
+        "jursy club",
+        "jungle",
+        "Dubstep",
+        "Rave",
+        "burn"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-bdymJyAL0WqTHQw1-au2zFw-large.jpg",
       "created_at": "2025/10/14 18:32:27 +0000",
-      "playback_count": 66
+      "playback_count": 67
     },
     {
       "title": "Pigtown 2025",
       "permalink_url": "https://soundcloud.com/dj-nerva/pigtown-2025?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 4437473,
       "genre": "Dance & EDM",
+      "tags": [
+        "House",
+        "Deep House",
+        "baltimore club",
+        "jersey club"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-eUTU2IFMx9Tk8lPq-XWNcJg-large.jpg",
       "created_at": "2025/09/28 16:03:58 +0000",
       "playback_count": 29
@@ -126,15 +249,30 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/junglist-bassment-2?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 5080686,
       "genre": "Dance & EDM",
+      "tags": [
+        "Jungle",
+        "Drum & Bass",
+        "footwork",
+        "baltimore club",
+        "jursy club",
+        "liquid",
+        "soulfull"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-qXfE2iqAvfgt02oQ-jJP2nA-large.jpg",
       "created_at": "2025/09/14 17:32:47 +0000",
-      "playback_count": 109
+      "playback_count": 112
     },
     {
       "title": "Low-end Freaky",
       "permalink_url": "https://soundcloud.com/dj-nerva/low-end-freaky?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 3734335,
       "genre": "Dance & EDM",
+      "tags": [
+        "Baltimore Club",
+        "ghettotech",
+        "Techno",
+        "booty bass"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-pM3DeNKbR0cF8nUV-rQAUkw-large.jpg",
       "created_at": "2025/08/18 03:37:18 +0000",
       "playback_count": 27
@@ -144,15 +282,30 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/junglist-bassment?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 3640033,
       "genre": "Dance & EDM",
+      "tags": [
+        "jungle",
+        "Drum & Bass",
+        "footwork",
+        "juke"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-9J86UEK6EpRKZORe-fa8ftg-large.jpg",
       "created_at": "2025/07/03 07:14:28 +0000",
-      "playback_count": 89
+      "playback_count": 90
     },
     {
       "title": "Baltimore Club Music Day 2025",
       "permalink_url": "https://soundcloud.com/dj-nerva/baltimore-club-music-day-2025?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 3377737,
       "genre": "Dance & EDM",
+      "tags": [
+        "baltimore club music day",
+        "baltimore club",
+        "club music",
+        "jursy club",
+        "global club",
+        "chill",
+        "vibey"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-eemZ5Ifxt9l8zGhv-CQvuFg-large.jpg",
       "created_at": "2025/06/18 16:53:10 +0000",
       "playback_count": 81
@@ -162,6 +315,16 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/aapi-support-b2b-woldboyslug-emas-corner?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 7451742,
       "genre": "Dance & EDM",
+      "tags": [
+        "Techno",
+        "jungle",
+        "japanese",
+        "thai",
+        "Arabic",
+        "Indian",
+        "house",
+        "club"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-dwU50ca5V605rhIp-5H3I6g-large.jpg",
       "created_at": "2025/05/11 19:18:00 +0000",
       "playback_count": 47
@@ -171,6 +334,15 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/backchat-4-nov-26th-2022?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 5836513,
       "genre": "Dance & EDM",
+      "tags": [
+        "House",
+        "Breaks",
+        "Breakbeat",
+        "Techno",
+        "Drum&Bass",
+        "DnB",
+        "Jungle"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-fUuynq8xCJR2OBas-0cuHjQ-large.jpg",
       "created_at": "2022/11/27 19:26:17 +0000",
       "playback_count": 27
@@ -180,6 +352,16 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/backchat?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 3994514,
       "genre": "Dance & EDM",
+      "tags": [
+        "House",
+        "Club",
+        "Techno",
+        "Rave",
+        "Breaks",
+        "Hardcore",
+        "Jungle",
+        "Drum & Bass"
+      ],
       "artwork_url": "https://i1.sndcdn.com/artworks-wLL7cYzXwLypdm0i-GXiWig-large.jpg",
       "created_at": "2022/11/06 19:24:38 +0000",
       "playback_count": 24
@@ -189,6 +371,7 @@
       "permalink_url": "https://soundcloud.com/dj-nerva/just-press-play-record?utm_medium=api&utm_campaign=social_sharing&utm_source=id_317766",
       "duration": 1944921,
       "genre": "",
+      "tags": [],
       "artwork_url": null,
       "created_at": "2022/10/28 19:34:51 +0000",
       "playback_count": 57

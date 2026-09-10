@@ -1,32 +1,181 @@
 [
   {
-    "filename": "000023590021-small.jpg",
-    "path": "DJ-images/000023590021-small.jpg",
-    "version": 1774717479097.9087
+    "filename": "000023590021-small.jpg.webp",
+    "path": "DJ-images/optimized/000023590021-small.jpg.webp",
+    "type": "image",
+    "version": 1789009541393.6392
   },
   {
-    "filename": "BA27A6FD-833C-4D6D-A5C5-0989BED847D2.JPG",
-    "path": "DJ-images/BA27A6FD-833C-4D6D-A5C5-0989BED847D2.JPG",
-    "version": 1765829209024.441
+    "filename": "BA27A6FD-833C-4D6D-A5C5-0989BED847D2.JPG.webp",
+    "path": "DJ-images/optimized/BA27A6FD-833C-4D6D-A5C5-0989BED847D2.JPG.webp",
+    "type": "image",
+    "version": 1789009541453.872
   },
   {
-    "filename": "FullSizeRender.jpg",
-    "path": "DJ-images/FullSizeRender.jpg",
-    "version": 1765829207901.6094
+    "filename": "FullSizeRender-converted.jpg.webp",
+    "path": "DJ-images/optimized/FullSizeRender-converted.jpg.webp",
+    "type": "image",
+    "version": 1789009541651.8281
   },
   {
-    "filename": "IMG_3373.jpg",
-    "path": "DJ-images/IMG_3373.jpg",
-    "version": 1765829208460.4912
+    "filename": "FullSizeRender.jpg.webp",
+    "path": "DJ-images/optimized/FullSizeRender.jpg.webp",
+    "type": "image",
+    "version": 1789009541798.5698
   },
   {
-    "filename": "IMG_6199-small.jpg",
-    "path": "DJ-images/IMG_6199-small.jpg",
-    "version": 1774717278071.9414
+    "filename": "IMG_0019-converted.jpg.webp",
+    "path": "DJ-images/optimized/IMG_0019-converted.jpg.webp",
+    "type": "image",
+    "version": 1789009541955.8704
   },
   {
-    "filename": "IMG_9254.jpg",
-    "path": "DJ-images/IMG_9254.jpg",
-    "version": 1765829208945.5256
+    "filename": "IMG_1164.JPG.webp",
+    "path": "DJ-images/optimized/IMG_1164.JPG.webp",
+    "type": "image",
+    "version": 1789009625244.7651
+  },
+  {
+    "filename": "IMG_1261-converted.jpg.webp",
+    "path": "DJ-images/optimized/IMG_1261-converted.jpg.webp",
+    "type": "image",
+    "version": 1789009542297.8228
+  },
+  {
+    "filename": "IMG_1445-converted.jpg.webp",
+    "path": "DJ-images/optimized/IMG_1445-converted.jpg.webp",
+    "type": "image",
+    "version": 1789009542483.3923
+  },
+  {
+    "filename": "IMG_1544-converted.jpg.webp",
+    "path": "DJ-images/optimized/IMG_1544-converted.jpg.webp",
+    "type": "image",
+    "version": 1789009542629.7869
+  },
+  {
+    "filename": "IMG_1805-converted.jpg.webp",
+    "path": "DJ-images/optimized/IMG_1805-converted.jpg.webp",
+    "type": "image",
+    "version": 1789009542816.505
+  },
+  {
+    "filename": "IMG_2073-converted.jpg.webp",
+    "path": "DJ-images/optimized/IMG_2073-converted.jpg.webp",
+    "type": "image",
+    "version": 1789009543000.9946
+  },
+  {
+    "filename": "IMG_3373.jpg.webp",
+    "path": "DJ-images/optimized/IMG_3373.jpg.webp",
+    "type": "image",
+    "version": 1789009543110.484
+  },
+  {
+    "filename": "IMG_3465-converted.jpg.webp",
+    "path": "DJ-images/optimized/IMG_3465-converted.jpg.webp",
+    "type": "image",
+    "version": 1789009543321.9238
+  },
+  {
+    "filename": "IMG_6199-small.jpg.webp",
+    "path": "DJ-images/optimized/IMG_6199-small.jpg.webp",
+    "type": "image",
+    "version": 1789009543415.5347
+  },
+  {
+    "filename": "IMG_9254.jpg.webp",
+    "path": "DJ-images/optimized/IMG_9254.jpg.webp",
+    "type": "image",
+    "version": 1789009543503.9946
+  },
+  {
+    "filename": "IMG_9513-converted.jpg.webp",
+    "path": "DJ-images/optimized/IMG_9513-converted.jpg.webp",
+    "type": "image",
+    "version": 1789009543643.8513
+  },
+  {
+    "filename": "Screenshot 2024-06-13 at 2.18.26 PM.PNG.webp",
+    "path": "DJ-images/optimized/Screenshot 2024-06-13 at 2.18.26 PM.PNG.webp",
+    "type": "image",
+    "version": 1789009543723.542
+  },
+  {
+    "filename": "1EECB886-DF9E-4CFE-843F-5131F10D8257-720p.mp4",
+    "path": "DJ-images/video/1EECB886-DF9E-4CFE-843F-5131F10D8257-720p.mp4",
+    "type": "video",
+    "version": 1789008760145.005,
+    "poster": "DJ-images/video/posters/1EECB886-DF9E-4CFE-843F-5131F10D8257-720p.mp4.jpg"
+  },
+  {
+    "filename": "5d644f05ce4e4bcbacf7ff4eef23fd0b-720p.mp4",
+    "path": "DJ-images/video/5d644f05ce4e4bcbacf7ff4eef23fd0b-720p.mp4",
+    "type": "video",
+    "version": 1789008760715.536,
+    "poster": "DJ-images/video/posters/5d644f05ce4e4bcbacf7ff4eef23fd0b-720p.mp4.jpg"
+  },
+  {
+    "filename": "7878342547463677654-720p.mp4",
+    "path": "DJ-images/video/7878342547463677654-720p.mp4",
+    "type": "video",
+    "version": 1789008761414.1846,
+    "poster": "DJ-images/video/posters/7878342547463677654-720p.mp4.jpg"
+  },
+  {
+    "filename": "IMG_1206-720p.mp4",
+    "path": "DJ-images/video/IMG_1206-720p.mp4",
+    "type": "video",
+    "version": 1789008761761.8438,
+    "poster": "DJ-images/video/posters/IMG_1206-720p.mp4.jpg"
+  },
+  {
+    "filename": "IMG_1464-720p.mp4",
+    "path": "DJ-images/video/IMG_1464-720p.mp4",
+    "type": "video",
+    "version": 1789008762307.7847,
+    "poster": "DJ-images/video/posters/IMG_1464-720p.mp4.jpg"
+  },
+  {
+    "filename": "IMG_1935-720p.mp4",
+    "path": "DJ-images/video/IMG_1935-720p.mp4",
+    "type": "video",
+    "version": 1789009773968.4792,
+    "poster": "DJ-images/video/posters/IMG_1935-720p.mp4.jpg"
+  },
+  {
+    "filename": "IMG_6091-720p.mp4",
+    "path": "DJ-images/video/IMG_6091-720p.mp4",
+    "type": "video",
+    "version": 1789009788453.4072,
+    "poster": "DJ-images/video/posters/IMG_6091-720p.mp4.jpg"
+  },
+  {
+    "filename": "IMG_6336-720p.mp4",
+    "path": "DJ-images/video/IMG_6336-720p.mp4",
+    "type": "video",
+    "version": 1789008767868.4973,
+    "poster": "DJ-images/video/posters/IMG_6336-720p.mp4.jpg"
+  },
+  {
+    "filename": "IMG_8529-720p.mp4",
+    "path": "DJ-images/video/IMG_8529-720p.mp4",
+    "type": "video",
+    "version": 1789008768310.05,
+    "poster": "DJ-images/video/posters/IMG_8529-720p.mp4.jpg"
+  },
+  {
+    "filename": "IMG_9479-720p.mp4",
+    "path": "DJ-images/video/IMG_9479-720p.mp4",
+    "type": "video",
+    "version": 1789009789861.4968,
+    "poster": "DJ-images/video/posters/IMG_9479-720p.mp4.jpg"
+  },
+  {
+    "filename": "video_1_5683b13921614bfd8ed5ea9579927999-720p.mp4",
+    "path": "DJ-images/video/video_1_5683b13921614bfd8ed5ea9579927999-720p.mp4",
+    "type": "video",
+    "version": 1789008770187.0972,
+    "poster": "DJ-images/video/posters/video_1_5683b13921614bfd8ed5ea9579927999-720p.mp4.jpg"
   }
 ]

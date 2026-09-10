@@ -1,46 +1,30 @@
 #!/usr/bin/env node
-/**
- * Build gallery manifest from DJ-images folder
- * Scans the folder for image files and generates gallery_images.json
- */
-
+// Rebuild the gallery from optimized photos, source photos, and gallery videos.
 const fs = require('fs');
 const path = require('path');
-
-const CWD = process.cwd();
-const IMAGES_DIR = path.join(CWD, 'DJ-images');
-const OUTPUT_FILE = path.join(CWD, 'gallery_images.json');
-
-// Supported image extensions
-const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
-
-function main() {
-    if (!fs.existsSync(IMAGES_DIR)) {
-        console.error('DJ-images folder not found');
-        process.exit(1);
-    }
-
-    const files = fs.readdirSync(IMAGES_DIR);
-    
-    const images = files
-        .filter(file => {
-            const ext = path.extname(file).toLowerCase();
-            return IMAGE_EXTENSIONS.includes(ext);
-        })
-        .sort((a, b) => a.localeCompare(b))
-        .map(file => {
-            const filePath = path.join(IMAGES_DIR, file);
-            const stats = fs.statSync(filePath);
-
-            return {
-                filename: file,
-                path: `DJ-images/${file}`,
-                version: stats.mtimeMs
-            };
-        });
-
-    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(images, null, 2));
-    console.log(`Generated ${OUTPUT_FILE} with ${images.length} images`);
+const root = path.join(process.cwd(), 'DJ-images');
+const photos = new Map();
+const entries = [];
+const list = dir => fs.existsSync(dir) ? fs.readdirSync(dir, { withFileTypes: true }).filter(f => f.isFile()).map(f => f.name).sort() : [];
+function entry(relative, type) {
+    return { filename: path.basename(relative), path: `DJ-images/${relative}`, type,
+        version: fs.statSync(path.join(root, relative)).mtimeMs };
 }
-
-main();
+for (const file of list(root)) {
+    if (/\.(jpe?g|png|gif|webp)$/i.test(file)) photos.set(file, entry(file, 'image'));
+}
+for (const file of list(path.join(root, 'optimized'))) {
+    if (!/\.(jpe?g|png|gif|webp)$/i.test(file)) continue;
+    const original = file.replace(/\.webp$/i, '');
+    photos.set(original, entry(`optimized/${file}`, 'image'));
+}
+entries.push(...photos.values());
+for (const file of list(path.join(root, 'video'))) {
+    if (!/\.(mp4|webm)$/i.test(file)) continue;
+    const video = entry(`video/${file}`, 'video');
+    const poster = `video/posters/${file}.jpg`;
+    if (fs.existsSync(path.join(root, poster))) video.poster = `DJ-images/${poster}`;
+    entries.push(video);
+}
+fs.writeFileSync('gallery_images.json', JSON.stringify(entries, null, 2));
+console.log(`Gallery: ${photos.size} photos, ${entries.length - photos.size} videos`);

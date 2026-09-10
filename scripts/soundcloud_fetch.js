@@ -1,19 +1,13 @@
 #!/usr/bin/env node
-/**
- * SoundCloud fetcher in Node.js (no dependencies)
- * - Reads .env for SOUNDCLOUD_CLIENT_ID / SOUNDCLOUD_ACCESS_TOKEN
- * - Resolves user ID (v1 → v2 → search fallback)
- * - Fetches tracks and writes soundcloud_tracks.json
+/** Fetch public profile mixes using SoundCloud's documented OAuth API.
+ * Credentials and rotated tokens are kept in the gitignored .env file.
+ * https://developers.soundcloud.com/docs/api/guide#authentication
  */
-
 const fs = require('fs');
 const path = require('path');
-const { URL, URLSearchParams } = require('url');
-
-const API_V2_BASE = 'https://api-v2.soundcloud.com';
-const API_V1_BASE = 'https://api.soundcloud.com';
-const RESOLVE_V2 = `${API_V2_BASE}/resolve`;
-const RESOLVE_V1 = `${API_V1_BASE}/resolve`;
+const { updateEnvFile } = require('./soundcloud_oauth');
+const API_BASE = 'https://api.soundcloud.com';
+const TOKEN_URL = 'https://secure.soundcloud.com/oauth/token';
 const DEFAULT_PROFILE_URL = 'https://soundcloud.com/dj-nerva';
 const OUTPUT_FILE = path.join(process.cwd(), 'soundcloud_tracks.json');
 const INDEX_HTML = path.join(process.cwd(), 'index.html');
@@ -44,248 +38,72 @@ function env(name, def) {
   return process.env[name] || def;
 }
 
-function redactSecret(value) {
-  if (!value) return 'missing';
-  if (value.length <= 8) return 'set';
-  return `${value.slice(0, 4)}...${value.slice(-4)}`;
-}
-
-function summarizeCredentialState(clientId, accessToken) {
-  return {
-    hasClientId: !!clientId,
-    hasAccessToken: !!accessToken,
-    clientIdPreview: redactSecret(clientId),
-    accessTokenPreview: redactSecret(accessToken),
+async function renewToken() {
+  const clientId = env('SOUNDCLOUD_CLIENT_ID');
+  const clientSecret = env('SOUNDCLOUD_CLIENT_SECRET');
+  if (!clientId || !clientSecret) {
+    throw new Error('Set SOUNDCLOUD_CLIENT_ID and SOUNDCLOUD_CLIENT_SECRET in .env to obtain or renew an API token.');
+  }
+  const refreshToken = env('SOUNDCLOUD_REFRESH_TOKEN');
+  const headers = {
+    Accept: 'application/json; charset=utf-8',
+    'Content-Type': 'application/x-www-form-urlencoded',
   };
-}
-
-function createClassifiedError(message, code, details) {
-  const err = new Error(message);
-  err.code = code;
-  if (details) err.details = details;
-  return err;
-}
-
-function isAuthConfigError(err) {
-  return !!err && (
-    err.code === 'AUTH_REQUIRED' ||
-    err.code === 'INVALID_CLIENT_ID' ||
-    err.code === 'INVALID_ACCESS_TOKEN' ||
-    err.code === 'CREDENTIALS_REJECTED'
-  );
-}
-
-function printCredentialGuidance(clientId, accessToken) {
-  const state = summarizeCredentialState(clientId, accessToken);
-  console.error('Credential diagnostics:');
-  console.error(`- SOUNDCLOUD_CLIENT_ID: ${state.clientIdPreview}`);
-  console.error(`- SOUNDCLOUD_ACCESS_TOKEN: ${state.accessTokenPreview}`);
-  console.error('Next steps:');
-  if (!accessToken && !clientId) {
-    console.error('- Add SOUNDCLOUD_ACCESS_TOKEN or SOUNDCLOUD_CLIENT_ID to .env');
-    return;
+  const body = refreshToken
+    ? { grant_type: 'refresh_token', client_id: clientId, client_secret: clientSecret, refresh_token: refreshToken }
+    : { grant_type: 'client_credentials' };
+  if (!refreshToken) {
+    headers.Authorization = `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString('base64')}`;
   }
-  if (accessToken) {
-    console.error('- Verify SOUNDCLOUD_ACCESS_TOKEN is current and has not been revoked');
-  }
-  if (clientId) {
-    console.error('- Verify SOUNDCLOUD_CLIENT_ID is still accepted by the current SoundCloud API endpoints');
-  }
-  if (!accessToken) {
-    console.error('- Prefer SOUNDCLOUD_ACCESS_TOKEN when available; it is the most reliable path in this script');
-  }
-}
-
-async function httpGet(url, params, headers) {
-  const u = new URL(url);
-  if (params) {
-    const sp = new URLSearchParams(params);
-    sp.forEach((v, k) => u.searchParams.set(k, v));
-  }
-  const res = await fetch(u.toString(), {
-    headers: Object.assign({
-      'Accept': 'application/json, text/javascript, */*; q=0.01',
-      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127 Safari/537.36',
-      'Origin': 'https://soundcloud.com',
-      'Referer': 'https://soundcloud.com/'
-    }, headers || {}),
-  });
-  return res;
-}
-
-async function fetchCurrentUser(accessToken) {
-  const res = await fetch(`${API_V1_BASE}/me`, {
-    headers: {
-      'Accept': 'application/json, text/javascript, */*; q=0.01',
-      'Authorization': `OAuth ${accessToken}`,
-      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127 Safari/537.36',
-    }
-  });
+  const res = await fetch(TOKEN_URL, { method: 'POST', headers, body: new URLSearchParams(body) });
   if (!res.ok) {
-    throw createClassifiedError(
-      `Authenticated /me request failed (${res.status}).`,
-      res.status === 401 ? 'INVALID_ACCESS_TOKEN' : 'ME_FAILED',
-      [{ step: 'GET /me', status: res.status }]
-    );
+    throw new Error(`SoundCloud ${body.grant_type} exchange failed (HTTP ${res.status}). Check your app credentials${refreshToken ? ' or reauthorize with node scripts/soundcloud_oauth.js' : ''}.`);
+  }
+  const data = await res.json();
+  if (!data.access_token) throw new Error('Token exchange returned no access token.');
+  const updates = {
+    SOUNDCLOUD_ACCESS_TOKEN: data.access_token,
+    SOUNDCLOUD_REFRESH_TOKEN: data.refresh_token || '',
+    SOUNDCLOUD_TOKEN_EXPIRES_AT: Number(data.expires_in) > 0
+      ? new Date(Date.now() + Number(data.expires_in) * 1000).toISOString() : '',
+  };
+  // Save the replacement immediately: refresh tokens are single-use.
+  updateEnvFile(updates);
+  Object.assign(process.env, updates);
+  console.log('Saved renewed SoundCloud tokens to .env');
+  return data.access_token;
+}
+
+async function apiGet(url, token) {
+  const target = new URL(url);
+  if (target.origin !== API_BASE) throw new Error('Unexpected SoundCloud API pagination origin.');
+  const res = await fetch(target, { headers: {
+    Accept: 'application/json; charset=utf-8', Authorization: `OAuth ${token}`,
+  } });
+  if (!res.ok) {
+    const error = new Error(`SoundCloud API request failed (HTTP ${res.status}).`);
+    error.status = res.status;
+    throw error;
   }
   return res.json();
 }
 
-function extractSlug(profileUrl) {
-  try {
-    const u = new URL(profileUrl);
-    if (!u.hostname.includes('soundcloud.com')) return null;
-    const parts = u.pathname.split('/').filter(Boolean);
-    return parts[0] || null;
-  } catch {
-    return null;
-  }
-}
-
-async function resolveUserId(profileUrl, clientId, accessToken) {
-  const attempts = [];
-  // v1 resolve (oauth_token or client_id)
-  let res = await httpGet(RESOLVE_V1, Object.fromEntries(
-    Object.entries({ url: profileUrl, oauth_token: accessToken, client_id: clientId }).filter(([, v]) => !!v)
-  ), accessToken ? { Authorization: `OAuth ${accessToken}` } : undefined);
-  if (res.ok) {
-    const data = await res.json();
-    if (data && data.id) return String(data.id);
-  } else {
-    const txt = await res.text().catch(() => '');
-    attempts.push({ step: 'resolve(v1)', status: res.status, body: txt.slice(0, 200) });
-    console.warn(`resolve(v1) failed: ${res.status} ${res.statusText} ${txt.slice(0,200)}`);
-  }
-  // v2 resolve with client_id
-  if (clientId) {
-    const res2 = await httpGet(RESOLVE_V2, { url: profileUrl, client_id: clientId });
-    if (res2.ok) {
-      const data2 = await res2.json();
-      if (data2 && data2.id) return String(data2.id);
-      if (data2 && data2.location) {
-        const res3 = await fetch(data2.location);
-        if (res3.ok) {
-          const j3 = await res3.json();
-          if (j3 && j3.id) return String(j3.id);
-        } else {
-          const t3 = await res3.text().catch(() => '');
-          attempts.push({ step: 'resolve(v2->location)', status: res3.status, body: t3.slice(0, 200) });
-          console.warn(`resolve(v2->location) failed: ${res3.status} ${res3.statusText} ${t3.slice(0,200)}`);
-        }
-      }
-    } else {
-      const t2 = await res2.text().catch(() => '');
-      attempts.push({ step: 'resolve(v2)', status: res2.status, body: t2.slice(0, 200) });
-      console.warn(`resolve(v2) failed: ${res2.status} ${res2.statusText} ${t2.slice(0,200)}`);
-    }
-    // search fallback
-    const slug = extractSlug(profileUrl);
-    if (slug) {
-      const res4 = await httpGet(`${API_V2_BASE}/search/users`, { q: slug, client_id: clientId, limit: 10 });
-      if (res4.ok) {
-        const data4 = await res4.json();
-        const items = Array.isArray(data4) ? data4 : (data4 && data4.collection) || [];
-        const exact = items.find(u => String(u.permalink || '').toLowerCase() === slug.toLowerCase());
-        if (exact && exact.id) return String(exact.id);
-        if (items.length && items[0].id) return String(items[0].id);
-      } else {
-        const t4 = await res4.text().catch(() => '');
-        attempts.push({ step: 'search(users)', status: res4.status, body: t4.slice(0, 200) });
-        console.warn(`search(users) failed: ${res4.status} ${res4.statusText} ${t4.slice(0,200)}`);
-      }
-    }
-    const statuses = attempts.map((a) => a.status);
-    if (statuses.includes(401)) {
-      throw createClassifiedError(
-        'SoundCloud rejected the configured credentials while resolving the user ID.',
-        accessToken ? 'INVALID_ACCESS_TOKEN' : 'AUTH_REQUIRED',
-        attempts
-      );
-    }
-    if (statuses.length > 0 && statuses.every((s) => s === 403)) {
-      throw createClassifiedError(
-        'SoundCloud returned 403 for every resolve/search attempt. The client ID is likely missing, invalid, or no longer usable for these endpoints.',
-        'INVALID_CLIENT_ID',
-        attempts
-      );
-    }
-    throw createClassifiedError('Resolve failed via v1, v2, and search fallback', 'RESOLVE_FAILED', attempts);
-  }
-  const statuses = attempts.map((a) => a.status);
-  if (statuses.includes(401)) {
-    throw createClassifiedError(
-      'SoundCloud requires a valid OAuth token for the configured API path.',
-      'AUTH_REQUIRED',
-      attempts
-    );
-  }
-  throw createClassifiedError(
-    'Could not resolve user ID with the available credentials.',
-    'CREDENTIALS_REJECTED',
-    attempts
-  );
-}
-
-async function fetchTracksForUser(userId, clientId, accessToken, limit = 200) {
-  const useV1 = !!accessToken;
-  const headers = accessToken ? { Authorization: `OAuth ${accessToken}` } : undefined;
-  let url = useV1 ? `${API_V1_BASE}/users/${userId}/tracks` : `${API_V2_BASE}/users/${userId}/tracks`;
-  let params = useV1 ? { limit: Math.min(limit, 200), linked_partitioning: 1 } : { client_id: clientId, limit: Math.min(limit, 200) };
-
+async function fetchProfileTracks(profileUrl, token) {
+  const user = await apiGet(`${API_BASE}/resolve?${new URLSearchParams({ url: profileUrl })}`, token);
+  const id = user.urn || user.id;
+  if (!id || (user.kind && user.kind !== 'user')) throw new Error('Configured profile did not resolve to a SoundCloud user.');
+  let next = `${API_BASE}/users/${encodeURIComponent(id)}/tracks?limit=200&linked_partitioning=true`;
   const tracks = [];
-  let nextHref = null;
-  for (;;) {
-    const res = nextHref ? await fetch(nextHref, { headers }) : await httpGet(url, params, headers);
-    if (!res.ok) throw new Error(`Tracks fetch failed (${res.status}): ${await res.text().then(t=>t.slice(0,200)).catch(()=>res.statusText)}`);
-    const data = await res.json();
-    let page = [];
-    if (Array.isArray(data)) {
-      page = data;
-      nextHref = null;
-    } else {
-      page = data.collection || [];
-      nextHref = data.next_href || null;
-    }
-    for (const item of page) {
-      if (item && (item.kind === 'track' || 'title' in item)) tracks.push(item);
-    }
-    if (!nextHref) break;
+  const visited = new Set();
+  while (next) {
+    if (visited.has(next)) throw new Error('SoundCloud returned a repeated pagination URL.');
+    visited.add(next);
+    const data = await apiGet(next, token);
+    const page = Array.isArray(data) ? data : data.collection;
+    if (!Array.isArray(page)) throw new Error('Unexpected SoundCloud tracks response.');
+    tracks.push(...page.filter(t => t && t.permalink_url && t.sharing !== 'private'));
+    next = Array.isArray(data) ? null : data.next_href;
   }
-  return tracks;
-}
-
-async function fetchTracksForAuthenticatedUser(accessToken, limit = 200) {
-  const headers = { Authorization: `OAuth ${accessToken}` };
-  let nextHref = null;
-  let url = `${API_V1_BASE}/me/tracks`;
-  let params = { limit: Math.min(limit, 200), linked_partitioning: 1 };
-  const tracks = [];
-
-  for (;;) {
-    const res = nextHref ? await fetch(nextHref, { headers }) : await httpGet(url, params, headers);
-    if (!res.ok) {
-      throw createClassifiedError(
-        `Authenticated /me/tracks fetch failed (${res.status}).`,
-        res.status === 401 ? 'INVALID_ACCESS_TOKEN' : 'TRACKS_FETCH_FAILED',
-        [{ step: nextHref ? 'GET next_href' : 'GET /me/tracks', status: res.status }]
-      );
-    }
-
-    const data = await res.json();
-    let page = [];
-    if (Array.isArray(data)) {
-      page = data;
-      nextHref = null;
-    } else {
-      page = data.collection || [];
-      nextHref = data.next_href || null;
-    }
-    for (const item of page) {
-      if (item && (item.kind === 'track' || 'title' in item)) tracks.push(item);
-    }
-    if (!nextHref) break;
-  }
-
   return tracks;
 }
 
@@ -296,6 +114,7 @@ function mapTrack(item) {
     permalink_url: item.permalink_url || (item.permalink && item.user && item.user.permalink ? `https://soundcloud.com/${item.user.permalink}/${item.permalink}` : null),
     duration,
     genre: item.genre || '',
+    tags: [...new Set(Array.from((item.tag_list || '').matchAll(/"([^"\\]*(?:\\.[^"\\]*)*)"|(\S+)/g), match => (match[1] || match[2]).replace(/\\"/g, '"').trim()).filter(Boolean))],
     artwork_url: item.artwork_url || item.display_artwork || null,
     created_at: item.created_at || null,
     playback_count: item.playback_count,
@@ -393,219 +212,30 @@ function injectEmbedsIntoIndex(tracks, maxEmbeds) {
   }
 }
 
-function slugFromUrl(profileUrl) {
-  const slug = extractSlug(profileUrl);
-  if (!slug) throw new Error('Could not extract profile slug from URL');
-  return slug;
-}
-
-async function scrapeTracksFromProfile(profileUrl, max = 20) {
-  const slug = slugFromUrl(profileUrl);
-  const url = `https://soundcloud.com/${slug}/tracks`;
-  const res = await fetch(url, {
-    headers: {
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127 Safari/537.36',
-      'Referer': `https://soundcloud.com/${slug}`,
-    }
-  });
-  if (!res.ok) throw new Error(`Profile page fetch failed (${res.status})`);
-  const html = await res.text();
-
-  // Try to parse window.__sc_hydration JSON blob if present
-  let candidates = [];
-  try {
-    const m = html.match(/__sc_hydration\s*=\s*(\[.*?\]);/s);
-    if (m) {
-      const hydra = JSON.parse(m[1]);
-      for (const entry of hydra) {
-        const data = entry && entry.data;
-        if (!data) continue;
-        const arr = Array.isArray(data.tracks) ? data.tracks : (Array.isArray(data.collection) ? data.collection : []);
-        for (const t of arr) {
-          const url = t && (t.permalink_url || (t.user && t.permalink ? `https://soundcloud.com/${t.user.permalink}/${t.permalink}` : null));
-          const title = t && t.title;
-          if (url && title) candidates.push({ title, permalink_url: url, duration: t.full_duration || t.duration || null, genre: t.genre || '' });
-        }
-      }
-    }
-  } catch {/* ignore */}
-
-  // Fallback: regex anchor extraction for track links on the /tracks page
-  if (candidates.length === 0) {
-    const hrefs = new Set();
-    const re = new RegExp(`https://soundcloud.com/${slug}/[a-zA-Z0-9\-_%]+`, 'g');
-    let m;
-    while ((m = re.exec(html)) !== null) {
-      const u = m[0];
-      if (u.endsWith('/tracks') || u.includes('/sets/') || u.includes('/likes')) continue;
-      hrefs.add(u);
-    }
-    for (const u of hrefs) {
-      candidates.push({ title: u.split('/').pop().replace(/[-_]/g, ' '), permalink_url: u, duration: null, genre: '' });
-    }
-  }
-
-  // De-duplicate by permalink_url and limit
-  const seen = new Set();
-  const unique = [];
-  for (const c of candidates) {
-    if (!c || !c.permalink_url || seen.has(c.permalink_url)) continue;
-    seen.add(c.permalink_url);
-    unique.push(c);
-    if (unique.length >= max) break;
-  }
-
-  // Map into the expected output structure (minimal fields used by the site)
-  const tracks = unique.map(t => ({
-    title: t.title || 'Untitled',
-    permalink_url: t.permalink_url,
-    duration: t.duration || null,
-    genre: t.genre || ''
-  }));
-  return tracks;
-}
-
-async function extractUserIdFromProfileHtml(profileUrl) {
-  const res = await fetch(profileUrl, {
-    headers: {
-      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127 Safari/537.36'
-    }
-  });
-  if (!res.ok) throw new Error(`Profile fetch failed (${res.status})`);
-  const html = await res.text();
-  const m = html.match(/soundcloud:users:(\d+)/);
-  if (m) return m[1];
-  // Try JSON-LD user id
-  const m2 = html.match(/"urn":"soundcloud:users:(\d+)"/);
-  if (m2) return m2[1];
-  throw new Error('Could not locate user id on profile page');
-}
-
-function parseRssItems(xml, max = 20) {
-  const items = [];
-  const itemRe = /<item[\s\S]*?<\/item>/g;
-  const titleRe = /<title><!\[CDATA\[(.*?)\]\]><\/title>|<title>([^<]+)<\/title>/i;
-  const linkRe = /<link>([^<]+)<\/link>/i;
-  const durRe = /<itunes:duration>([^<]+)<\/itunes:duration>/i;
-  let m;
-  while ((m = itemRe.exec(xml)) !== null) {
-    const block = m[0];
-    const t = block.match(titleRe);
-    const l = block.match(linkRe);
-    const d = block.match(durRe);
-    const title = t ? (t[1] || t[2] || 'Untitled') : 'Untitled';
-    const link = l ? l[1] : null;
-    if (!link) continue;
-    let ms = null;
-    if (d && d[1]) {
-      // itunes:duration may be HH:MM:SS or MM:SS
-      const parts = d[1].trim().split(':').map(n => parseInt(n, 10));
-      if (parts.every(n => Number.isFinite(n))) {
-        if (parts.length === 3) ms = ((parts[0]*3600 + parts[1]*60 + parts[2]) * 1000);
-        if (parts.length === 2) ms = ((parts[0]*60 + parts[1]) * 1000);
-      }
-    }
-    items.push({ title, permalink_url: link, duration: ms, genre: '' });
-    if (items.length >= max) break;
-  }
-  return items;
-}
-
-async function fetchTracksFromRss(profileUrl, max = 20) {
-  const userId = await extractUserIdFromProfileHtml(profileUrl);
-  const rssUrl = `https://feeds.soundcloud.com/users/soundcloud:users:${userId}/sounds.rss`;
-  const res = await fetch(rssUrl, {
-    headers: {
-      'Accept': 'application/rss+xml, application/xml;q=0.9, */*;q=0.8',
-      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127 Safari/537.36'
-    }
-  });
-  if (!res.ok) throw new Error(`RSS fetch failed (${res.status})`);
-  const xml = await res.text();
-  const items = parseRssItems(xml, max);
-  return items;
-}
-
 async function main() {
-  console.log('🎵 SoundCloud API Fetch (Node)');
-  console.log('==============================');
   loadDotEnv();
-  const clientId = env('SOUNDCLOUD_CLIENT_ID');
-  const accessToken = env('SOUNDCLOUD_ACCESS_TOKEN');
   const profileUrl = env('SOUNDCLOUD_PROFILE_URL', DEFAULT_PROFILE_URL);
-  console.log(`🎯 Profile: ${profileUrl}`);
-
-  if (!clientId && !accessToken) {
-    console.error('❌ Neither SOUNDCLOUD_CLIENT_ID nor SOUNDCLOUD_ACCESS_TOKEN is set.');
-    printCredentialGuidance(clientId, accessToken);
-    process.exit(2);
+  let token = env('SOUNDCLOUD_ACCESS_TOKEN');
+  const expiresAt = Date.parse(env('SOUNDCLOUD_TOKEN_EXPIRES_AT', ''));
+  let renewed = false;
+  if (!token || (Number.isFinite(expiresAt) && expiresAt <= Date.now() + 60000)) {
+    token = await renewToken();
+    renewed = true;
   }
+  let tracks;
   try {
-    if (accessToken) {
-      console.log('🔐 Access token detected; using authenticated /me endpoints...');
-      const me = await fetchCurrentUser(accessToken);
-      console.log(`✅ Authenticated as: ${me.username || me.permalink || me.id}`);
-      console.log('📥 Fetching tracks from /me/tracks...');
-      const tracks = await fetchTracksForAuthenticatedUser(accessToken, 200);
-      console.log(`🎵 Found ${tracks.length} tracks`);
-      saveOutput(profileUrl, 'api', tracks);
-      injectEmbedsIntoIndex(tracks);
-      return;
-    }
-
-    console.log('🔎 Resolving user ID...');
-    const userId = await resolveUserId(profileUrl, clientId, accessToken);
-    console.log(`✅ Resolved user ID: ${userId}`);
-
-    console.log('📥 Fetching tracks...');
-    const tracks = await fetchTracksForUser(userId, clientId, accessToken, 200);
-    console.log(`🎵 Found ${tracks.length} tracks`);
-    saveOutput(profileUrl, 'api', tracks);
-    injectEmbedsIntoIndex(tracks);
-  } catch (e) {
-    console.error(`❌ API fetch failed: ${e.message || e}`);
-    if (Array.isArray(e?.details) && e.details.length) {
-      console.error('Failed API steps:');
-      for (const detail of e.details) {
-        console.error(`- ${detail.step}: HTTP ${detail.status}`);
-      }
-    }
-    if (isAuthConfigError(e)) {
-      printCredentialGuidance(clientId, accessToken);
-      console.error('Skipping scrape/RSS fallback because this is a credentials/configuration failure, not a transient public-access failure.');
-      process.exit(1);
-    }
-    console.log('🌐 Falling back to public page scraping...');
-    try {
-      const tracks = await scrapeTracksFromProfile(profileUrl, 20);
-      if (!tracks.length) throw new Error('No tracks found via scraping');
-      console.log(`🧩 Scraped ${tracks.length} public tracks`);
-      saveOutput(profileUrl, 'scrape', tracks);
-      injectEmbedsIntoIndex(tracks);
-    } catch (scrapeErr) {
-      console.error(`❌ Scrape fallback failed: ${scrapeErr.message || scrapeErr}`);
-      console.log('📰 Trying RSS feed fallback...');
-      try {
-        const tracks = await fetchTracksFromRss(profileUrl, 20);
-        if (!tracks.length) throw new Error('No items in RSS');
-        console.log(`📻 Pulled ${tracks.length} tracks from RSS`);
-        saveOutput(profileUrl, 'rss', tracks);
-        injectEmbedsIntoIndex(tracks);
-      } catch (rssErr) {
-        console.error(`❌ RSS fallback failed: ${rssErr.message || rssErr}`);
-        process.exit(1);
-      }
-    }
+    tracks = await fetchProfileTracks(profileUrl, token);
+  } catch (err) {
+    if (err.status !== 401 || renewed) throw err;
+    token = await renewToken();
+    tracks = await fetchProfileTracks(profileUrl, token);
   }
+  if (!tracks.length) throw new Error('No public tracks returned; existing data and embeds preserved.');
+  saveOutput(profileUrl, 'api', tracks);
+  injectEmbedsIntoIndex(tracks);
 }
 
+module.exports = { renewToken, apiGet, fetchProfileTracks, main };
 if (require.main === module) {
-  // Node 18+ has global fetch
-  if (typeof fetch !== 'function') {
-    console.error('This script requires Node 18+ (global fetch).');
-    process.exit(1);
-  }
-  main();
+  main().catch(err => { console.error(err.message); process.exitCode = 1; });
 }

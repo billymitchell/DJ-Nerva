@@ -94,6 +94,7 @@ function mapCloudcast(item) {
     url: item.url, // web URL
     created_time: item.created_time || null,
     pictures: item.pictures || null,
+    tags: [...new Set((item.tags || []).map(tag => typeof tag === 'string' ? tag : tag.name).filter(Boolean))],
     audio_length: item.audio_length || null,
   };
 }

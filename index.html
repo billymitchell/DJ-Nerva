@@ -95,7 +95,6 @@
                 </g>
             </svg>
             <h1 style="margin:10px 0;">Your Ultimate Party Experience</h1>
-            <a style="margin-top: 15px;" class="cta-btn" href="#book-now">Book Now</a>
         </div>
         <div id="scroll-down-indicator">
             <small>Scroll Down</small>
@@ -107,151 +106,142 @@
     <section class=" section-darker">
         <h2 class="heading-2">About Me</h2>
         <p class="text-md" style="max-width: 1000px; margin: 0 auto;">
-            Baltimore native DJ Nerva spins kinetic mosaics of sound, threading high-BPM breaks—jungle,
-            drum-and-bass, footwork—into global club rhythms, heady techno, and classic house. Quick cuts,
-            tempo jumps, and gritty Charm-City vibes. He honors Baltimore Club heritage and champions the local
-            creative community. From intimate art-gallery marathons to sweat-soaked warehouse nights, neighborhood
-            bars, and pop-up parties in unexpected spaces, Nerva is a selector who lives for the dance-floor
-            connection. Expect sweat, smiles, and a vibe that lingers long after the system powers down.
+            Baltimore native DJ Nerva is a multi-genre DJ with a particular love for jungle and drum &amp; bass. His sets span a wide range of electronic dance music, from global club rhythms to techno and classic house, with occasional detours into offbeat experimental sounds and oddball genres. Rooted in the grit and creativity of Charm City, he honors Baltimore Club heritage and champions the local creative community.
+        </p>
+        <p class="text-md" style="max-width: 1000px; margin: 1em auto 0;">
+            Guided by curiosity and music he genuinely loves, Nerva builds each mix as a story. He keeps an ear on new releases without chasing trends, leaving room for experimentation, unexpected connections, and moments that invite listening as much as movement. Collecting vinyl is part of his commitment to music culture, and he brings records into his sets when feasible.
+        </p>
+        <p class="text-md" style="max-width: 1000px; margin: 1em auto 0;">
+            From intimate galleries and neighborhood bars to warehouses and unexpected pop-up spaces, Nerva lives for the connection music creates. For him, music can be an act of resistance, a party, a flirtatious dance, a meditation, or a form of therapy. Joy doesn’t require an all-nighter or an altered state. Expect sweat, smiles, and a feeling that stays with you long after the system powers down.
         </p>
     </section>
 
 
 
-    <!-- DJ Mixes Section -->
     <section class="section-dark" id="dj-mixes">
-        <h2 class="heading-2">DJ Mixes</h2>
-        <div class="flex-wrap">
-            <div class="embed-grid">
+        <h2 class="heading-2">Latest Mixes</h2>
+        <div class="flex-wrap"><div class="embed-grid" id="latest-mixes-grid"></div></div>
+        <p id="mixes-status" role="status">Loading mixes…</p>
+    </section>
+    <section class="section-dark" id="other-mixes">
+        <h2 class="heading-2">Other Mixes</h2>
+        <div class="flex-wrap"><div class="embed-grid" id="other-mixes-grid"></div></div>
+    </section>
+    <!-- Script-managed players are inert until selected for display. -->
+    <template id="mix-players">
                 <!-- AUTO-SC-START -->
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
+                        src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fimproper%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
+                    </iframe>
+                </div>
+                <div class="embed-item">
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Flove-making-jungle%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fjunglist-bassprint-05-09-2026%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fghost-in-the-shell-bogus%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Ffrequency-1105-turnstyle-show%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fvibrate-dc-618-hechyeomoyeo%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fspirit-world-02-17-2026%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fdivorce%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fjunglist-bassprint%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fjamaican-support-ragga-jungle%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fdcompresion-burn-2025-practice-mix%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fconstellation-burn-2025-sun-pre-burn-ambient-experimental%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fconstellation-burn-dirt-du-jour-2025-sat-post-burn%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fpigtown-2025%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fjunglist-bassment-2%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Flow-end-freaky%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fjunglist-bassment%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fbaltimore-club-music-day-2025%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Faapi-support-b2b-woldboyslug-emas-corner%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fbackchat-4-nov-26th-2022%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fbackchat%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
                 <div class="embed-item">
-                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
-                        allow="autoplay"
+                    <iframe class="soundcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy" allow="autoplay"
                         src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fdj-nerva%2Fjust-press-play-record%3Futm_medium%3Dapi%26utm_campaign%3Dsocial_sharing%26utm_source%3Did_317766&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true">
                     </iframe>
                 </div>
-                <!-- AUTO-SC-END -->
-                <!-- AUTO-MC-START -->
+<!-- AUTO-SC-END -->
+<!-- AUTO-MC-START -->
                 <div class="embed-item">
                     <iframe class="mixcloud" width="250" height="250" scrolling="no" frameborder="no" loading="lazy"
                         src="https://player-widget.mixcloud.com/widget/iframe/?feed=%2Fdj-nerva%2Fspirit-world-round-2-b2b-w-oldboyslug%2F"
@@ -306,17 +296,9 @@
                         allow="fullscreen; autoplay; idle-detection; speaker-selection; web-share;">
                     </iframe>
                 </div>
-                <!-- AUTO-MC-END -->
+<!-- AUTO-MC-END -->
 
-
-
-
-
-
-
-            </div>
-        </div>
-    </section>
+    </template>
 
     <!-- Featured Video -->
     <section class="section-darker" id="featured-video">

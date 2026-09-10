@@ -414,6 +414,8 @@ async function main() {
   console.log('node scripts/soundcloud_fetch.js');
 }
 
+module.exports = { updateEnvFile };
+
 if (require.main === module) {
   if (typeof fetch !== 'function') {
     console.error('This script requires Node 18+ (global fetch).');

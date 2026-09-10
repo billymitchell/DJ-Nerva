@@ -1,6 +1,6 @@
 {
   "profile_url": "https://www.mixcloud.com/dj-nerva/",
-  "scraped_at": "2026-08-21T16:17:51.170Z",
+  "scraped_at": "2026-09-10T03:51:47.549Z",
   "total_cloudcasts": 9,
   "cloudcasts": [
     {
@@ -20,6 +20,13 @@
         "768wx768h": "https://thumbnailer.mixcloud.com/unsafe/768x768/extaudio/9/c/f/7/0e4c-aa8e-472d-b25d-f5cea7c68742",
         "1024wx1024h": "https://thumbnailer.mixcloud.com/unsafe/1024x1024/extaudio/9/c/f/7/0e4c-aa8e-472d-b25d-f5cea7c68742"
       },
+      "tags": [
+        "House",
+        "Techno",
+        "Breaks",
+        "Multi-genre",
+        "Jungle"
+      ],
       "audio_length": 15874
     },
     {
@@ -39,6 +46,12 @@
         "768wx768h": "https://thumbnailer.mixcloud.com/unsafe/768x768/extaudio/8/b/f/d/10ea-4e04-4311-905d-24d81adc86d7",
         "1024wx1024h": "https://thumbnailer.mixcloud.com/unsafe/1024x1024/extaudio/8/b/f/d/10ea-4e04-4311-905d-24d81adc86d7"
       },
+      "tags": [
+        "House",
+        "Baltimore club",
+        "Techno",
+        "Ballroom (Vogue)"
+      ],
       "audio_length": 2376
     },
     {
@@ -58,6 +71,13 @@
         "768wx768h": "https://thumbnailer.mixcloud.com/unsafe/768x768/extaudio/2/7/0/6/f169-f28b-40d9-9675-f123f4b36e75",
         "1024wx1024h": "https://thumbnailer.mixcloud.com/unsafe/1024x1024/extaudio/2/7/0/6/f169-f28b-40d9-9675-f123f4b36e75"
       },
+      "tags": [
+        "Jungle",
+        "Drum and bass",
+        "Ambient drum and Bass",
+        "Atmospheric drum and bass",
+        "Liquid drum and bass"
+      ],
       "audio_length": 3346
     },
     {
@@ -77,6 +97,13 @@
         "768wx768h": "https://thumbnailer.mixcloud.com/unsafe/768x768/extaudio/d/a/1/a/64d2-1a5d-4558-b2ab-2b383c488391",
         "1024wx1024h": "https://thumbnailer.mixcloud.com/unsafe/1024x1024/extaudio/d/a/1/a/64d2-1a5d-4558-b2ab-2b383c488391"
       },
+      "tags": [
+        "Jungle",
+        "Drum and bass",
+        "Liquid drum and bass",
+        "Atmospheric drum and bass",
+        "Jump Up drum and Bass"
+      ],
       "audio_length": 4276
     },
     {
@@ -96,6 +123,12 @@
         "768wx768h": "https://thumbnailer.mixcloud.com/unsafe/768x768/extaudio/9/a/4/4/f6fe-7796-486c-926a-4c2db05f1bfd",
         "1024wx1024h": "https://thumbnailer.mixcloud.com/unsafe/1024x1024/extaudio/9/a/4/4/f6fe-7796-486c-926a-4c2db05f1bfd"
       },
+      "tags": [
+        "Baltimore club",
+        "Jersey club",
+        "Philly club",
+        "Global club"
+      ],
       "audio_length": 3125
     },
     {
@@ -115,6 +148,11 @@
         "768wx768h": "https://thumbnailer.mixcloud.com/unsafe/768x768/extaudio/1/9/a/4/cdfc-b77c-48ae-94ed-18b4afe686bf",
         "1024wx1024h": "https://thumbnailer.mixcloud.com/unsafe/1024x1024/extaudio/1/9/a/4/cdfc-b77c-48ae-94ed-18b4afe686bf"
       },
+      "tags": [
+        "Techno",
+        "Breaks",
+        "Rave"
+      ],
       "audio_length": 3254
     },
     {
@@ -134,6 +172,13 @@
         "768wx768h": "https://thumbnailer.mixcloud.com/unsafe/768x768/extaudio/6/c/8/3/de71-baa6-4a10-b806-5899f65b67d3",
         "1024wx1024h": "https://thumbnailer.mixcloud.com/unsafe/1024x1024/extaudio/6/c/8/3/de71-baa6-4a10-b806-5899f65b67d3"
       },
+      "tags": [
+        "Drum and bass",
+        "Liquid drum and bass",
+        "Ambient drum and Bass",
+        "Atmospheric drum and bass",
+        "Halftime Drum and Bass"
+      ],
       "audio_length": 3912
     },
     {
@@ -153,6 +198,13 @@
         "768wx768h": "https://thumbnailer.mixcloud.com/unsafe/768x768/extaudio/6/3/f/1/0eed-fa57-4548-950c-bff3d4593d25",
         "1024wx1024h": "https://thumbnailer.mixcloud.com/unsafe/1024x1024/extaudio/6/3/f/1/0eed-fa57-4548-950c-bff3d4593d25"
       },
+      "tags": [
+        "Hip Hop",
+        "Trip hop",
+        "Acid jazz",
+        "Breaks",
+        "House"
+      ],
       "audio_length": 10967
     },
     {
@@ -172,6 +224,12 @@
         "768wx768h": "https://thumbnailer.mixcloud.com/unsafe/768x768/extaudio/d/5/1/2/5373-f806-4115-8ee5-cdd600c86cde",
         "1024wx1024h": "https://thumbnailer.mixcloud.com/unsafe/1024x1024/extaudio/d/5/1/2/5373-f806-4115-8ee5-cdd600c86cde"
       },
+      "tags": [
+        "House",
+        "Disco",
+        "Baltimore club",
+        "Jungle"
+      ],
       "audio_length": 15051
     }
   ]

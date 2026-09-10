@@ -35,12 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTagline('Charm City Vibe, Worldwide Tribe.');
         });
 
-    observeSectionOnce(document.getElementById('dj-mixes'), () => {
-        const primaryColor = getComputedStyle(document.documentElement)
-            .getPropertyValue('--primary-color')
-            .trim();
-        updateSoundCloudIframes(primaryColor);
-    });
+    observeSectionOnce(document.getElementById('dj-mixes'), loadMixes);
 
     observeSectionOnce(document.getElementById('photo-gallery'), loadGallery);
 });
@@ -132,8 +127,8 @@ async function loadGallery() {
     if (!grid) return;
 
     const resizeGalleryItem = item => {
-        const img = item.querySelector('img');
-        if (!img || !img.complete) return;
+        const img = item.querySelector('img, video');
+        if (!img || (img.tagName === 'IMG' && !img.complete)) return;
 
         const styles = window.getComputedStyle(grid);
         const rowHeight = parseFloat(styles.gridAutoRows);
@@ -149,7 +144,7 @@ async function loadGallery() {
     };
     
     try {
-        const response = await fetch(buildVersionedAssetUrl('gallery_images.json'));
+        const response = await fetch(buildVersionedAssetUrl('gallery_images.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error('Failed to load gallery images');
         const images = await response.json();
 
@@ -161,25 +156,60 @@ async function loadGallery() {
             [images[i], images[j]] = [images[j], images[i]];
         }
         
-        // Generate gallery items
-        images.forEach(image => {
+        // Keep a random half of each media type, rounded up, in shuffled order.
+        const photos = images.filter(image => image.type !== 'video');
+        const videos = images.filter(image => image.type === 'video');
+        const selected = new Set([
+            ...photos.slice(0, Math.ceil(photos.length / 2)),
+            ...videos.slice(0, Math.ceil(videos.length / 2))
+        ]);
+        const galleryItems = images.filter(image => selected.has(image));
+
+        // Generate only the selected items so the rest are not downloaded.
+        galleryItems.forEach(image => {
             const div = document.createElement('div');
             div.className = 'photo-item';
             
-            const img = document.createElement('img');
+            const isVideo = image.type === 'video';
+            const img = document.createElement(isVideo ? 'video' : 'img');
+            if (isVideo) {
+                div.classList.add('video-item');
+                img.controls = true;
+                img.autoplay = false;
+                img.muted = true;
+                img.defaultMuted = true;
+                img.playsInline = true;
+                img.preload = 'none';
+                img.setAttribute('aria-label', 'DJ Nerva video');
+                if (image.poster) {
+                    img.poster = buildVersionedAssetUrl(image.poster, image.version);
+                    // Match the preview before loading any video data.
+                    const preview = new Image();
+                    preview.onload = () => {
+                        if (!img.videoWidth) {
+                            img.style.aspectRatio = `${preview.naturalWidth} / ${preview.naturalHeight}`;
+                            window.requestAnimationFrame(() => resizeGalleryItem(div));
+                        }
+                    };
+                    preview.src = img.poster;
+                }
+            }
             img.src = buildVersionedAssetUrl(image.path, image.version || BUILD_HASH);
             img.alt = 'DJ Nerva';
             img.loading = 'lazy';
             img.decoding = 'async';
 
-            img.addEventListener('load', () => {
+            img.addEventListener(isVideo ? 'loadedmetadata' : 'load', () => {
+                if (isVideo && img.videoWidth && img.videoHeight) {
+                    img.style.aspectRatio = `${img.videoWidth} / ${img.videoHeight}`;
+                }
                 window.requestAnimationFrame(() => resizeGalleryItem(div));
             }, { once: true });
             
             div.appendChild(img);
             grid.appendChild(div);
 
-            if (img.complete) {
+            if (isVideo || img.complete) {
                 window.requestAnimationFrame(() => resizeGalleryItem(div));
             }
         });
@@ -194,8 +224,75 @@ async function loadGallery() {
         });
         galleryResizeObserver.observe(grid);
 
-        console.log(`Gallery loaded with ${images.length} images`);
+        console.log(`Gallery loaded with ${galleryItems.length} photos and videos`);
     } catch (error) {
         console.error('Error loading gallery:', error);
+    }
+}
+
+// Combine both platforms using their upload dates as the mix dates.
+async function loadMixes() {
+    const status = document.getElementById('mixes-status');
+    try {
+        const [soundcloud, mixcloud] = await Promise.all([
+            fetchJson('soundcloud_tracks.json'), fetchJson('mixcloud_cloudcasts.json')
+        ]);
+        const normalize = value => {
+            const url = new URL(value, 'https://www.mixcloud.com');
+            return url.pathname.replace(/\/$/, '');
+        };
+        const players = new Map();
+        document.getElementById('mix-players').content.querySelectorAll('iframe').forEach(player => {
+            const url = new URL(player.src);
+            const platform = player.classList.contains('soundcloud') ? 'sc' : 'mc';
+            players.set(platform + normalize(url.searchParams.get(platform === 'sc' ? 'url' : 'feed')), player);
+        });
+        const mixes = [
+            ...soundcloud.tracks.map(mix => ({ title: mix.title, date: mix.created_at, tags: mix.tags, key: 'sc' + normalize(mix.permalink_url) })),
+            ...mixcloud.cloudcasts.map(mix => ({ title: mix.name, date: mix.created_time, tags: mix.tags, key: 'mc' + normalize(mix.key) }))
+        ].map(mix => ({ ...mix, timestamp: Date.parse((mix.date || '').replace(/^(\d{4})\/(\d{2})\/(\d{2}) /, '$1-$2-$3T').replace(' +0000', 'Z')) }))
+            .filter(mix => players.has(mix.key))
+            .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+        const latest = mixes.slice(0, 4);
+        const remaining = mixes.slice(4);
+        for (let i = remaining.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+        }
+        const render = (id, selection) => {
+            const grid = document.getElementById(id);
+            grid.replaceChildren();
+            selection.forEach(mix => {
+                const tile = document.createElement('div');
+                tile.className = 'embed-item';
+                const player = players.get(mix.key).cloneNode(true);
+                player.title = mix.title;
+                if (player.classList.contains('soundcloud')) {
+                    const url = new URL(player.src);
+                    url.searchParams.set('color', getComputedStyle(document.documentElement).getPropertyValue('--primary-color').trim().replace('#', ''));
+                    player.src = url;
+                }
+                const date = document.createElement('time');
+                date.className = 'mix-date';
+                if (Number.isFinite(mix.timestamp)) {
+                    date.dateTime = new Date(mix.timestamp).toISOString();
+                    date.textContent = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' }).format(mix.timestamp);
+                } else date.textContent = 'Date unavailable';
+                tile.append(player, date);
+                if (Array.isArray(mix.tags) && mix.tags.length) {
+                    const genre = document.createElement('p');
+                    genre.className = 'mix-tags';
+                    genre.textContent = mix.tags.join(' · ');
+                    tile.append(genre);
+                }
+                grid.append(tile);
+            });
+        };
+        render('latest-mixes-grid', latest);
+        render('other-mixes-grid', remaining.slice(0, Math.ceil(remaining.length / 2)));
+        status.textContent = mixes.length ? '' : 'No mixes available yet.';
+    } catch (error) {
+        console.error('Error loading mixes:', error);
+        status.textContent = 'Unable to load mixes. Please refresh to try again.';
     }
 }

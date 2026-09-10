@@ -448,11 +448,14 @@ h1 {
 }
 
 .photo-item:hover::before,
-.photo-item:hover::after {
+.photo-item:hover::after,
+.video-item:focus-within::before,
+.video-item:focus-within::after {
   opacity: 0;
 }
 
-.photo-item img {
+.photo-item img,
+.photo-item video {
   width: 100%;
   height: auto;
   display: block;
@@ -460,7 +463,9 @@ h1 {
   filter: grayscale(100%) contrast(1.1);
 }
 
-.photo-item:hover img {
+.photo-item:hover img,
+.photo-item:hover video,
+.video-item:focus-within video {
   filter: grayscale(0%) contrast(1);
 }
 
@@ -537,12 +542,19 @@ h1 {
     width: 70%; /* Make the Remix icon slightly bigger */
 }
 
+@keyframes scroll-down-bounce {
+    0%, 60%, 100% { transform: translate(-50%, 0); }
+    30% { transform: translate(-50%, 8px); }
+    45% { transform: translate(-50%, 3px); }
+}
+
 /* Scroll Down Indicator */
 #scroll-down-indicator {
     position: absolute;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
+    animation: scroll-down-bounce 2s ease-in-out infinite;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -656,4 +668,26 @@ h1 {
         max-width: 300px; /* Optional: Set a max width */
         height: auto; /* Adjust height automatically */
     }
+}
+
+/* Preserve video proportions; overlays above use pointer-events: none. */
+.video-item video { display: block; width: 100%; height: auto; object-fit: contain; background: #000; }
+
+.mix-date { display: block; text-align: center; margin-top: 0.65rem; font-size: 0.9rem; }
+
+.mix-tags {
+  max-width: 250px;
+  margin: 0.35rem auto 0;
+  text-align: center;
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #scroll-down-indicator { animation: none; }
 }

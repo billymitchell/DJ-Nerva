@@ -113,7 +113,7 @@
             "link": "https://maps.app.goo.gl/iDmEcwrHqPCdYE549"
         },
         {
-            "name": "4000 Buena Vista Ave",
+            "name": "Syndicate Screen Printing Co.",
             "city": "Baltimore, MD",
             "lat": 39.3355636,
             "lng": -76.6414833,
@@ -160,6 +160,13 @@
             "lat": 48.87108728144725,
             "lng": 2.34207633693664,
             "link": "https://www.google.com/maps/place/Sound+and+Coffee+Panoramas/@48.870925,2.3390401,783m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47e66f78f8227e55:0xe86b15fc4d97425b!8m2!3d48.870925!4d2.341615!16s%2Fg%2F11n9qs5959?entry=ttu&g_ep=EgoyMDI2MDgxNy4wIKXMDSoASAFQAw%3D%3D"
+        },
+        {
+            "name": "Peabody Heights Brewery",
+            "city": "Baltimore, MD",
+            "lat": 39.32461,
+            "lng": -76.61041,
+            "link": "https://peabodyheightsbrewery.com/"
         }
     ]
 }

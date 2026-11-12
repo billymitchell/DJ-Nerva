@@ -1,0 +1,22 @@
+# Repo-only files: send them to a path that doesn't exist so Pages answers with
+# 404.html and a real 404 status. (_redirects can't return 404 directly, and
+# redirects apply even when the file exists.)
+/AGENTS.md                        /_not-found 301
+/README.md                        /_not-found 301
+/.github-copilot-instructions.md  /_not-found 301
+/.env                             /_not-found 301
+/.gitignore                       /_not-found 301
+/build-image-manifest.js          /_not-found 301
+/image_data.json                  /_not-found 301
+/Places%20Ive%20DJed.kmz          /_not-found 301
+/gallery-contact-sheet.jpg        /_not-found 301
+/DJ-images/alt-text.json          /_not-found 301
+/palette_overrides.json           /_not-found 301
+/package.json                     /_not-found 301
+/package-lock.json                /_not-found 301
+/scripts/*                        /_not-found 301
+/.playwright-mcp/*                /_not-found 301
+/.vscode/*                        /_not-found 301
+/.venv/*                          /_not-found 301
+/src/*                            /_not-found 301
+/node_modules/*                   /_not-found 301

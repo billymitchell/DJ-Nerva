@@ -1,0 +1,12 @@
+{
+  "name": "dj-nerva-website",
+  "private": true,
+  "description": "Static site. The only build step bundles the 3D gear showcase (src/gear3d.js -> gear3d.min.js).",
+  "scripts": {
+    "build:gear3d": "esbuild src/gear3d.js --bundle --minify --format=esm --target=es2020 --legal-comments=none --outfile=gear3d.min.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "three": "0.187.0"
+  }
+}

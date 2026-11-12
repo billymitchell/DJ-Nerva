@@ -5,10 +5,13 @@ import json, hashlib, base64
 from PIL import Image, ImageOps
 root=Path(__file__).resolve().parent.parent
 sets=json.loads((root/'image_data.json').read_text())
+overrides_file=root/'palette_overrides.json'
+overrides=json.loads(overrides_file.read_text()) if overrides_file.exists() else {}
 result=[]
 before=after=0
 for item in sets:
     entry={k:item[k] for k in ('folder','primaryColor','secondaryColor','accentColor')}
+    entry.update(overrides.get(item['folder'], {}))  # curated palette wins
     for mode in ('desktop','mobile'):
         src=root/'splash-images'/item['folder']/item[mode]
         out=src.parent/'optimized';out.mkdir(exist_ok=True)

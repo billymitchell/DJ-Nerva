@@ -30,7 +30,7 @@ Then open `http://localhost:5500/`.
 
 At runtime, `main.js`:
 
-1. Fetches `image_data.json` and `taglines.json`
+1. Uses `hero_assets.json` (fetched in an inline `<head>` script) and fetches `taglines.json`
 2. Picks one image set and one tagline at random
 3. Updates the hero image and CSS custom properties
 4. Recolors SoundCloud embeds to match the chosen theme
@@ -239,16 +239,9 @@ Avoid introducing:
 
 unless the user explicitly asks for that migration.
 
-### Be careful with stale files
+### Removed stale files
 
-These files exist but are not currently part of the active page load path:
-
-- `soundcloud.js`
-- `mixcloud.js`
-- `play-pause.js`
-- `remix-reload.js`
-
-Do not assume they are active just because they exist. Check whether they are referenced from `index.html` before editing them.
+`soundcloud.js`, `mixcloud.js`, `play-pause.js` and `remix-reload.js` were unused and have been deleted. Mix players are rendered by `loadMixes()` in `main.js` as click-to-load tiles.
 
 ### Validate after edits
 
@@ -272,3 +265,36 @@ Because images are cached aggressively, `main.js` appends a cache-busting query 
 - `.env` is local-only and gitignored
 - Never commit API keys or tokens
 - If a script needs credentials, assume they belong in `.env`
+
+## Pre-deploy checklist
+
+Run from the repo root after changing photos, mixes, CSS or JS:
+
+```bash
+python3 scripts/optimize_gallery.py --check-duplicates --contact-sheet   # 1200px + 600px WebP, flag copies, write gallery-contact-sheet.jpg
+node scripts/build_gallery_manifest.js                                   # gallery_images.json (dedupes "-converted", alt text, posters)
+node scripts/build_mix_list.js                                           # static "Browse all mixes" list in index.html
+node scripts/build_places_list.js                                        # venue list under the map, from places_played.json
+node scripts/bump_asset_versions.js                                      # ?v=<hash> on CSS/JS links
+```
+
+- Gallery alt text lives in `DJ-images/alt-text.json`; the manifest script warns about photos without it.
+- `404.html` must stay at the root: without it Cloudflare Pages serves `index.html` (status 200) for every missing URL.
+- Repo-only files are kept off the live site via `_redirects`; add new ones there.
+
+## Color system
+
+- Brand core (constant on every visit), defined in `simplified-style.css` `:root`: Ink `#0b0a12` (all backgrounds), Paper `#f3f0e8` (text + logo), Signal `#ff4fcb` (booking buttons, focus rings, the dot after NERVA in the header).
+- Theme palettes only tint Ink (OKLCH `color-mix`): page 10%, sections 22%, cards 20% with a full-strength primary border.
+- No brown: background tints never come from reds, oranges, ambers or golds (hue 345-70) or near-grays. `setThemeColors()` picks the first cool palette color for `--tint-page/--tint-section/--tint-card`, falling back to a cool slate. Warm colors stay on borders, accents and the hero art.
+- `palette_overrides.json` holds hand-tuned theme colors. `scripts/optimize_hero.py` applies them over the colors extracted into `image_data.json`; edit the overrides, not `hero_assets.json`.
+- Rule for new themes: accent hue at least 60 degrees from the primary hue.
+- `main.js` `setThemeColors()` derives readable link/text colors per theme (WCAG AA).
+
+## 3D gear showcase
+
+- Source: `src/gear3d.js` (Three.js, procedural CAD-style models; no brand logos). Built output: `gear3d.min.js` (committed).
+- Build after editing the source: `npm install` once, then `npm run build:gear3d`, then `node scripts/bump_asset_versions.js`. This is the site's only build step; `node_modules/` is gitignored.
+- `main.js` lazy-loads the bundle when `#gear` is ~900px away and only if WebGL exists. Without WebGL the flat SVG drawings (`.gear-art`) stay.
+- Cards link to models via `data-gear` (`xdj`, `flx4`, `turntable`, `pa`). Extra models without cards: `hd25`, `mic`, `usb`.
+- Layouts: two-row spread at 760px+ stage width, slow carousel below that. Rendering pauses off-screen; reduced motion renders a still scene.

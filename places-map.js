@@ -8,10 +8,19 @@ let mapInitialized = false;
 let googleMapsLoadPromise = null;
 
 function getThemeColors() {
-  // Try to read CSS variables for cohesive theming
+  // Use the same non-brown background tints as the page (set by main.js), darkened onto Ink.
   const styles = getComputedStyle(document.documentElement);
-  const primary = styles.getPropertyValue('--theme-primary-color').trim() || '#1e1e1e';
-  const secondary = styles.getPropertyValue('--theme-secondary-color').trim() || '#2a2a2a';
+  const read = (name, fallback) => {
+    const v = styles.getPropertyValue(name).trim();
+    return /^#[0-9a-f]{6}$/i.test(v) ? v : fallback;
+  };
+  const onInk = (hex, amount) => {
+    const ink = [11, 10, 18];
+    const c = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16));
+    return '#' + c.map((v, i) => Math.round(v * amount + ink[i] * (1 - amount)).toString(16).padStart(2, '0')).join('');
+  };
+  const primary = onInk(read('--tint-page', '#6625d9'), 0.18);
+  const secondary = onInk(read('--tint-section', '#0c1762'), 0.32);
   const accent = styles.getPropertyValue('--theme-accent-color').trim() || '#ff5500';
   return { primary, secondary, accent };
 }

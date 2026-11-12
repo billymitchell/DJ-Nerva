@@ -5,3 +5,18 @@
 __pycache__/
 *.pyc
 # Python cache
+
+# Local review files
+gallery-contact-sheet.jpg
+
+# OS / editor / tooling noise (never deploy)
+.DS_Store
+.vscode/
+.venv/
+.playwright-mcp/
+
+# Build tooling (gear3d bundle)
+node_modules/
+
+# Local Cloudflare dev server state
+.wrangler/

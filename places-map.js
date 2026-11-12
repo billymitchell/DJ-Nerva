@@ -180,7 +180,8 @@ async function init() {
 
 function observeMapSection() {
   const container = document.getElementById('places-map');
-  if (!container) return;
+  if (!container || container.dataset.observed) return;
+  container.dataset.observed = '1';
 
   const start = () => {
     init().catch((error) => {

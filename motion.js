@@ -2,6 +2,8 @@
 // Everything here is decorative. With prefers-reduced-motion (or no JS) the
 // page renders fully static; content is never hidden unless this file runs.
 (() => {
+    if (window.__nervaMotion) return; // never initialise twice
+    window.__nervaMotion = true;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (reduce.matches || !('IntersectionObserver' in window)) return;
     const root = document.documentElement;
@@ -115,7 +117,10 @@
     }
 
     // ---------- Hero logo collapses into the header ----------
+    let logoMorphStarted = false;
     const initLogoMorph = () => {
+        if (logoMorphStarted) return;
+        logoMorphStarted = true;
         const logo = document.getElementById('logo');
         const slot = document.querySelector('.site-brand svg');
         if (!logo || !slot || !header) return;

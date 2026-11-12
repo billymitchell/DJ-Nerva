@@ -3,6 +3,11 @@ const BUILD_HASH = window.APP_BUILD_HASH || '1';
 const SECTION_PRELOAD_MARGIN = '600px 0px';
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Run once. Cloudflare Rocket Loader re-dispatches DOMContentLoaded, which used to
+    // start the gallery twice (the duplicate photos). Scripts also opt out via data-cfasync.
+    if (window.__nervaBooted) return;
+    window.__nervaBooted = true;
+
     const heroSection = document.getElementById('hero-section');
     if (!heroSection) return console.error('Hero section element not found.');
 
@@ -247,7 +252,8 @@ function setTagline(tagline) {
 // Load and randomize photo gallery from JSON
 async function loadGallery() {
     const grid = document.getElementById('gallery-grid');
-    if (!grid) return;
+    if (!grid || grid.dataset.loaded) return;
+    grid.dataset.loaded = '1';
 
     const resizeGalleryItem = item => {
         const img = item.querySelector('img, video');
@@ -376,6 +382,8 @@ const MIX_GENRES = [
 // Combine both platforms using their upload dates as the mix dates.
 async function loadMixes() {
     const status = document.getElementById('mixes-status');
+    if (loadMixes.started) return;
+    loadMixes.started = true;
     try {
         const [soundcloud, mixcloud] = await Promise.all([
             fetchJson('soundcloud_tracks.json'), fetchJson('mixcloud_cloudcasts.json')
@@ -557,6 +565,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.querySelectorAll('.video-facade').forEach(button => {
+        if (button.dataset.bound) return;
+        button.dataset.bound = '1';
         button.addEventListener('click', () => {
             const iframe = document.createElement('iframe');
             iframe.src = button.dataset.embed;

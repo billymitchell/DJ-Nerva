@@ -284,12 +284,14 @@ node scripts/bump_asset_versions.js                                      # ?v=<h
 
 ## Color system
 
-- Brand core (constant on every visit), defined in `simplified-style.css` `:root`: Ink `#0b0a12` (all backgrounds), Paper `#f3f0e8` (text + logo), Signal `#ff4fcb` (booking buttons, focus rings, the dot after NERVA in the header).
-- Theme palettes only tint Ink (OKLCH `color-mix`): page 10%, sections 22%, cards 20% with a full-strength primary border.
-- No brown: background tints never come from reds, oranges, ambers or golds (hue 345-70) or near-grays. `setThemeColors()` picks the first cool palette color for `--tint-page/--tint-section/--tint-card`, falling back to a cool slate. Warm colors stay on borders, accents and the hero art.
-- `palette_overrides.json` holds hand-tuned theme colors. `scripts/optimize_hero.py` applies them over the colors extracted into `image_data.json`; edit the overrides, not `hero_assets.json`.
-- Rule for new themes: accent hue at least 60 degrees from the primary hue.
-- `main.js` `setThemeColors()` derives readable link/text colors per theme (WCAG AA).
+- Brand core (constant on every visit), defined in `simplified-style.css` `:root`: Paper `#f3f0e8` (text + logo).
+- Signal (booking buttons, focus rings) follows the palette: `--signal` is the palette's `--accent-color`, with `--on-accent` text.
+- Palettes are single-hue: one hue per palette, varied only in saturation and lightness. They live in `simplified-style.css` as `:root[data-palette="…"]` blocks, each setting `--primary-color` (full color: card borders, SoundCloud player), `--secondary-color` (deep shade), `--accent-color` (light shade: buttons, links) and `--ink` (near-black of the same hue, the base for all backgrounds).
+- Current palettes: `blue` (`#0580c2`) and `green` (`#17ab4b`) from billymitchell.design, `violet`, `magenta`, and `mono` (black and white).
+- The inline script in `index.html` `<head>` picks one at random before first paint and sets `data-palette` on `<html>`. Keep its list in sync with the CSS when adding or removing a palette. Palettes are independent of the hero photo; the color fields in `hero_assets.json` / `image_data.json` are no longer used at runtime.
+- Backgrounds tint Ink (OKLCH `color-mix`): page 10%, sections 22%, cards 20% with a full-strength primary border.
+- Avoid warm hues (reds through golds, 345-70 degrees) for new palettes: their dark shades read brown.
+- `main.js` `setThemeColors()` derives readable link/text colors per palette (WCAG AA).
 
 ## 3D gear showcase
 

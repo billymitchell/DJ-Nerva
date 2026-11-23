@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.__nervaBooted) return;
     window.__nervaBooted = true;
 
+    setThemeColors();
+
     const heroSection = document.getElementById('hero-section');
     if (!heroSection) return console.error('Hero section element not found.');
 
@@ -19,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .then((randomSet) => {
 
             setHeroImage(randomSet);
-            setThemeColors(randomSet);
         })
         .catch(error => {
             console.error('Error loading hero image data:', error);
@@ -27,13 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const fallbackImageData = {
                 folder: '6',
                 desktop: 'optimized/desktop.webp',
-                mobile: 'optimized/mobile.webp',
-                primaryColor: '#27b3e8',
-                secondaryColor: '#045175',
-                accentColor: '#f89edc'
+                mobile: 'optimized/mobile.webp'
             };
             setHeroImage(fallbackImageData);
-            setThemeColors(fallbackImageData);
         });
 
     fetchJson('taglines.json')
@@ -160,52 +157,29 @@ function setHeroImage({ folder, desktop, mobile, desktopPreview, mobilePreview }
     hero.src = desktopUrl;
 }
 
-// Set theme colors
-function setThemeColors({ primaryColor, secondaryColor, accentColor }) {
+// Theme colors. The head script in index.html picks a single-hue palette
+// (data-palette on <html>); its colors live in simplified-style.css. This only
+// derives readable companions for it (WCAG AA: 4.5:1 for text).
+function setThemeColors() {
     const root = document.documentElement.style;
-    root.setProperty('--primary-color', primaryColor);
-    root.setProperty('--secondary-color', secondaryColor);
-    root.setProperty('--accent-color', accentColor);
-
-    // The palettes are random, so derive readable companions for each one
-    // (WCAG AA: 4.5:1 for text, 3:1 for the logo graphic).
-    const P = hexToRgb(primaryColor), S = hexToRgb(secondaryColor), A = hexToRgb(accentColor);
+    const css = getComputedStyle(document.documentElement);
+    const read = name => hexToRgb(css.getPropertyValue(name));
+    const P = read('--primary-color'), S = read('--secondary-color'), A = read('--accent-color');
+    const ink = read('--ink') || [11, 10, 18].map(v => v / 255);
     if (!P || !S || !A) return;
-    // Dark tints of red/orange/gold read as maroon or brown, so backgrounds borrow the
-    // first cool color in the palette (warm hues stay on borders and accents).
-    const pick = (...options) => options.find(c => !isBrownProne(c)) || null;
-    const pageTint = pick(P, S, A);
-    const sectionTint = pick(S, A, P);
-    const cardTint = pick(P, S, A);
-    const NEUTRAL = '#2a2a3a'; // cool slate if a palette is warm all the way through
-    root.setProperty('--tint-page', pageTint ? rgbToCss(pageTint) : NEUTRAL);
-    root.setProperty('--tint-section', sectionTint ? rgbToCss(sectionTint) : NEUTRAL);
-    root.setProperty('--tint-card', cardTint ? rgbToCss(cardTint) : NEUTRAL);
+    // Hex copies of the tints for the map and 3D gear, which read them as hex.
+    root.setProperty('--tint-page', rgbToCss(P));
+    root.setProperty('--tint-section', rgbToCss(S));
+    root.setProperty('--tint-card', rgbToCss(P));
 
     // Approximate the Ink-based backgrounds from simplified-style.css.
-    const ink = [11, 10, 18].map(v => v / 255);
-    const mixInk = (c, t) => (c || hexToRgb(NEUTRAL)).map((v, i) => v * t + ink[i] * (1 - t));
-    const pageBg = mixInk(pageTint, 0.10);
-    const sectionBg = mixInk(sectionTint, 0.22);
-    const cardBg = mixInk(cardTint, 0.20);
+    const mixInk = (c, t) => c.map((v, i) => v * t + ink[i] * (1 - t));
+    const backgrounds = [mixInk(P, 0.10), mixInk(S, 0.22), mixInk(P, 0.20)];
 
     root.setProperty('--on-primary', bestTextOn(P));
     root.setProperty('--on-accent', bestTextOn(A));
     root.setProperty('--on-primary-icon-filter', bestTextOn(P) === '#ffffff' ? 'none' : 'invert(1)');
-    root.setProperty('--link-color', rgbToCss(lightenUntil(A, [pageBg, sectionBg, cardBg], 4.8)));
-}
-
-// Background tints must stay cool or violet. Reds through gold turn maroon/brown
-// when darkened, and near-grays pick up a muddy cast, so both are skipped.
-function isBrownProne(rgb) {
-    const max = Math.max(...rgb), min = Math.min(...rgb), d = max - min;
-    if (d < 0.08) return true;                   // near-gray: falls back to cool slate
-    let h;
-    if (max === rgb[0]) h = ((rgb[1] - rgb[2]) / d) % 6;
-    else if (max === rgb[1]) h = (rgb[2] - rgb[0]) / d + 2;
-    else h = (rgb[0] - rgb[1]) / d + 4;
-    h = (h * 60 + 360) % 360;
-    return h >= 345 || h <= 70;
+    root.setProperty('--link-color', rgbToCss(lightenUntil(A, backgrounds, 4.8)));
 }
 
 function hexToRgb(hex) {

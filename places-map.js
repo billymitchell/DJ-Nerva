@@ -8,14 +8,15 @@ let mapInitialized = false;
 let googleMapsLoadPromise = null;
 
 function getThemeColors() {
-  // Use the same non-brown background tints as the page (set by main.js), darkened onto Ink.
+  // Use the page's palette tints (set by main.js), darkened onto Ink.
   const styles = getComputedStyle(document.documentElement);
   const read = (name, fallback) => {
     const v = styles.getPropertyValue(name).trim();
     return /^#[0-9a-f]{6}$/i.test(v) ? v : fallback;
   };
   const onInk = (hex, amount) => {
-    const ink = [11, 10, 18];
+    const inkHex = read('--ink', '#0b0a12');
+    const ink = [1, 3, 5].map(i => parseInt(inkHex.slice(i, i + 2), 16));
     const c = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16));
     return '#' + c.map((v, i) => Math.round(v * amount + ink[i] * (1 - amount)).toString(16).padStart(2, '0')).join('');
   };

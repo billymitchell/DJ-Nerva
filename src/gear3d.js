@@ -33,7 +33,7 @@ function init() {
     };
     const lineColor = new Color(hex('--link-color', '#9fd0f4'));
     const hotColor = new Color('#f3f0e8');            // Paper
-    const fillColor = new Color('#0b0a12').lerp(new Color(hex('--tint-card', '#2a2a3a')), 0.16);
+    const fillColor = new Color(hex('--ink', '#0b0a12')).lerp(new Color(hex('--tint-card', '#2a2a3a')), 0.16);
 
     const scene = new Scene();
     scene.add(new AmbientLight(0xffffff, 1.4));

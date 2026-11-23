@@ -177,9 +177,11 @@ h3, h4, h5, h6 {
 
 :root {
   /* Default color values before JavaScript sets them dynamically */
+  /* Default palette (Violet) until the head script picks one; see the
+     :root[data-palette] blocks below. */
   --primary-color: #6625d9;
-  --secondary-color: #0c1762;
-  --accent-color: #73baee;
+  --secondary-color: #220e43;
+  --accent-color: #a77bf4;
 
   --theme-primary-color: var(--primary-color);
   --theme-secondary-color: var(--secondary-color);
@@ -193,15 +195,13 @@ h3, h4, h5, h6 {
   --logo-color: var(--paper);
 
   /* Brand core: constant on every visit */
-  --ink: #0b0a12;      /* base for every background */
+  --ink: #0b0812;      /* base for every background; each palette swaps in its own hue */
   --paper: #f3f0e8;    /* text and logo */
-  --signal: #ff4fcb;   /* booking actions + focus */
-  --on-signal: #2b0322;
+  --signal: var(--accent-color);   /* booking actions + focus: the palette's light shade */
+  --on-signal: var(--on-accent);
 
   /* Theme colors tint Ink (opaque, perceptual OKLCH mixing) instead of
-     painting large areas, so no theme turns olive or mauve. */
-  /* Background tints. main.js swaps in a non-warm palette color when the
-     theme's own color is orange/amber/gold, because those go brown when dark. */
+     painting large areas. */
   --tint-page: var(--theme-primary-color);
   --tint-section: var(--theme-secondary-color);
   --tint-card: var(--theme-primary-color);
@@ -217,6 +217,42 @@ h3, h4, h5, h6 {
   --theme-gray: #808080;
   --theme-gray-light: #d3d3d3;
   --theme-gray-dark: #505050;
+}
+
+/* Single-hue palettes. Each one is a single hue; only saturation and
+   lightness change. The inline script in index.html picks one per visit
+   (keep its list in sync). primary = full color (borders, player),
+   secondary = deep shade (sections), accent = light shade (buttons, links),
+   ink = near-black of the same hue (all backgrounds). */
+:root[data-palette="blue"] {      /* billymitchell.design blue, hue 201 */
+  --primary-color: #0580c2;
+  --secondary-color: #0e3143;
+  --accent-color: #7bcaf4;
+  --ink: #080e12;
+}
+:root[data-palette="green"] {     /* billymitchell.design green, hue 141 */
+  --primary-color: #17ab4b;
+  --secondary-color: #0e4321;
+  --accent-color: #7bf4a5;
+  --ink: #08120b;
+}
+:root[data-palette="violet"] {    /* hue 262 */
+  --primary-color: #6625d9;
+  --secondary-color: #220e43;
+  --accent-color: #a77bf4;
+  --ink: #0b0812;
+}
+:root[data-palette="magenta"] {   /* hue 318 */
+  --primary-color: #ed1dae;
+  --secondary-color: #430e33;
+  --accent-color: #f47bd0;
+  --ink: #12080f;
+}
+:root[data-palette="mono"] {      /* black and white */
+  --primary-color: #d6d6d6;
+  --secondary-color: #262626;
+  --accent-color: #f2f2f2;
+  --ink: #0a0a0a;
 }
 
 /* Hero Section */
@@ -1759,7 +1795,7 @@ html {
   }
 }
 
-/* ---------- Brand core: Signal is the booking color on every theme ---------- */
+/* ---------- Signal: booking buttons + focus rings, in the palette's light shade ---------- */
 .header-book,
 .hero-ctas .cta-btn:not(.cta-ghost),
 #book-now .cta-btn,
@@ -1863,4 +1899,125 @@ html {
 .gear-label.is-above .gear-label-tick {
   top: auto;
   bottom: 0;
+}
+
+/* ---------- Palette-tinted imagery ----------
+   Photos are first muted (less saturation, a touch more contrast) so their own
+   colors stay quiet, then a soft layer in the palette's primary color with
+   mix-blend-mode: color pulls them toward the palette hue. The mono palette
+   uses full strength for true black and white. Mix and video covers ease back
+   to their true colors on hover/focus. */
+:root {
+  --image-tint: 0.45;                          /* overlay strength */
+  --image-mute: saturate(0.55) contrast(1.06) brightness(0.96);
+  --image-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+:root[data-palette="mono"] {
+  --image-tint: 1;
+}
+#hero-section,
+.about-photo,
+.mix-facade,
+.video-facade,
+.map-container {
+  isolation: isolate;
+}
+.map-container {
+  position: relative;
+}
+#places-map {
+  position: relative;
+  z-index: 0; /* keep Google's internal layers under the tint */
+}
+
+/* Muted base */
+#hero-section picture img,
+.about-photo img,
+.mix-facade img,
+.video-facade img {
+  filter: var(--image-mute);
+  transition: filter 0.8s var(--image-ease), transform 0.9s var(--image-ease);
+}
+#hero-section picture img {
+  transition: filter 0.8s var(--image-ease); /* transform follows scroll parallax directly */
+}
+
+/* Palette layer */
+#hero-section::after,
+.about-photo::before,
+.mix-facade::before,
+.video-facade::before,
+.map-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--primary-color);
+  mix-blend-mode: color;
+  opacity: var(--image-tint);
+  pointer-events: none;
+  transition: opacity 0.8s var(--image-ease), transform 0.6s var(--image-ease);
+}
+#hero-section::after {
+  z-index: 0; /* above the photo, under the dark overlay (z 1) and content */
+}
+.about-photo::before {
+  z-index: 1;
+  border-radius: 10px;
+}
+.mix-facade::before,
+.video-facade::before {
+  z-index: 1; /* above the cover, under the play button and titles */
+}
+.mix-facade > *:not(img),
+.video-facade > *:not(img) {
+  z-index: 2;
+}
+.map-container::after {
+  z-index: 1;
+  opacity: calc(var(--image-tint) * 0.7); /* lighter, so labels stay crisp */
+}
+
+/* Hairline edge for a finished, framed look */
+.mix-facade,
+.video-facade,
+.map-container {
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.06),
+    0 10px 30px rgb(0 0 0 / 0.35);
+}
+.about-photo img {
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.06),
+    0 18px 48px rgb(0 0 0 / 0.5);
+}
+
+/* True color on hover/focus */
+.mix-facade:hover img,
+.mix-facade:focus-visible img,
+.video-facade:hover img,
+.video-facade:focus-visible img {
+  filter: none;
+}
+.mix-facade:hover::before,
+.mix-facade:focus-visible::before,
+.video-facade:hover::before,
+.video-facade:focus-visible::before {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .about-photo:hover::before {
+    transform: translate(-4px, -4px); /* follows the photo's hover lift */
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #hero-section picture img,
+  .about-photo img,
+  .mix-facade img,
+  .video-facade img,
+  #hero-section::after,
+  .about-photo::before,
+  .mix-facade::before,
+  .video-facade::before {
+    transition: none;
+  }
 }

@@ -14,7 +14,7 @@ const path = require('path');
 const { chromium } = require('playwright');
 
 const ROOT = path.resolve(__dirname, '..');
-const PHOTO = 'press-kit/Images/IMG_9254.jpg';
+const PHOTO = 'press-kit/Images/000023590021-small.jpg';
 const OUT = path.join(ROOT, 'og-image.jpg');
 
 // Mirrors the :root[data-palette] blocks in simplified-style.css.
@@ -28,7 +28,7 @@ const PALETTES = {
 const name = process.argv[2] || 'violet';
 const p = PALETTES[name];
 if (!p) throw new Error(`Unknown palette "${name}"`);
-const tint = name === 'mono' ? 1 : 0.55;
+const tint = name === 'mono' ? 1 : 0.65;
 
 const logo = fs.readFileSync(path.join(ROOT, 'logo.svg'), 'utf8')
   .replace(/<\?xml[^>]*\?>/, '')
@@ -47,8 +47,8 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
   }
   .photo { position: absolute; inset: 0 0 0 auto; width: 640px; isolation: isolate; }
   .photo img {
-    width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%;
-    filter: saturate(0.55) contrast(1.08) brightness(0.9);
+    width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%;
+    filter: saturate(0.2) contrast(1.08) brightness(0.92);
   }
   .photo::before {                 /* palette tint, as on the site */
     content: ''; position: absolute; inset: 0; background: ${p.primary};
@@ -74,15 +74,14 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
     font-size: 20px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
     color: color-mix(in srgb, #f3f0e8 70%, transparent);
   }
-  .foot b { color: ${p.accent}; font-weight: 700; }
 </style></head><body>
   <div class="photo"><img src="file://${path.join(ROOT, PHOTO)}" alt=""></div>
   <div class="copy">
     <div class="logo">${logo}</div>
     <div class="rule"></div>
-    <div class="kicker">Jungle &middot; Drum &amp; Bass<br>Baltimore Club &middot; House</div>
+    <div class="kicker">DJ &middot; Baltimore, MD</div>
   </div>
-  <div class="foot">djnerva.com <b>/</b> Baltimore, MD</div>
+  <div class="foot">djnerva.com</div>
 </body></html>`;
 
 (async () => {

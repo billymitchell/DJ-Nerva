@@ -278,7 +278,7 @@ node scripts/build_places_list.js                                        # venue
 node scripts/bump_asset_versions.js                                      # ?v=<hash> on CSS/JS links
 ```
 
-- Social card: `node scripts/build_og_image.js [palette]` renders `og-image.jpg` (1200x630, default `green`) from `logo.svg` + a press-kit photo and re-stamps the `?v=` on its URLs in `index.html`. Re-run it after changing the logo, palettes or press photo.
+- Social card: `node scripts/build_og_image.js [palette]` renders `og-image.jpg` (1200x630, default `green`) from the hero's inline SVG logo + a press-kit photo and re-stamps the `?v=` on its URLs in `index.html`. Re-run it after changing the logo, palettes or press photo.
 - Gallery alt text lives in `DJ-images/alt-text.json`; the manifest script warns about photos without it.
 - `404.html` must stay at the root: without it Cloudflare Pages serves `index.html` (status 200) for every missing URL.
 - Repo-only files are kept off the live site via `_redirects`; add new ones there.

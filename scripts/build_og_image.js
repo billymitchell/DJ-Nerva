@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*
  * Renders the social sharing card (og-image.jpg, 1200x630) from brand assets:
- * logo.svg in Paper on the green palette's Ink, with a press photo tinted the
+ * the site logo in Paper on the green palette's Ink, with a press photo tinted the
  * same way the site tints imagery (muted, then a primary-color "color" blend).
  *
  *   node scripts/build_og_image.js [palette]     # blue | green | violet | magenta | mono
@@ -30,9 +30,11 @@ const p = PALETTES[name];
 if (!p) throw new Error(`Unknown palette "${name}"`);
 const tint = name === 'mono' ? 1 : 0.65;
 
-const logo = fs.readFileSync(path.join(ROOT, 'logo.svg'), 'utf8')
-  .replace(/<\?xml[^>]*\?>/, '')
-  .replace(/<!--[\s\S]*?-->/g, '');
+// The hero's inline SVG is the precise logo (logo.svg is a lower-precision export).
+const logo = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8')
+  .match(/<svg id="logo"[\s\S]*?<\/svg>/)[0]
+  .replace(/<title[\s\S]*?<\/title>/, '')
+  .replace(/ (id|class|role|aria-labelledby)="[^"]*"/g, '');
 
 const html = `<!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Press+Start+2P&display=block" rel="stylesheet">
@@ -63,13 +65,16 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
     position: absolute; left: 80px; top: 0; bottom: 0; width: 560px;
     display: flex; flex-direction: column; justify-content: center; gap: 34px;
   }
-  .logo svg { display: block; width: 400px; height: auto; fill: #f3f0e8; stroke: #f3f0e8; stroke-width: 2.5; stroke-linejoin: round; }
+  .logo svg { display: block; width: 400px; height: auto; }
+  .logo svg * { fill: #f3f0e8; stroke: #f3f0e8; stroke-width: 2; }   /* seals seams, as on the site */
   .rule { width: 64px; height: 4px; background: ${p.primary}; border-radius: 2px; }
   .kicker {
     font-family: 'Press Start 2P', monospace; font-size: 15px; line-height: 1.9;
     letter-spacing: 0.06em; color: ${p.accent}; text-transform: uppercase;
   }
-  #wave { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; filter: drop-shadow(0 0 6px ${p.primary}); }
+  #wave, #dots { position: absolute; inset: 0; pointer-events: none; }
+  #wave { mix-blend-mode: screen; filter: drop-shadow(0 0 6px ${p.primary}); }
+  #dots { mix-blend-mode: screen; filter: blur(0.4px) drop-shadow(0 0 4px ${p.primary}); }
   .foot {
     position: absolute; left: 80px; bottom: 52px;
     font-size: 20px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
@@ -83,42 +88,42 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
     <div class="kicker">DJ &middot; Baltimore, MD</div>
   </div>
   <canvas id="wave" width="1200" height="630"></canvas>
+  <canvas id="dots" width="1200" height="630"></canvas>
   <div class="foot">djnerva.com</div>
 <script>
-// Sound wave that dissolves into pixels: solid mirrored bars on the left
-// break into grid-snapped pixels that scatter and fade across the photo.
+// One clean sine line that, crossing into the photo, breaks into pixels
+// which thin out and fade into the image.
 (() => {
   const P = ${JSON.stringify(p)};
-  const ctx = document.getElementById('wave').getContext('2d');
-  let seed = 7;                                   // deterministic output
+  const line = document.getElementById('wave').getContext('2d');
+  const dots = document.getElementById('dots').getContext('2d');
+  let seed = 11;                                  // deterministic output
   const rnd = () => { seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
     t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
   const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
-  const X0 = 80, X1 = 1200, CY = 505, AMP = 36, STEP = 5, BAR = 3;
-  for (let x = X0; x < X1; x += STEP) {
-    const t = (x - X0) / (X1 - X0);
-    const env = 0.3 + 0.7 * Math.abs(Math.sin(x * 0.011) * Math.sin(x * 0.047 + 1.3));
-    const h = Math.max(3, AMP * env * (0.55 + 0.45 * rnd()) * (0.5 + 0.5 * smooth(0, 0.08, t)));
-    const d = smooth(0.32, 0.95, t);              // 0 = solid wave, 1 = fully dissolved
-    if (d < 1) {                                  // solid bar, fading out as it breaks up
-      const g = ctx.createLinearGradient(0, CY - h, 0, CY + h);
-      g.addColorStop(0, P.primary); g.addColorStop(0.5, P.accent); g.addColorStop(1, P.primary);
-      ctx.globalAlpha = (1 - d) ** 2; ctx.fillStyle = g;
-      ctx.fillRect(x, CY - h, BAR, h * 2);
-    }
-    if (d <= 0) continue;
-    const cs = 3 + Math.round(d * 5) * 2;         // pixels grow as the wave decays
-    for (let y = CY - h; y < CY + h; y += cs) {
-      if (rnd() > 1 - d * 0.55) continue;         // drop more cells further right
-      const dx = (rnd() - 0.25) * d * 70, dy = (rnd() - 0.5) * d * d * 190;
-      const px = Math.round((x + dx) / cs) * cs, py = Math.round((y + dy) / cs) * cs;
-      ctx.globalAlpha = (1 - d * 0.85) * (0.45 + 0.55 * rnd());
-      const c = rnd();
-      ctx.fillStyle = c < 0.5 ? P.accent : P.primary;
-      ctx.fillRect(px, py, cs - 1, cs - 1);
-    }
+  const X0 = 80, X1 = 1200, CY = 500, AMP = 22;
+  const y = x => CY + AMP * Math.sin((x - X0) * 0.035) * (0.55 + 0.45 * Math.sin((x - X0) * 0.006));
+  const D0 = 500, D1 = 1120;                      // dissolve span (starts at the photo edge)
+
+  // Solid line, fading out as it breaks up
+  const g = line.createLinearGradient(X0, 0, D0 + 220, 0);
+  g.addColorStop(0, P.accent); g.addColorStop(0.55, P.accent); g.addColorStop(1, 'transparent');
+  line.strokeStyle = g; line.lineWidth = 3; line.lineCap = 'round'; line.lineJoin = 'round';
+  line.beginPath();
+  for (let x = X0; x <= D0 + 220; x += 2) x === X0 ? line.moveTo(x, y(x)) : line.lineTo(x, y(x));
+  line.stroke();
+
+  // Pixels: sampled from the line, growing, drifting and thinning out
+  for (let x = D0 - 40; x < D1; x += 3) {
+    const d = smooth(D0 - 40, D1, x);
+    if (rnd() > 0.9 - d * 0.55) continue;
+    const cs = 3 + Math.round(d * 3) * 2;
+    const px = Math.round((x + (rnd() - 0.3) * d * 50) / cs) * cs;
+    const py = Math.round((y(x) + (rnd() - 0.5) * (4 + d * d * 220)) / cs) * cs;
+    dots.globalAlpha = (1 - d) ** 1.4 * (0.5 + 0.5 * rnd());
+    dots.fillStyle = rnd() < 0.5 ? P.accent : P.primary;
+    dots.fillRect(px, py, cs - 1, cs - 1);
   }
-  ctx.globalAlpha = 1;
 })();
 </script>
 </body></html>`;
@@ -127,10 +132,18 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
   const tmp = path.join(require('os').tmpdir(), 'og-card.html');
   fs.writeFileSync(tmp, html);
   const browser = await chromium.launch();
-  const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });
+  const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 2 });   // supersampled, downscaled below
   await page.goto('file://' + tmp, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
-  await page.screenshot({ path: OUT, type: 'jpeg', quality: 88 });
+  const shot = await page.screenshot({ type: 'png' });
+  // Downscale 2x -> 1x in the browser for clean anti-aliasing on the logo edges.
+  const b64 = await page.evaluate(async (src) => {
+    const img = new Image(); img.src = 'data:image/png;base64,' + src; await img.decode();
+    const c = document.createElement('canvas'); c.width = 1200; c.height = 630;
+    const x = c.getContext('2d'); x.imageSmoothingQuality = 'high'; x.drawImage(img, 0, 0, 1200, 630);
+    return c.toDataURL('image/jpeg', 0.9).split(',')[1];
+  }, shot.toString('base64'));
+  fs.writeFileSync(OUT, Buffer.from(b64, 'base64'));
   await browser.close();
   // Re-stamp the og:image / twitter:image URLs so link previews re-fetch the new card.
   const v = require('crypto').createHash('sha1').update(fs.readFileSync(OUT)).digest('hex').slice(0, 10);

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*
  * Renders the social sharing card (og-image.jpg, 1200x630) from brand assets:
- * logo.svg in Paper on the violet palette's Ink, with a press photo tinted the
+ * logo.svg in Paper on the green palette's Ink, with a press photo tinted the
  * same way the site tints imagery (muted, then a primary-color "color" blend).
  *
  *   node scripts/build_og_image.js [palette]     # blue | green | violet | magenta | mono
@@ -25,7 +25,7 @@ const PALETTES = {
   magenta: { primary: '#ed1dae', accent: '#f47bd0', ink: '#12080f' },
   mono:    { primary: '#d6d6d6', accent: '#f2f2f2', ink: '#0a0a0a' },
 };
-const name = process.argv[2] || 'violet';
+const name = process.argv[2] || 'green';
 const p = PALETTES[name];
 if (!p) throw new Error(`Unknown palette "${name}"`);
 const tint = name === 'mono' ? 1 : 0.65;
@@ -69,6 +69,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
     font-family: 'Press Start 2P', monospace; font-size: 15px; line-height: 1.9;
     letter-spacing: 0.06em; color: ${p.accent}; text-transform: uppercase;
   }
+  #wave { position: absolute; inset: 0; pointer-events: none; }
   .foot {
     position: absolute; left: 80px; bottom: 52px;
     font-size: 20px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
@@ -81,7 +82,45 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
     <div class="rule"></div>
     <div class="kicker">DJ &middot; Baltimore, MD</div>
   </div>
+  <canvas id="wave" width="1200" height="630"></canvas>
   <div class="foot">djnerva.com</div>
+<script>
+// Sound wave that dissolves into pixels: solid mirrored bars on the left
+// break into grid-snapped pixels that scatter and fade across the photo.
+(() => {
+  const P = ${JSON.stringify(p)}, PAPER = '#f3f0e8';
+  const ctx = document.getElementById('wave').getContext('2d');
+  let seed = 7;                                   // deterministic output
+  const rnd = () => { seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+  const X0 = 80, X1 = 1200, CY = 505, AMP = 36, STEP = 5, BAR = 3;
+  for (let x = X0; x < X1; x += STEP) {
+    const t = (x - X0) / (X1 - X0);
+    const env = 0.3 + 0.7 * Math.abs(Math.sin(x * 0.011) * Math.sin(x * 0.047 + 1.3));
+    const h = Math.max(3, AMP * env * (0.55 + 0.45 * rnd()) * (0.5 + 0.5 * smooth(0, 0.08, t)));
+    const d = smooth(0.32, 0.95, t);              // 0 = solid wave, 1 = fully dissolved
+    if (d < 1) {                                  // solid bar, fading out as it breaks up
+      const g = ctx.createLinearGradient(0, CY - h, 0, CY + h);
+      g.addColorStop(0, P.primary); g.addColorStop(0.5, P.accent); g.addColorStop(1, P.primary);
+      ctx.globalAlpha = (1 - d) ** 2; ctx.fillStyle = g;
+      ctx.fillRect(x, CY - h, BAR, h * 2);
+    }
+    if (d <= 0) continue;
+    const cs = 3 + Math.round(d * 5) * 2;         // pixels grow as the wave decays
+    for (let y = CY - h; y < CY + h; y += cs) {
+      if (rnd() > 1 - d * 0.55) continue;         // drop more cells further right
+      const dx = (rnd() - 0.25) * d * 70, dy = (rnd() - 0.5) * d * d * 190;
+      const px = Math.round((x + dx) / cs) * cs, py = Math.round((y + dy) / cs) * cs;
+      ctx.globalAlpha = (1 - d * 0.75) * (0.55 + 0.45 * rnd());
+      const c = rnd();
+      ctx.fillStyle = c < 0.12 ? PAPER : c < 0.55 ? P.accent : P.primary;
+      ctx.fillRect(px, py, cs - 1, cs - 1);
+    }
+  }
+  ctx.globalAlpha = 1;
+})();
+</script>
 </body></html>`;
 
 (async () => {

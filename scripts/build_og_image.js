@@ -69,7 +69,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
     font-family: 'Press Start 2P', monospace; font-size: 15px; line-height: 1.9;
     letter-spacing: 0.06em; color: ${p.accent}; text-transform: uppercase;
   }
-  #wave { position: absolute; inset: 0; pointer-events: none; }
+  #wave { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; filter: drop-shadow(0 0 6px ${p.primary}); }
   .foot {
     position: absolute; left: 80px; bottom: 52px;
     font-size: 20px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
@@ -88,7 +88,7 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
 // Sound wave that dissolves into pixels: solid mirrored bars on the left
 // break into grid-snapped pixels that scatter and fade across the photo.
 (() => {
-  const P = ${JSON.stringify(p)}, PAPER = '#f3f0e8';
+  const P = ${JSON.stringify(p)};
   const ctx = document.getElementById('wave').getContext('2d');
   let seed = 7;                                   // deterministic output
   const rnd = () => { seed = (seed + 0x6D2B79F5) | 0; let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
@@ -112,9 +112,9 @@ const html = `<!doctype html><html><head><meta charset="utf-8">
       if (rnd() > 1 - d * 0.55) continue;         // drop more cells further right
       const dx = (rnd() - 0.25) * d * 70, dy = (rnd() - 0.5) * d * d * 190;
       const px = Math.round((x + dx) / cs) * cs, py = Math.round((y + dy) / cs) * cs;
-      ctx.globalAlpha = (1 - d * 0.75) * (0.55 + 0.45 * rnd());
+      ctx.globalAlpha = (1 - d * 0.85) * (0.45 + 0.55 * rnd());
       const c = rnd();
-      ctx.fillStyle = c < 0.12 ? PAPER : c < 0.55 ? P.accent : P.primary;
+      ctx.fillStyle = c < 0.5 ? P.accent : P.primary;
       ctx.fillRect(px, py, cs - 1, cs - 1);
     }
   }
